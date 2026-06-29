@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ClearSky Builders installs battery energy storage systems for commercial, industrial, hospitality, residential, and EV charging — zero upfront cost.">
+  <meta property="og:title" content="ClearSky Builders | Battery Storage. Zero Upfront Cost.">
+  <meta property="og:description" content="Cut energy bills by up to 20% with zero-capex, full-service BESS for C&I, hospitality, multifamily, and EV charging sites.">
+  <meta property="og:type" content="website">
+  <title>ClearSky Builders | Battery Storage. Zero Upfront Cost.</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cs-black: #080C10;
+      --cs-navy: #0D1620;
+      --cs-card: #111D28;
+      --cs-blue: #00AEEF;
+      --cs-blue-dim: rgba(0,174,239,0.12);
+      --cs-blue-mid: rgba(0,174,239,0.35);
+      --cs-amber: #F5A623;
+      --cs-white: #EEF3F8;
+      --cs-muted: rgba(238,243,248,0.5);
+      --cs-border: rgba(255,255,255,0.08);
+      --cs-border-blue: rgba(0,174,239,0.3);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cs-black);
+      color: var(--cs-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 48px;
+      border-bottom: 0.5px solid var(--cs-border);
+      position: sticky;
+      top: 0;
+      background: rgba(8,12,16,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: -0.5px;
+      color: var(--cs-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .logo-mark {
+      width: 34px;
+      height: 34px;
+      background: var(--cs-blue);
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      color: #080C10;
+      letter-spacing: -1px;
+      flex-shrink: 0;
+    }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .nav-login {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--cs-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .nav-login:hover { color: var(--cs-white); }
+
+    .nav-cta {
+      background: var(--cs-blue);
+      color: #080C10;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    .nav-cta:hover { opacity: 0.88; }
+
+    /* MARKET TABS */
+    .market-tabs {
+      display: flex;
+      border-bottom: 0.5px solid var(--cs-border);
+      padding: 0 48px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .market-tabs::-webkit-scrollbar { display: none; }
+
+    .market-tab {
+      padding: 14px 24px;
+      font-family: 'Inter', sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--cs-muted);
+      cursor: pointer;
+      border: none;
+      background: none;
+      border-bottom: 2px solid transparent;
+      white-space: nowrap;
+      transition: color 0.2s, border-color 0.2s;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: -0.5px;
+    }
+
+    .market-tab:hover { color: var(--cs-white); }
+    .market-tab.active { color: var(--cs-blue); border-bottom-color: var(--cs-blue); }
+
+    /* CONTENT SEGMENTS */
+    .content-block { display: none; }
+    .content-block.active { display: block; animation: fadeUp 0.3s ease; }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* HERO */
+    .hero {
+      padding: 72px 48px 56px;
+      max-width: 960px;
+    }
+
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cs-blue);
+      margin-bottom: 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--cs-blue);
+      flex-shrink: 0;
+    }
+
+    .hero-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: 58px;
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -2px;
+      color: var(--cs-white);
+      margin-bottom: 26px;
+      max-width: 820px;
+    }
+
+    .hero-headline .accent { color: var(--cs-blue); }
+
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--cs-muted);
+      max-width: 560px;
+      margin-bottom: 38px;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--cs-blue);
+      color: #080C10;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+
+    .btn-primary:hover { opacity: 0.88; }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--cs-white);
+      border: 0.5px solid var(--cs-border-blue);
+      padding: 14px 30px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .btn-ghost:hover { border-color: var(--cs-blue); color: var(--cs-blue); }
+
+    /* STATS BAR */
+    .stats-bar {
+      display: flex;
+      border-top: 0.5px solid var(--cs-border);
+      border-bottom: 0.5px solid var(--cs-border);
+      margin: 0 48px;
+    }
+
+    .stat-item {
+      flex: 1;
+      padding: 28px 32px;
+      border-right: 0.5px solid var(--cs-border);
+    }
+
+    .stat-item:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--cs-white);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+
+    .stat-num span { color: var(--cs-blue); }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--cs-muted);
+      margin-top: 7px;
+      line-height: 1.45;
+    }
+
+    /* SECTIONS */
+    .section {
+      padding: 64px 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cs-blue);
+      margin-bottom: 12px;
+    }
+
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 32px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      margin-bottom: 36px;
+      max-width: 600px;
+    }
+
+    /* CALCULATOR */
+    .calc-section {
+      margin: 0 48px 64px;
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 14px;
+      padding: 44px 48px;
+    }
+
+    .calc-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+
+    .calc-left { display: flex; flex-direction: column; gap: 24px; }
+
+    .calc-field label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cs-muted);
+      margin-bottom: 10px;
+    }
+
+    .calc-field select {
+      width: 100%;
+      background: #1A2535;
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 7px;
+      color: var(--cs-white);
+      padding: 11px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      appearance: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+
+    .range-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .range-row input[type="range"] {
+      flex: 1;
+      -webkit-appearance: none;
+      height: 3px;
+      background: var(--cs-border-blue);
+      border-radius: 2px;
+      outline: none;
+    }
+
+    .range-row input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--cs-blue);
+      cursor: pointer;
+    }
+
+    .range-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--cs-blue);
+      min-width: 64px;
+      text-align: right;
+    }
+
+    .calc-results { display: flex; flex-direction: column; gap: 16px; }
+
+    .result-card {
+      background: rgba(0,174,239,0.06);
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 10px;
+      padding: 22px 24px;
+    }
+
+    .result-card-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--cs-blue);
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    .result-card-val {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--cs-white);
+      line-height: 1;
+    }
+
+    .result-card-note {
+      font-size: 12px;
+      color: var(--cs-muted);
+      margin-top: 7px;
+      line-height: 1.4;
+    }
+
+    /* BENEFITS */
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .benefit-card {
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border);
+      border-radius: 12px;
+      padding: 28px;
+      transition: border-color 0.2s;
+    }
+
+    .benefit-card:hover { border-color: var(--cs-border-blue); }
+
+    .benefit-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--cs-blue-dim);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 16px;
+      color: var(--cs-blue);
+      font-size: 20px;
+    }
+
+    .benefit-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: -0.2px;
+    }
+
+    .benefit-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--cs-muted);
+    }
+
+    /* PROCESS */
+    .process-steps {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 0.5px solid var(--cs-border);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    .process-step {
+      padding: 32px 28px;
+      border-right: 0.5px solid var(--cs-border);
+    }
+
+    .process-step:last-child { border-right: none; }
+
+    .step-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 48px;
+      font-weight: 800;
+      color: var(--cs-blue-dim);
+      line-height: 1;
+      margin-bottom: 14px;
+    }
+
+    .step-label {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+      color: var(--cs-blue);
+      margin-bottom: 6px;
+      font-weight: 600;
+    }
+
+    .step-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .step-desc {
+      font-size: 14px;
+      line-height: 1.65;
+      color: var(--cs-muted);
+    }
+
+    .step-time {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 11px;
+      background: var(--cs-blue-dim);
+      color: var(--cs-blue);
+      border: 0.5px solid var(--cs-border-blue);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+    }
+
+    /* CONTACT */
+    .contact-section {
+      margin: 0 48px 64px;
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 14px;
+      padding: 52px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+
+    .contact-left h2 {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      margin-bottom: 14px;
+      line-height: 1.1;
+    }
+
+    .contact-left p {
+      font-size: 15px;
+      color: var(--cs-muted);
+      line-height: 1.65;
+      margin-bottom: 24px;
+    }
+
+    .contact-detail {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--cs-muted);
+      margin-bottom: 10px;
+    }
+
+    .contact-detail a {
+      color: var(--cs-blue);
+      text-decoration: none;
+    }
+
+    .contact-detail a:hover { text-decoration: underline; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+
+    .form-field label {
+      font-size: 11px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--cs-muted);
+    }
+
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: #1A2535;
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 7px;
+      color: var(--cs-white);
+      padding: 11px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(238,243,248,0.25); }
+
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--cs-blue); }
+
+    .form-field textarea { resize: vertical; min-height: 90px; }
+
+    .form-submit {
+      background: var(--cs-blue);
+      color: #080C10;
+      border: none;
+      padding: 14px;
+      border-radius: 7px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+      margin-top: 4px;
+    }
+
+    .form-submit:hover { opacity: 0.88; }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px;
+      color: var(--cs-blue);
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 0.5px solid var(--cs-border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--cs-muted);
+    }
+
+    footer a { color: var(--cs-muted); text-decoration: none; }
+    footer a:hover { color: var(--cs-blue); }
+
+    .footer-right {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .footer-tag {
+      font-size: 11px;
+      color: var(--cs-blue);
+      font-weight: 600;
+      letter-spacing: 0.08em;
+    }
+
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      nav { padding: 14px 20px; }
+      .market-tabs { padding: 0 12px; }
+      .market-tab { padding: 12px 14px; font-size: 10px; }
+      .hero { padding: 40px 20px 36px; }
+      .hero-headline { font-size: 36px; letter-spacing: -1px; }
+      .hero-sub { font-size: 15px; }
+      .stats-bar { flex-wrap: wrap; margin: 0 20px; }
+      .stat-item { min-width: 50%; border-right: none; border-bottom: 0.5px solid var(--cs-border); padding: 20px; }
+      .section { padding: 40px 20px; }
+      .calc-section { margin: 0 20px 40px; padding: 28px 20px; }
+      .calc-grid { grid-template-columns: 1fr; gap: 28px; }
+      .benefits-grid { grid-template-columns: 1fr; }
+      .process-steps { grid-template-columns: 1fr; }
+      .process-step { border-right: none; border-bottom: 0.5px solid var(--cs-border); }
+      .process-step:last-child { border-bottom: none; }
+      .contact-section { grid-template-columns: 1fr; margin: 0 20px 40px; padding: 32px 24px; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; padding: 24px 20px; text-align: center; }
+      .footer-right { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/" class="logo">
+      <div class="logo-mark">CS</div>
+      ClearSky Builders
+    </a>
+    <div class="nav-right">
+      <a href="https://csebuilders.com" class="nav-login">Log in to portal →</a>
+      <a href="#contact" class="nav-cta">Get a proposal</a>
+    </div>
+  </nav>
+
+  <div class="market-tabs" role="tablist">
+    <button class="market-tab active" role="tab" aria-selected="true" onclick="switchSegment(0, this)">Commercial &amp; Industrial</button>
+    <button class="market-tab" role="tab" aria-selected="false" onclick="switchSegment(1, this)">Hospitality</button>
+    <button class="market-tab" role="tab" aria-selected="false" onclick="switchSegment(2, this)">Residential MUD</button>
+    <button class="market-tab" role="tab" aria-selected="false" onclick="switchSegment(3, this)">EV Charging</button>
+  </div>
+
+  <!-- C&I -->
+  <div id="seg-0" class="content-block active">
+    <div class="hero">
+      <p class="hero-eyebrow">Commercial &amp; Industrial BESS</p>
+      <h1 class="hero-headline">Cut demand charges.<br><span class="accent">Zero capex.</span></h1>
+      <p class="hero-sub">ClearSky installs, owns, and operates battery storage at your facility under a host lease. You capture guaranteed monthly savings on demand charges and energy costs — without spending a dollar upfront.</p>
+      <div class="hero-actions">
+        <a href="#calculator" class="btn-primary">Calculate my savings</a>
+        <a href="#contact" class="btn-ghost">Talk to our team</a>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">$250<span>/kWh</span></div><div class="stat-label">ComEd BESH rebate for C&amp;I storage</div></div>
+      <div class="stat-item"><div class="stat-num">30<span>%</span></div><div class="stat-label">Federal ITC through 2032</div></div>
+      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Upfront cost to site host</div></div>
+      <div class="stat-item"><div class="stat-num">6<span>mo</span></div><div class="stat-label">LOI to commercial operation</div></div>
+    </div>
+  </div>
+
+  <!-- Hospitality -->
+  <div id="seg-1" class="content-block">
+    <div class="hero">
+      <p class="hero-eyebrow">Hospitality BESS</p>
+      <h1 class="hero-headline">Higher NOI.<br><span class="accent">Protected uptime.</span></h1>
+      <p class="hero-sub">Hotels and resorts run on thin margins and fat energy bills. ClearSky battery storage cuts peak demand charges, provides seamless backup power for critical systems, and adds EV charging revenue — all at zero capital cost to the property.</p>
+      <div class="hero-actions">
+        <a href="#calculator" class="btn-primary">See NOI impact</a>
+        <a href="#contact" class="btn-ghost">Talk to our team</a>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">20<span>%</span></div><div class="stat-label">Typical energy bill reduction</div></div>
+      <div class="stat-item"><div class="stat-num">17<span>×</span></div><div class="stat-label">Property value per $1 of NOI saved</div></div>
+      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Capital cost to property owner</div></div>
+      <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-label">Managed and monitored by ClearSky</div></div>
+    </div>
+  </div>
+
+  <!-- Residential MUD -->
+  <div id="seg-2" class="content-block">
+    <div class="hero">
+      <p class="hero-eyebrow">Residential MUD</p>
+      <h1 class="hero-headline">Shared storage.<br><span class="accent">Per-unit savings.</span></h1>
+      <p class="hero-sub">Multifamily and mixed-use developers face rising common-area energy costs and resident expectations for sustainability. ClearSky installs a shared BESS that reduces master-meter demand charges and enables optional backup power — at no cost to the building owner.</p>
+      <div class="hero-actions">
+        <a href="#calculator" class="btn-primary">Model my building</a>
+        <a href="#contact" class="btn-ghost">Talk to our team</a>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">15–25<span>%</span></div><div class="stat-label">Common area energy cost reduction</div></div>
+      <div class="stat-item"><div class="stat-num">30<span>%</span></div><div class="stat-label">Federal ITC on project cost</div></div>
+      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Cost to building owner</div></div>
+      <div class="stat-item"><div class="stat-num">2<span>%+</span></div><div class="stat-label">Estimated property value increase</div></div>
+    </div>
+  </div>
+
+  <!-- EV Charging -->
+  <div id="seg-3" class="content-block">
+    <div class="hero">
+      <p class="hero-eyebrow">EV Charging + BESS</p>
+      <h1 class="hero-headline">Charge more cars.<br><span class="accent">No grid upgrade.</span></h1>
+      <p class="hero-sub">Adding DCFC chargers without battery storage triggers massive demand spikes and costly utility upgrade requirements. ClearSky pairs every EV charging deployment with right-sized BESS — eliminating demand charge exposure and avoiding transformer upgrades entirely.</p>
+      <div class="hero-actions">
+        <a href="#calculator" class="btn-primary">Size my system</a>
+        <a href="#contact" class="btn-ghost">Talk to our team</a>
+      </div>
+    </div>
+    <div class="stats-bar">
+      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Grid upgrade cost with BESS pairing</div></div>
+      <div class="stat-item"><div class="stat-num">4–8<span>×</span></div><div class="stat-label">Charger capacity vs. utility service size</div></div>
+      <div class="stat-item"><div class="stat-num">DCFC</div><div class="stat-label">50–350 kW fast charger support</div></div>
+      <div class="stat-item"><div class="stat-num">2–4<span>yr</span></div><div class="stat-label">Simple payback on BESS investment</div></div>
+    </div>
+  </div>
+
+  <!-- SAVINGS CALCULATOR -->
+  <div class="calc-section" id="calculator">
+    <p class="section-label">Savings Estimator</p>
+    <h2 class="section-title">Calculate your savings potential</h2>
+    <div class="calc-grid">
+      <div class="calc-left">
+        <div class="calc-field">
+          <label>Market segment</label>
+          <select id="calc-segment" onchange="recalc()">
+            <option value="ci">Commercial &amp; Industrial</option>
+            <option value="hosp">Hospitality</option>
+            <option value="mud">Residential MUD</option>
+            <option value="ev">EV Charging Site</option>
+          </select>
+        </div>
+        <div class="calc-field">
+          <label>Monthly utility bill</label>
+          <div class="range-row">
+            <input type="range" id="bill-slider" min="2000" max="80000" value="12000" step="1000" oninput="recalc()">
+            <div class="range-val" id="bill-display">$12K</div>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Battery system size (kWh)</label>
+          <div class="range-row">
+            <input type="range" id="size-slider" min="100" max="4000" value="500" step="50" oninput="recalc()">
+            <div class="range-val" id="size-display">500 kWh</div>
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>State / utility</label>
+          <select id="state-select" onchange="recalc()">
+            <option value="il">Illinois (ComEd)</option>
+            <option value="ca">California (PG&amp;E / SCE)</option>
+            <option value="ct">Connecticut (Eversource / UI)</option>
+            <option value="ma">Massachusetts (Eversource MA)</option>
+            <option value="ny">New York (ConEd)</option>
+          </select>
+        </div>
+      </div>
+      <div class="calc-results">
+        <div class="result-card">
+          <p class="result-card-label">Estimated annual savings</p>
+          <div class="result-card-val" id="res-savings">$0</div>
+          <p class="result-card-note">Based on demand charge reduction and energy arbitrage</p>
+        </div>
+        <div class="result-card">
+          <p class="result-card-label">Utility + state rebates available</p>
+          <div class="result-card-val" id="res-rebates">$0</div>
+          <p class="result-card-note" id="res-rebate-note">Varies by program eligibility</p>
+        </div>
+        <div class="result-card">
+          <p class="result-card-label">Upfront cost to you</p>
+          <div class="result-card-val">$0</div>
+          <p class="result-card-note">ClearSky covers 100% under the host lease model</p>
+        </div>
+        <a href="#contact" class="btn-primary" style="text-align:center;padding:15px;">Get a real project quote</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- BENEFITS -->
+  <div class="section">
+    <p class="section-label">Why ClearSky</p>
+    <h2 class="section-title">Built for every market, owned end to end</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+        </div>
+        <p class="benefit-title">Zero capital cost</p>
+        <p class="benefit-desc">ClearSky owns, installs, and maintains the battery system. You sign a host lease and collect your share of savings from day one — no budget line required.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        </div>
+        <p class="benefit-title">Backup power included</p>
+        <p class="benefit-desc">Every installation includes automatic outage protection for critical loads — no generator, no diesel, no noise. Continuous power for what matters most.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg>
+        </div>
+        <p class="benefit-title">EV charging ready</p>
+        <p class="benefit-desc">Pair your BESS with DCFC infrastructure. Avoid grid upgrade costs while meeting EV demand today — and scaling for tomorrow without returning to the utility.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
+        </div>
+        <p class="benefit-title">Grid revenue stacking</p>
+        <p class="benefit-desc">ClearSky aggregates your battery into PJM and MISO ancillary service markets, generating demand response and capacity revenue stacked on top of bill savings.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        </div>
+        <p class="benefit-title">Solar-ready integration</p>
+        <p class="benefit-desc">Battery-first design enables seamless solar-plus-storage when you're ready — maximizing self-consumption, export revenue, and existing solar array ROI.</p>
+      </div>
+      <div class="benefit-card">
+        <div class="benefit-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p class="benefit-title">Fully managed ops</p>
+        <p class="benefit-desc">Remote monitoring, predictive maintenance, firmware updates, utility interconnection compliance, and program enrollment — all handled entirely by our team.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROCESS -->
+  <div class="section" style="padding-top:0;">
+    <p class="section-label">How it works</p>
+    <h2 class="section-title">Turnkey from LOI to COD</h2>
+    <div class="process-steps">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <p class="step-label">Scope</p>
+        <p class="step-title">Analyze &amp; propose</p>
+        <p class="step-desc">We review your utility bills, model the optimal battery size and topology, and deliver a guaranteed savings proposal with no obligation.</p>
+        <span class="step-time">2–4 weeks · Outcome: LOI</span>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <p class="step-label">Develop</p>
+        <p class="step-title">Engineer &amp; permit</p>
+        <p class="step-desc">Site survey, engineering drawings, utility interconnection application, and all local permits — we manage everything with zero impact on your operations.</p>
+        <span class="step-time">6–8 weeks · Outcome: NTP</span>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <p class="step-label">Install</p>
+        <p class="step-title">Build &amp; commission</p>
+        <p class="step-desc">Licensed EPC partners procure equipment, install the system, and commission to full commercial operation — then we monitor and manage indefinitely.</p>
+        <span class="step-time">10–12 weeks · Outcome: COD</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-section" id="contact">
+    <div class="contact-left">
+      <h2>Ready to cut your energy bill?</h2>
+      <p>Tell us about your property and we'll get back to you within 24 hours with a preliminary savings estimate — no commitment required.</p>
+      <div class="contact-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:info@csebuilders.com">info@csebuilders.com</a>
+      </div>
+      <div class="contact-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Clinton, Iowa · Serving IL, CT, MA, NY, CA
+      </div>
+    </div>
+    <div class="contact-form" id="contact-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="f-name">Name</label>
+          <input type="text" id="f-name" placeholder="Jane Smith">
+        </div>
+        <div class="form-field">
+          <label for="f-company">Company</label>
+          <input type="text" id="f-company" placeholder="Acme Corp">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="f-email">Email</label>
+        <input type="email" id="f-email" placeholder="jane@acmecorp.com">
+      </div>
+      <div class="form-field">
+        <label for="f-segment">Property type</label>
+        <select id="f-segment">
+          <option value="">Select a segment</option>
+          <option>Commercial &amp; Industrial</option>
+          <option>Hospitality</option>
+          <option>Residential MUD</option>
+          <option>EV Charging Site</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="f-message">Tell us about your property</label>
+        <textarea id="f-message" placeholder="Location, approximate monthly utility bill, any existing solar..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Send inquiry</button>
+    </div>
+    <div class="form-success" id="form-success">
+      <p>&#10003; Message received.</p>
+      <p style="font-size:15px;font-weight:400;color:var(--cs-muted);margin-top:10px;">We'll be in touch within 24 hours.</p>
+    </div>
+  </div>
+
+  <footer>
+    <span>© 2025 ClearSky Builders LLC &nbsp;·&nbsp; <a href="mailto:info@csebuilders.com">info@csebuilders.com</a></span>
+    <div class="footer-right">
+      <span class="footer-tag">BESS · EV Charging · VPP</span>
+      <a href="https://csebuilders.com">Client portal →</a>
+    </div>
+  </footer>
+
+  <script>
+    var rebateTable = {
+      il: { label: 'ComEd BESH $250/kWh + ITC 30%', ratePerKwh: 250 },
+      ca: { label: 'SGIP $100/kWh + ITC 30%', ratePerKwh: 100 },
+      ct: { label: 'Eversource/UI rebate + ITC 30%', ratePerKwh: 80 },
+      ma: { label: 'Eversource MA rebate + ITC 30%', ratePerKwh: 75 },
+      ny: { label: 'NY-Sun BESS incentive + ITC 30%', ratePerKwh: 120 }
+    };
+
+    var savingsPct = { ci: 0.18, hosp: 0.20, mud: 0.15, ev: 0.22 };
+
+    function fmt(n) {
+      if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
+      if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
+      return '$' + Math.round(n);
+    }
+
+    function recalc() {
+      var bill = parseInt(document.getElementById('bill-slider').value);
+      var size = parseInt(document.getElementById('size-slider').value);
+      var seg = document.getElementById('calc-segment').value;
+      var state = document.getElementById('state-select').value;
+
+      document.getElementById('bill-display').textContent = bill >= 1000 ? '$' + Math.round(bill / 1000) + 'K' : '$' + bill;
+      document.getElementById('size-display').textContent = size + ' kWh';
+
+      var annualSavings = bill * 12 * savingsPct[seg];
+      var rebateInfo = rebateTable[state];
+      var totalRebate = size * rebateInfo.ratePerKwh;
+
+      document.getElementById('res-savings').textContent = fmt(Math.round(annualSavings));
+      document.getElementById('res-rebates').textContent = fmt(Math.round(totalRebate));
+      document.getElementById('res-rebate-note').textContent = rebateInfo.label;
+    }
+
+    function switchSegment(idx, el) {
+      var tabs = document.querySelectorAll('.market-tab');
+      var blocks = document.querySelectorAll('.content-block');
+      var segMap = { 0: 'ci', 1: 'hosp', 2: 'mud', 3: 'ev' };
+
+      for (var i = 0; i < tabs.length; i++) {
+        tabs[i].classList.remove('active');
+        tabs[i].setAttribute('aria-selected', 'false');
+      }
+      for (var j = 0; j < blocks.length; j++) {
+        blocks[j].classList.remove('active');
+      }
+
+      el.classList.add('active');
+      el.setAttribute('aria-selected', 'true');
+      document.getElementById('seg-' + idx).classList.add('active');
+      document.getElementById('calc-segment').value = segMap[idx];
+      recalc();
+    }
+
+    function submitForm() {
+      var name = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      if (!name || !email) {
+        alert('Please enter your name and email.');
+        return;
+      }
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+
+      var subject = encodeURIComponent('ClearSky BESS Inquiry - ' + name);
+      var seg = document.getElementById('f-segment').value;
+      var company = document.getElementById('f-company').value;
+      var msg = document.getElementById('f-message').value;
+      var body = encodeURIComponent('Name: ' + name + '\nCompany: ' + company + '\nEmail: ' + email + '\nSegment: ' + seg + '\n\n' + msg);
+      window.location.href = 'mailto:info@csebuilders.com?subject=' + subject + '&body=' + body;
+    }
+
+    recalc();
+  </script>
+
+</body>
+</html>
