@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon-180.png">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="See how a ClearSky battery and AI node turn your meter into a profit center — interactive walkthrough.">
+<title>How It Works | ClearSky Compute</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent;}
+  :root{
+    --cs-black:#080C10; --cs-navy:#0D1620; --cs-card:#111D28;
+    --cs-blue:#00AEEF; --cs-blue-dim:rgba(0,174,239,0.12); --cs-border-blue:rgba(0,174,239,0.3);
+    --cs-amber:#F5A623; --cs-violet:#8B7BFF; --cs-green:#31E6A8;
+    --cs-white:#EEF3F8; --cs-muted:rgba(238,243,248,0.5); --cs-border:rgba(255,255,255,0.08);
+  }
+  html{scroll-behavior:smooth;}
+  body{font-family:'Inter',sans-serif;background:var(--cs-black);color:var(--cs-white);min-height:100vh;overflow-x:hidden;}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:18px 48px;
+    border-bottom:0.5px solid var(--cs-border);position:sticky;top:0;background:rgba(8,12,16,0.92);
+    backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);z-index:100;}
+  .logo{font-family:'Syne',sans-serif;font-weight:800;font-size:20px;letter-spacing:-0.5px;
+    color:var(--cs-white);display:flex;align-items:center;gap:10px;text-decoration:none;}
+  .logo-mark{width:34px;height:34px;background:var(--cs-blue);border-radius:7px;display:flex;
+    align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#080C10;letter-spacing:-1px;flex-shrink:0;}
+  .logo-mark-img{height:30px;width:auto;flex-shrink:0;display:block;}
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .nav-login{font-size:14px;font-weight:500;color:var(--cs-muted);text-decoration:none;transition:color .2s;}
+  .nav-login:hover{color:var(--cs-white);}
+  .nav-cta{background:var(--cs-blue);color:#080C10;border:none;padding:9px 20px;border-radius:6px;
+    font-family:'Inter',sans-serif;font-weight:600;font-size:14px;cursor:pointer;text-decoration:none;display:inline-block;transition:opacity .2s;}
+  .nav-cta:hover{opacity:.88;}
+
+  .head-block{padding:48px 48px 8px;max-width:720px;margin:0 auto;text-align:center;}
+  .eyebrow{font-size:11px;font-weight:600;letter-spacing:0.15em;text-transform:uppercase;color:var(--cs-violet);margin-bottom:14px;}
+  .head-title{font-family:'Syne',sans-serif;font-size:34px;font-weight:800;letter-spacing:-1px;line-height:1.08;margin-bottom:12px;}
+  .head-sub{font-size:15px;color:var(--cs-muted);line-height:1.6;}
+
+  .progress{display:flex;gap:6px;justify-content:center;padding:26px 20px 4px;}
+  .dot{width:30px;height:4px;border-radius:3px;background:var(--cs-border);transition:background .3s;}
+  .dot.on{background:var(--cs-blue);}
+  .dot.done{background:var(--cs-green);}
+
+  .stage{padding:12px 20px 8px;max-width:560px;margin:0 auto;}
+  .card{background:var(--cs-card);border:0.5px solid var(--cs-border-blue);border-radius:16px;
+    padding:32px 26px;animation:fadeUp .35s ease;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:none;}}
+  .step-tag{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;color:var(--cs-blue);}
+  h1{font-family:'Syne',sans-serif;font-size:24px;font-weight:700;margin:8px 0 8px;line-height:1.15;letter-spacing:-0.5px;}
+  .lead{color:var(--cs-muted);font-size:14px;line-height:1.6;margin:0 0 8px;}
+
+  .device{margin:24px auto 8px;width:230px;background:var(--cs-navy);border:0.5px solid var(--cs-border-blue);
+    border-radius:18px;padding:18px;text-align:center;}
+  .device .screen{background:var(--cs-black);border:0.5px solid var(--cs-border);border-radius:12px;padding:16px 10px;}
+  .device .dlabel{font-size:10px;letter-spacing:0.14em;color:var(--cs-muted);text-transform:uppercase;}
+  .device .val{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;color:var(--cs-blue);line-height:1;margin:8px 0 2px;
+    font-variant-numeric:tabular-nums;}
+  .device .unit{font-size:12px;color:var(--cs-muted);}
+  .pmrow{display:flex;gap:16px;justify-content:center;margin-top:18px;}
+  .pm{width:64px;height:64px;border-radius:50%;border:0.5px solid var(--cs-border-blue);background:var(--cs-card);
+    color:var(--cs-white);font-size:30px;font-weight:600;cursor:pointer;user-select:none;
+    display:flex;align-items:center;justify-content:center;transition:transform .08s,background .15s;}
+  .pm:active{transform:scale(.9);background:#1A2535;}
+  .pm.plus{color:var(--cs-green);border-color:rgba(49,230,168,0.35);}
+  .pm.minus{color:var(--cs-amber);border-color:rgba(245,166,35,0.35);}
+  .hint{font-size:12px;color:var(--cs-muted);text-align:center;margin-top:12px;}
+
+  .readout{background:rgba(0,174,239,0.05);border:0.5px solid var(--cs-border-blue);border-radius:12px;padding:16px;margin-top:18px;}
+  .rrow{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13px;}
+  .rrow .k{color:var(--cs-muted);} .rrow .v{font-weight:600;}
+  .rrow .v.g{color:var(--cs-green);} .rrow .v.c{color:var(--cs-blue);} .rrow .v.a{color:var(--cs-amber);}
+  .rrow .v.big{font-family:'Syne',sans-serif;font-size:16px;} .rrow .k.strong{color:var(--cs-white);font-weight:600;}
+  .divider{height:0.5px;background:var(--cs-border);margin:6px 0;}
+
+  .flow{display:flex;flex-direction:column;align-items:center;margin:22px 0 6px;}
+  .node{width:100%;max-width:320px;background:var(--cs-navy);border:0.5px solid var(--cs-border);
+    border-radius:12px;padding:15px 16px;display:flex;align-items:center;gap:14px;}
+  .node .ico{width:44px;height:44px;border-radius:11px;flex:0 0 44px;display:flex;align-items:center;justify-content:center;font-size:22px;}
+  .node .nm{font-family:'Syne',sans-serif;font-weight:700;font-size:14px;} .node .ds{font-size:11px;color:var(--cs-muted);margin-top:2px;}
+  .node.b .ico{background:rgba(49,230,168,0.12);}
+  .node.a .ico{background:rgba(139,123,255,0.14);}
+  .link{width:2px;height:24px;background:linear-gradient(180deg,var(--cs-green),var(--cs-violet));position:relative;}
+  .link.pulse:after{content:"";position:absolute;left:-3px;width:8px;height:8px;border-radius:50%;
+    background:var(--cs-blue);box-shadow:0 0 10px var(--cs-blue);animation:drop 1.1s linear infinite;}
+  @keyframes drop{from{top:-4px;opacity:0;}20%{opacity:1;}to{top:24px;opacity:0;}}
+  .badge{display:inline-block;font-size:10px;font-weight:600;padding:3px 8px;border-radius:20px;letter-spacing:.5px;margin-left:6px;}
+  .badge.live{background:rgba(49,230,168,0.15);color:var(--cs-green);}
+  .badge.wait{background:rgba(245,166,35,0.15);color:var(--cs-amber);}
+
+  .mkt{margin-top:16px;border:0.5px solid var(--cs-border);border-radius:12px;overflow:hidden;background:var(--cs-navy);}
+  .mkt .mhead{padding:11px 14px;font-size:11px;letter-spacing:0.1em;color:var(--cs-muted);border-bottom:0.5px solid var(--cs-border);
+    display:flex;justify-content:space-between;align-items:center;text-transform:uppercase;}
+  .mkt .mrow{display:flex;justify-content:space-between;padding:11px 14px;font-size:13px;border-bottom:0.5px solid var(--cs-border);animation:fadeUp .3s ease;}
+  .mkt .mrow:last-child{border-bottom:0;}
+  .mkt .buyer{color:var(--cs-white);font-weight:500;} .mkt .amt{color:var(--cs-green);font-weight:700;}
+
+  .ach{margin-top:18px;background:linear-gradient(135deg,rgba(49,230,168,0.08),rgba(0,174,239,0.06));
+    border:0.5px solid rgba(49,230,168,0.3);border-radius:16px;padding:24px;text-align:center;}
+  .ach .chk{width:56px;height:56px;border-radius:50%;background:var(--cs-green);color:#04140d;
+    font-size:30px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;animation:fadeUp .4s ease;}
+  .ach .abig{font-family:'Syne',sans-serif;font-size:36px;font-weight:800;color:var(--cs-green);}
+  .ach .ato{color:var(--cs-muted);font-size:13px;margin-top:4px;}
+  .ach .bank{margin-top:16px;background:rgba(8,12,16,0.4);border:0.5px solid rgba(49,230,168,0.2);border-radius:12px;
+    padding:12px 14px;display:flex;justify-content:space-between;align-items:center;text-align:left;}
+  .ach .bank .bk{font-weight:600;font-size:14px;} .ach .bank .ac{font-size:12px;color:var(--cs-muted);margin-top:2px;}
+  .ach .st{font-size:11px;color:var(--cs-green);letter-spacing:.04em;margin-top:14px;}
+
+  .btn{border:0;border-radius:8px;padding:15px;font-family:'Inter',sans-serif;font-size:15px;font-weight:600;cursor:pointer;transition:transform .08s,opacity .15s;}
+  .btn:active{transform:scale(.98);}
+  .btn.primary{background:var(--cs-blue);color:#080C10;}
+  .btn.grn{background:var(--cs-green);color:#04140d;}
+  .btn.full{width:100%;margin-top:14px;}
+  .btn:disabled{opacity:.4;cursor:default;}
+  .btn.ghost{background:transparent;border:0.5px solid var(--cs-border-blue);color:var(--cs-muted);}
+
+  nav.wiznav{position:static;border:0;background:none;backdrop-filter:none;padding:16px 20px 30px;max-width:560px;margin:0 auto;display:flex;gap:12px;}
+  .est{font-size:11px;color:var(--cs-muted);text-align:center;margin-top:10px;line-height:1.5;}
+
+  footer{border-top:0.5px solid var(--cs-border);padding:26px 48px;display:flex;align-items:center;justify-content:space-between;font-size:13px;color:var(--cs-muted);}
+  footer a{color:var(--cs-muted);text-decoration:none;} footer a:hover{color:var(--cs-blue);}
+  .footer-right{display:flex;gap:24px;align-items:center;}
+  .footer-tag{font-size:11px;color:var(--cs-blue);font-weight:600;letter-spacing:0.08em;}
+  .footer-logo{height:42px;width:auto;display:block;margin-bottom:12px;}
+  .foot-note{text-align:center;font-size:11px;color:var(--cs-muted);padding:0 20px 22px;line-height:1.5;max-width:560px;margin:0 auto;}
+
+  @media(max-width:768px){
+    nav{padding:14px 16px;} .nav-right{gap:8px;} .nav-login{font-size:11px;white-space:nowrap;}
+    .nav-cta{padding:8px 14px;font-size:13px;white-space:nowrap;}
+    .head-block{padding:32px 20px 4px;} .head-title{font-size:26px;}
+    footer{flex-direction:column;gap:16px;padding:24px 20px;text-align:center;} .footer-right{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+  <nav>
+    <a href="/" class="logo"><img src="/clearsky-mark.png" alt="ClearSky" class="logo-mark-img">ClearSky Builders</a>
+    <div class="nav-right">
+      <a href="/compute.html" class="nav-login">&larr; Compute</a>
+      <a href="#enroll" class="nav-cta" onclick="goEnroll();return false;">Join the pilot</a>
+    </div>
+  </nav>
+
+  <div class="head-block">
+    <p class="eyebrow">ClearSky Compute &middot; Interactive Walkthrough</p>
+    <h1 class="head-title">See how your meter becomes a profit center</h1>
+    <p class="head-sub">Four quick steps: set your usage, attach the AI node, sell to the compute marketplace, and get paid to your bank.</p>
+  </div>
+
+  <div class="progress" id="prog"></div>
+  <div class="stage" id="stage"></div>
+  <nav class="wiznav" id="wiznav"></nav>
+
+  <div class="foot-note">
+    Illustrative walkthrough. Actual payouts vary by utility program, market compute demand, and household usage. ClearSky Compute is in pilot testing.
+  </div>
+
+  <footer>
+    <span class="footer-left"><img src="/clearsky-logo-light.png" alt="ClearSky Builders" class="footer-logo"><br>&copy; 2025 ClearSky Builders LLC &nbsp;&middot;&nbsp; <a href="mailto:info@csebuilders.com">info@csebuilders.com</a></span>
+    <div class="footer-right">
+      <span class="footer-tag">BESS &middot; EV CHARGING &middot; COMPUTE &middot; VPP</span>
+      <a href="/compute.html">Compute &rarr;</a>
+      <a href="/">Main site &rarr;</a>
+    </div>
+  </footer>
+
+<script>
+/* ES5 only — no arrow fns, no template literals, no optional chaining (iOS Safari safe) */
+var STATE = { step:0, kwh:900, attached:false, marketTicks:0 };
+var RATE = { arb:0.11, vpp:150, computePerKwh:0.34 }; /* illustrative */
+
+function usd(n){ return "$" + (Math.round(n*100)/100).toFixed(2); }
+function usd0(n){ return "$" + Math.round(n).toLocaleString(); }
+
+function calc(){
+  var kwh = STATE.kwh;
+  var excessKwhMo = Math.max(0, kwh * 0.28);
+  var energyArb = excessKwhMo * RATE.arb;
+  var vpp = RATE.vpp / 12;
+  var compute = excessKwhMo * RATE.computePerKwh;
+  var total = energyArb + vpp + compute;
+  return { excess:excessKwhMo, energyArb:energyArb, vpp:vpp, compute:compute, total:total };
+}
+
+var BUYERS = [
+  ["Inference cluster \u2014 LLM batch", 0.42],
+  ["Image gen render queue", 0.31],
+  ["Telco edge \u2014 5G workload", 0.27],
+  ["Gaming \u2014 cloud frames", 0.19],
+  ["Startup fine-tune job", 0.36]
+];
+
+function el(html){ var d=document.createElement("div"); d.innerHTML=html; return d.firstChild; }
+
+function renderProgress(){
+  var p=document.getElementById("prog"); p.innerHTML="";
+  for(var i=0;i<4;i++){
+    var c="dot"; if(i<STATE.step)c+=" done"; else if(i===STATE.step)c+=" on";
+    p.appendChild(el('<div class="'+c+'"></div>'));
+  }
+}
+
+function stepMeter(){
+  var c=calc();
+  return ''+
+  '<div class="card">'+
+    '<div class="step-tag">Step 1 of 4</div>'+
+    '<h1>How much power do you use?</h1>'+
+    '<p class="lead">A 13&nbsp;kWh ClearSky battery sits behind your meter. Tap plus or minus to set your typical monthly usage \u2014 this tells the system how much room there is to earn.</p>'+
+    '<div class="device">'+
+      '<div class="screen">'+
+        '<div class="dlabel">Monthly Usage</div>'+
+        '<div class="val" id="kwhVal">'+STATE.kwh+'</div>'+
+        '<div class="unit">kWh / month</div>'+
+      '</div>'+
+      '<div class="pmrow">'+
+        '<div class="pm minus" onclick="bump(-50)">&minus;</div>'+
+        '<div class="pm plus" onclick="bump(50)">+</div>'+
+      '</div>'+
+    '</div>'+
+    '<div class="hint">Average US home is ~850\u2013950 kWh/mo</div>'+
+    '<div class="readout">'+
+      '<div class="rrow"><span class="k">Battery installed</span><span class="v c">13 kWh Gotion HOME</span></div>'+
+      '<div class="divider"></div>'+
+      '<div class="rrow"><span class="k">Excess capacity to monetize</span><span class="v g" id="exVal">'+Math.round(c.excess)+' kWh/mo</span></div>'+
+    '</div>'+
+  '</div>';
+}
+
+function bump(d){
+  STATE.kwh = Math.max(200, Math.min(3000, STATE.kwh + d));
+  var v=document.getElementById("kwhVal"); if(v)v.innerHTML=STATE.kwh;
+  var e=document.getElementById("exVal"); if(e)e.innerHTML=Math.round(calc().excess)+" kWh/mo";
+}
+
+function stepNode(){
+  var attached=STATE.attached;
+  return ''+
+  '<div class="card">'+
+    '<div class="step-tag">Step 2 of 4</div>'+
+    '<h1>Attach the AI node</h1>'+
+    '<p class="lead">An Armada edge GPU node clips onto your battery. It reads the excess power your battery isn\u2019t using and turns those spare kWh into sellable AI compute.</p>'+
+    '<div class="flow">'+
+      '<div class="node b"><div class="ico">\uD83D\uDD0B</div><div><div class="nm">13 kWh Battery</div><div class="ds">Behind your meter &middot; '+STATE.kwh+' kWh/mo profile</div></div></div>'+
+      '<div class="link '+(attached?'pulse':'')+'"></div>'+
+      '<div class="node a"><div class="ico">\uD83E\uDDE0</div><div><div class="nm">Armada AI Node<span class="badge '+(attached?'live':'wait')+'">'+(attached?'CONNECTED':'IDLE')+'</span></div><div class="ds">Reads excess power &middot; runs AI inference</div></div></div>'+
+    '</div>'+
+    (attached
+      ? '<div class="readout"><div class="rrow"><span class="k">Node status</span><span class="v g">Reading '+Math.round(calc().excess)+' kWh excess</span></div><div class="rrow"><span class="k">Ready to sell compute</span><span class="v c">Yes \u2192</span></div></div>'
+      : '<button class="btn grn full" onclick="attach()">Attach &amp; Connect Node</button>')+
+  '</div>';
+}
+
+function attach(){ STATE.attached=true; renderStep(); }
+
+function stepMarket(){
+  var c=calc();
+  var rows=""; var shown=Math.min(STATE.marketTicks,BUYERS.length); var sum=0;
+  for(var i=0;i<shown;i++){
+    sum+=BUYERS[i][1];
+    rows+='<div class="mrow"><span class="buyer">'+BUYERS[i][0]+'</span><span class="amt">+'+usd(BUYERS[i][1])+'</span></div>';
+  }
+  if(shown===0) rows='<div class="mrow"><span class="buyer" style="color:var(--cs-muted)">Connecting to marketplace\u2026</span><span class="amt"></span></div>';
+  return ''+
+  '<div class="card">'+
+    '<div class="step-tag">Step 3 of 4</div>'+
+    '<h1>Sell to the compute marketplace</h1>'+
+    '<p class="lead">Your node lists its spare GPU power on the Armada Bridge marketplace. AI companies buy it in real time \u2014 each job pays into your account.</p>'+
+    '<div class="mkt">'+
+      '<div class="mhead"><span>Armada Bridge &middot; Live Orders</span><span class="badge live">SELLING</span></div>'+
+      rows+
+    '</div>'+
+    '<button class="btn grn full" onclick="tick()">'+(shown<BUYERS.length?'Fill next order':'Marketplace synced \u2713')+'</button>'+
+    '<div class="est">Compute revenue booked so far: <strong style="color:var(--cs-green)">'+usd(sum)+'</strong> &middot; projected '+usd(c.compute)+'/mo</div>'+
+  '</div>';
+}
+
+function tick(){ if(STATE.marketTicks<BUYERS.length){ STATE.marketTicks++; renderStep(); } }
+
+function stepACH(){
+  var c=calc();
+  return ''+
+  '<div class="card">'+
+    '<div class="step-tag">Step 4 of 4</div>'+
+    '<h1>You get paid</h1>'+
+    '<p class="lead">At the end of each cycle, energy and compute earnings settle and deposit straight to your bank by ACH.</p>'+
+    '<div class="readout">'+
+      '<div class="rrow"><span class="k">Energy arbitrage</span><span class="v g">'+usd(c.energyArb)+'</span></div>'+
+      '<div class="rrow"><span class="k">VPP grid payment</span><span class="v c">'+usd(c.vpp)+'</span></div>'+
+      '<div class="rrow"><span class="k">AI compute sales</span><span class="v a">'+usd(c.compute)+'</span></div>'+
+      '<div class="divider"></div>'+
+      '<div class="rrow"><span class="k strong">Monthly total</span><span class="v g big">'+usd(c.total)+'</span></div>'+
+    '</div>'+
+    '<div class="ach">'+
+      '<div class="chk">\u2713</div>'+
+      '<div class="abig">'+usd(c.total)+'</div>'+
+      '<div class="ato">deposited to your account</div>'+
+      '<div class="bank">'+
+        '<div><div class="bk">Your Bank &middot;\u2022\u2022\u2022\u2022 4417</div><div class="ac">ACH direct deposit</div></div>'+
+        '<div class="badge live">SETTLED</div>'+
+      '</div>'+
+      '<div class="st">\u2248 '+usd0(c.total*12)+' / year &middot; auto-deposited monthly</div>'+
+    '</div>'+
+    '<a href="/compute.html#enroll" class="btn primary full" style="text-align:center;text-decoration:none;display:block;">Join the pilot &rarr;</a>'+
+  '</div>';
+}
+
+function renderStep(){
+  renderProgress();
+  var s=document.getElementById("stage"); var html="";
+  if(STATE.step===0)html=stepMeter();
+  else if(STATE.step===1)html=stepNode();
+  else if(STATE.step===2)html=stepMarket();
+  else html=stepACH();
+  s.innerHTML=html;
+  renderNav();
+}
+
+function renderNav(){
+  var n=document.getElementById("wiznav"); n.innerHTML="";
+  if(STATE.step>0){ n.appendChild(el('<button class="btn ghost" style="flex:0 0 96px" onclick="prev()">Back</button>')); }
+  var last=STATE.step===3;
+  var label=last?"Start Over":"Continue";
+  var b=el('<button class="btn primary" style="flex:1" id="nextBtn" onclick="next()">'+label+'</button>');
+  if(STATE.step===1 && !STATE.attached){ b.disabled=true; }
+  n.appendChild(b);
+}
+
+function next(){
+  if(STATE.step===3){ STATE.step=0; STATE.attached=false; STATE.marketTicks=0; }
+  else {
+    if(STATE.step===1 && !STATE.attached) return;
+    STATE.step++;
+    if(STATE.step===2){ STATE.marketTicks=0; }
+  }
+  renderStep(); window.scrollTo(0,0);
+}
+function prev(){ if(STATE.step>0){ STATE.step--; renderStep(); window.scrollTo(0,0); } }
+function goEnroll(){ window.location.href="/compute.html#enroll"; }
+
+renderStep();
+</script>
+</body>
+</html>
