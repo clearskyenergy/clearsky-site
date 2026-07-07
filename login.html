@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon-180.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Log in to OMEGA — the ClearSky Energy Solutions operating platform.">
+  <meta property="og:title" content="Log in · OMEGA">
+  <title>Log in · OMEGA — ClearSky Energy Solutions</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cs-black: #080C10;
+      --cs-navy: #0D1620;
+      --cs-card: #111D28;
+      --cs-blue: #00AEEF;
+      --cs-blue-dim: rgba(0,174,239,0.12);
+      --cs-white: #EEF3F8;
+      --cs-muted: rgba(238,243,248,0.5);
+      --cs-muted-2: rgba(238,243,248,0.38);
+      --cs-border: rgba(255,255,255,0.08);
+      --cs-border-blue: rgba(0,174,239,0.3);
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background:
+        radial-gradient(1200px 600px at 50% -10%, rgba(0,174,239,0.10), transparent 60%),
+        var(--cs-black);
+      color: var(--cs-white);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    /* subtle top-left home link */
+    .home-link {
+      position: absolute; top: 22px; left: 28px;
+      font-size: 13px; color: var(--cs-muted); text-decoration: none;
+      display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s;
+    }
+    .home-link:hover { color: var(--cs-white); }
+
+    .wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 40px 20px; }
+    .card {
+      width: 100%; max-width: 420px;
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 16px;
+      padding: 44px 40px 36px;
+      text-align: center;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5);
+    }
+    .omega-logo { height: 62px; width: auto; display: block; margin: 0 auto 22px; }
+    .card h1 { font-family: 'Syne', sans-serif; font-size: 24px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .card .tag { font-size: 13.5px; color: var(--cs-muted); line-height: 1.6; margin-bottom: 28px; }
+    .card .tag b { color: var(--cs-blue); font-weight: 600; }
+
+    .btn-primary {
+      background: var(--cs-blue); color: #080C10; border: none;
+      padding: 14px 22px; border-radius: 8px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 15px;
+      cursor: pointer; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px;
+      width: 100%; transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.9; }
+
+    .divider { display: flex; align-items: center; gap: 12px; margin: 22px 0; }
+    .divider::before, .divider::after { content: ''; flex: 1; height: 0.5px; background: var(--cs-border); }
+    .divider span { font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--cs-muted-2); }
+
+    .btn-ghost {
+      background: transparent; color: var(--cs-white); border: 0.5px solid var(--cs-border-blue);
+      padding: 13px 22px; border-radius: 8px; font-weight: 500; font-size: 14.5px;
+      cursor: pointer; text-decoration: none; display: block; width: 100%; transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--cs-blue); color: var(--cs-blue); }
+
+    .card .note { margin-top: 24px; font-size: 12px; color: var(--cs-muted-2); line-height: 1.6; }
+    .card .note a { color: var(--cs-blue); text-decoration: none; }
+    .card .note a:hover { text-decoration: underline; }
+
+    .redirect-msg { margin-top: 18px; font-size: 12.5px; color: var(--cs-muted); min-height: 16px; }
+
+    footer { text-align: center; padding: 24px; font-size: 12px; color: var(--cs-muted-2); }
+    footer b { color: var(--cs-muted); font-weight: 500; }
+
+    @media (max-width: 480px) {
+      .card { padding: 36px 24px 28px; }
+      .home-link { top: 16px; left: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="home-link">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+    Back to ClearSky
+  </a>
+
+  <div class="wrap">
+    <div class="card">
+      <img src="/clearsky-omega-white.png" alt="OMEGA — ClearSky Energy Solutions" class="omega-logo">
+      <h1>Log in to OMEGA</h1>
+      <p class="tag">The operating platform of <b>ClearSky Energy Solutions</b>. Continue to the secure workspace to access your projects, tools, and dashboards.</p>
+
+      <!-- CHANGED: hands off to the portal (Firebase auth + per-client redirect live in the portal repo) -->
+      <a href="https://clearsky-portal-h7d9.vercel.app" class="btn-primary" id="continueBtn">
+        Continue to OMEGA
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+
+      <div class="divider"><span>New to ClearSky?</span></div>
+
+      <a href="/platform.html#request" class="btn-ghost">Request access</a>
+
+      <p class="redirect-msg" id="redirectMsg"></p>
+
+      <p class="note">By continuing you agree to ClearSky's terms of use. Trouble signing in? Email <a href="mailto:info@csebuilders.com">info@csebuilders.com</a>.</p>
+    </div>
+  </div>
+
+  <footer><b>OMEGA</b> is the AI operating platform of ClearSky Energy Solutions LLC · © 2025</footer>
+
+  <script>
+    /* Optional auto-forward: if the URL has ?go=1, send straight to the portal.
+       Otherwise we show the branded gateway so users see the OMEGA identity first. */
+    (function () {
+      var params = new URLSearchParams(window.location.search);
+      var target = 'https://clearsky-portal-h7d9.vercel.app';
+      if (params.get('go') === '1') {
+        document.getElementById('redirectMsg').textContent = 'Taking you to OMEGA…';
+        setTimeout(function () { window.location.href = target; }, 600);
+      }
+    })();
+  </script>
+</body>
+</html>

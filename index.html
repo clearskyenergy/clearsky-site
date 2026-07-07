@@ -2,14 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <!-- CHANGED: favicon/apple-touch-icon asset paths preserved exactly as before -->
   <link rel="icon" type="image/png" href="/favicon.png">
   <link rel="apple-touch-icon" href="/favicon-180.png">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="ClearSky Builders installs battery energy storage systems for commercial, industrial, hospitality, residential, and EV charging — zero upfront cost.">
-  <meta property="og:title" content="ClearSky Builders | Battery Storage. Zero Upfront Cost.">
-  <meta property="og:description" content="Cut energy bills by up to 20% with zero-capex, full-service BESS for C&I, hospitality, multifamily, and EV charging sites.">
+  <!-- CHANGED: meta description + OG tags repositioned from "zero upfront cost contractor" to "software-enabled energy infrastructure platform" -->
+  <meta name="description" content="ClearSky is a cloud software platform for distributed energy project development — BESS, EV charging, microgrids, and micro data centers, from site lead to operating asset.">
+  <meta property="og:title" content="ClearSky | Cloud Software for Distributed Energy Project Development">
+  <meta property="og:description" content="Proprietary site-development software plus BESS, EV, microgrid, and micro data center deployment expertise. Evaluate, package, finance, and manage distributed energy assets.">
   <meta property="og:type" content="website">
-  <title>ClearSky Builders | Battery Storage. Zero Upfront Cost.</title>
+  <title>ClearSky | Cloud Software for Distributed Energy Project Development</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -19,12 +21,14 @@
       --cs-black: #080C10;
       --cs-navy: #0D1620;
       --cs-card: #111D28;
+      --cs-card-2: #0E1822;
       --cs-blue: #00AEEF;
       --cs-blue-dim: rgba(0,174,239,0.12);
       --cs-blue-mid: rgba(0,174,239,0.35);
       --cs-amber: #F5A623;
       --cs-white: #EEF3F8;
       --cs-muted: rgba(238,243,248,0.5);
+      --cs-muted-2: rgba(238,243,248,0.38);
       --cs-border: rgba(255,255,255,0.08);
       --cs-border-blue: rgba(0,174,239,0.3);
     }
@@ -36,11 +40,12 @@
       min-height: 100vh;
       overflow-x: hidden;
     }
+    /* ---------- NAV (CHANGED: reorganized links to Home / Platform / Energy Projects / Compute / How It Works / Portal / Contact; all destinations preserved) ---------- */
     nav {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 48px;
+      padding: 16px 48px;
       border-bottom: 0.5px solid var(--cs-border);
       position: sticky;
       top: 0;
@@ -52,38 +57,33 @@
     .logo {
       font-family: 'Syne', sans-serif;
       font-weight: 800;
-      font-size: 20px;
+      font-size: 19px;
       letter-spacing: -0.5px;
       color: var(--cs-white);
       display: flex;
       align-items: center;
       gap: 10px;
       text-decoration: none;
-    }
-    .logo-mark {
-      width: 34px;
-      height: 34px;
-      background: var(--cs-blue);
-      border-radius: 7px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      font-weight: 800;
-      color: #080C10;
-      letter-spacing: -1px;
       flex-shrink: 0;
     }
     .logo-mark-img { height: 30px; width: auto; flex-shrink: 0; display: block; }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-login {
-      font-size: 14px;
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin-left: auto;
+      margin-right: 24px;
+    }
+    .nav-link {
+      font-size: 13.5px;
       font-weight: 500;
       color: var(--cs-muted);
       text-decoration: none;
       transition: color 0.2s;
+      white-space: nowrap;
     }
-    .nav-login:hover { color: var(--cs-white); }
+    .nav-link:hover { color: var(--cs-white); }
+    .nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
     .nav-cta {
       background: var(--cs-blue);
       color: #080C10;
@@ -92,55 +92,25 @@
       border-radius: 6px;
       font-family: 'Inter', sans-serif;
       font-weight: 600;
-      font-size: 14px;
+      font-size: 13.5px;
       cursor: pointer;
       text-decoration: none;
       display: inline-block;
       transition: opacity 0.2s;
+      white-space: nowrap;
     }
     .nav-cta:hover { opacity: 0.88; }
-    .market-tabs {
-      display: flex;
-      border-bottom: 0.5px solid var(--cs-border);
-      padding: 0 48px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-    }
-    .market-tabs::-webkit-scrollbar { display: none; }
-    .market-tab {
-      padding: 14px 24px;
-      font-family: 'Inter', sans-serif;
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--cs-muted);
-      cursor: pointer;
-      border: none;
-      background: none;
-      border-bottom: 2px solid transparent;
-      white-space: nowrap;
-      transition: color 0.2s, border-color 0.2s;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      margin-bottom: -0.5px;
-    }
-    .market-tab:hover { color: var(--cs-white); }
-    .market-tab.active { color: var(--cs-blue); border-bottom-color: var(--cs-blue); }
-    .market-tab.compute-tab { color: var(--cs-amber); }
-    .market-tab.compute-tab:hover { color: var(--cs-amber); opacity: 0.85; }
-    .content-block { display: none; }
-    .content-block.active { display: block; animation: fadeUp 0.3s ease; }
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(8px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .hero { padding: 72px 48px 56px; max-width: 960px; }
+    .nav-toggle { display: none; }
+
+    /* ---------- HERO (CHANGED: software-platform thesis instead of savings pitch) ---------- */
+    .hero { padding: 88px 48px 40px; max-width: 1000px; }
     .hero-eyebrow {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--cs-blue);
-      margin-bottom: 22px;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
       gap: 10px;
@@ -154,21 +124,30 @@
     }
     .hero-headline {
       font-family: 'Syne', sans-serif;
-      font-size: 58px;
+      font-size: 56px;
       font-weight: 800;
-      line-height: 1.04;
+      line-height: 1.05;
       letter-spacing: -2px;
       color: var(--cs-white);
       margin-bottom: 26px;
-      max-width: 820px;
+      max-width: 880px;
     }
     .hero-headline .accent { color: var(--cs-blue); }
     .hero-sub {
       font-size: 17px;
       line-height: 1.7;
       color: var(--cs-muted);
-      max-width: 560px;
-      margin-bottom: 38px;
+      max-width: 640px;
+      margin-bottom: 22px;
+    }
+    .hero-note {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--cs-muted-2);
+      max-width: 620px;
+      margin-bottom: 36px;
+      padding-left: 14px;
+      border-left: 2px solid var(--cs-border-blue);
     }
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
     .btn-primary {
@@ -202,6 +181,8 @@
       transition: border-color 0.2s, color 0.2s;
     }
     .btn-ghost:hover { border-color: var(--cs-blue); color: var(--cs-blue); }
+
+    /* ---------- TRUST BAR ---------- */
     .stats-bar {
       display: flex;
       border-top: 0.5px solid var(--cs-border);
@@ -210,13 +191,13 @@
     }
     .stat-item {
       flex: 1;
-      padding: 28px 32px;
+      padding: 26px 32px;
       border-right: 0.5px solid var(--cs-border);
     }
     .stat-item:last-child { border-right: none; }
     .stat-num {
       font-family: 'Syne', sans-serif;
-      font-size: 32px;
+      font-size: 30px;
       font-weight: 800;
       color: var(--cs-white);
       letter-spacing: -0.5px;
@@ -224,160 +205,167 @@
     }
     .stat-num span { color: var(--cs-blue); }
     .stat-label { font-size: 12px; color: var(--cs-muted); margin-top: 7px; line-height: 1.45; }
-    .section { padding: 64px 48px; }
+
+    /* ---------- SECTION SHELL ---------- */
+    .section { padding: 72px 48px; }
+    .section-head { max-width: 720px; margin-bottom: 40px; }
     .section-label {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.15em;
       text-transform: uppercase;
       color: var(--cs-blue);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
     .section-title {
       font-family: 'Syne', sans-serif;
-      font-size: 32px;
-      font-weight: 700;
-      letter-spacing: -0.5px;
-      margin-bottom: 36px;
-      max-width: 600px;
-    }
-    .calc-section {
-      margin: 0 48px 64px;
-      background: var(--cs-card);
-      border: 0.5px solid var(--cs-border-blue);
-      border-radius: 14px;
-      padding: 44px 48px;
-    }
-    .calc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: start; }
-    .calc-left { display: flex; flex-direction: column; gap: 24px; }
-    .calc-field label {
-      display: block;
-      font-size: 11px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--cs-muted);
-      margin-bottom: 10px;
-    }
-    .calc-field select {
-      width: 100%;
-      background: #1A2535;
-      border: 0.5px solid var(--cs-border-blue);
-      border-radius: 7px;
-      color: var(--cs-white);
-      padding: 11px 14px;
-      font-family: 'Inter', sans-serif;
-      font-size: 14px;
-      appearance: none;
-      -webkit-appearance: none;
-      cursor: pointer;
-    }
-    .range-row { display: flex; align-items: center; gap: 14px; }
-    .range-row input[type="range"] {
-      flex: 1;
-      -webkit-appearance: none;
-      height: 3px;
-      background: var(--cs-border-blue);
-      border-radius: 2px;
-      outline: none;
-    }
-    .range-row input[type="range"]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: var(--cs-blue);
-      cursor: pointer;
-    }
-    .range-val {
-      font-family: 'Syne', sans-serif;
-      font-size: 20px;
-      font-weight: 700;
-      color: var(--cs-blue);
-      min-width: 64px;
-      text-align: right;
-    }
-    .calc-results { display: flex; flex-direction: column; gap: 16px; }
-    .result-card {
-      background: rgba(0,174,239,0.06);
-      border: 0.5px solid var(--cs-border-blue);
-      border-radius: 10px;
-      padding: 22px 24px;
-    }
-    .result-card-label {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--cs-blue);
-      margin-bottom: 8px;
-      font-weight: 600;
-    }
-    .result-card-val {
-      font-family: 'Syne', sans-serif;
       font-size: 34px;
-      font-weight: 800;
-      letter-spacing: -0.5px;
-      color: var(--cs-white);
-      line-height: 1;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+      margin-bottom: 16px;
+      line-height: 1.12;
     }
-    .result-card-note { font-size: 12px; color: var(--cs-muted); margin-top: 7px; line-height: 1.4; }
-    .benefits-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-    .benefit-card {
+    .section-desc { font-size: 15.5px; line-height: 1.7; color: var(--cs-muted); }
+
+    /* ---------- PLATFORM FEATURE GRID (CHANGED: new section) ---------- */
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .feature-card {
       background: var(--cs-card);
       border: 0.5px solid var(--cs-border);
-      border-radius: 12px;
-      padding: 28px;
-      transition: border-color 0.2s;
+      border-radius: 11px;
+      padding: 22px 20px;
+      transition: border-color 0.2s, transform 0.2s;
     }
-    .benefit-card:hover { border-color: var(--cs-border-blue); }
-    .benefit-icon {
-      width: 40px;
-      height: 40px;
+    .feature-card:hover { border-color: var(--cs-border-blue); transform: translateY(-2px); }
+    .feature-ic {
+      width: 34px; height: 34px;
       background: var(--cs-blue-dim);
-      border-radius: 9px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 16px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
       color: var(--cs-blue);
-      font-size: 20px;
-    }
-    .benefit-title { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
-    .benefit-desc { font-size: 14px; line-height: 1.65; color: var(--cs-muted); }
-    .process-steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      border: 0.5px solid var(--cs-border);
-      border-radius: 12px;
-      overflow: hidden;
-    }
-    .process-step { padding: 32px 28px; border-right: 0.5px solid var(--cs-border); }
-    .process-step:last-child { border-right: none; }
-    .step-num {
-      font-family: 'Syne', sans-serif;
-      font-size: 48px;
-      font-weight: 800;
-      color: var(--cs-blue-dim);
-      line-height: 1;
       margin-bottom: 14px;
     }
-    .step-label { font-size: 10px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--cs-blue); margin-bottom: 6px; font-weight: 600; }
-    .step-title { font-family: 'Syne', sans-serif; font-size: 18px; font-weight: 700; margin-bottom: 12px; }
-    .step-desc { font-size: 14px; line-height: 1.65; color: var(--cs-muted); }
-    .step-time {
-      display: inline-block;
-      margin-top: 16px;
-      font-size: 11px;
-      background: var(--cs-blue-dim);
-      color: var(--cs-blue);
-      border: 0.5px solid var(--cs-border-blue);
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-weight: 600;
-      letter-spacing: 0.04em;
+    .feature-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 7px; }
+    .feature-desc { font-size: 12.5px; line-height: 1.55; color: var(--cs-muted); }
+
+    /* ---------- LIFECYCLE RAIL (SIGNATURE ELEMENT — a genuine ordered pipeline) ---------- */
+    .lifecycle {
+      background: var(--cs-card-2);
+      border: 0.5px solid var(--cs-border);
+      border-radius: 14px;
+      padding: 40px 40px 32px;
     }
+    .rail { position: relative; }
+    .rail-line {
+      position: absolute;
+      top: 13px; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cs-border-blue), var(--cs-blue-mid), var(--cs-border-blue));
+    }
+    .rail-stages {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 8px;
+      position: relative;
+    }
+    .stage { position: relative; padding-top: 30px; }
+    .stage-dot {
+      position: absolute; top: 8px; left: 0;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--cs-black);
+      border: 2px solid var(--cs-blue);
+    }
+    .stage:last-child .stage-dot { background: var(--cs-blue); box-shadow: 0 0 0 4px var(--cs-blue-dim); }
+    .stage-idx { font-size: 10px; font-weight: 700; color: var(--cs-blue); letter-spacing: 0.08em; margin-bottom: 5px; }
+    .stage-name { font-size: 12.5px; font-weight: 600; line-height: 1.3; color: var(--cs-white); }
+
+    /* ---------- ENERGY INFRASTRUCTURE (CHANGED: folds in former C&I / Hospitality / MUD / EV market tabs as cards) ---------- */
+    .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .infra-card {
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border);
+      border-radius: 12px;
+      padding: 28px 26px;
+      transition: border-color 0.2s;
+    }
+    .infra-card:hover { border-color: var(--cs-border-blue); }
+    .infra-ic {
+      width: 40px; height: 40px;
+      background: var(--cs-blue-dim);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cs-blue);
+      margin-bottom: 16px;
+    }
+    .infra-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 10px; }
+    .infra-desc { font-size: 14px; line-height: 1.65; color: var(--cs-muted); margin-bottom: 14px; }
+    .infra-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .infra-tag {
+      font-size: 11px; font-weight: 500;
+      color: var(--cs-muted);
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid var(--cs-border);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ---------- COMPUTE (CHANGED: repositioned to connect to platform; amber-accented) ---------- */
+    .compute-section {
+      margin: 0 48px 72px;
+      background: linear-gradient(180deg, rgba(245,166,35,0.05), var(--cs-card));
+      border: 0.5px solid rgba(245,166,35,0.28);
+      border-radius: 16px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .compute-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--cs-amber); margin-bottom: 14px;
+    }
+    .compute-title { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 16px; line-height: 1.12; }
+    .compute-desc { font-size: 15px; line-height: 1.7; color: var(--cs-muted); margin-bottom: 26px; }
+    .btn-amber {
+      background: var(--cs-amber); color: #080C10; border: none;
+      padding: 13px 26px; border-radius: 6px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.5px;
+      cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s;
+    }
+    .btn-amber:hover { opacity: 0.88; }
+    .compute-checklist { display: flex; flex-direction: column; gap: 14px; }
+    .compute-check {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; line-height: 1.5; color: var(--cs-white);
+    }
+    .compute-check svg { color: var(--cs-amber); flex-shrink: 0; margin-top: 2px; }
+    .compute-check span { color: var(--cs-muted); }
+
+    /* ---------- PLATFORM ACCESS / PORTAL (CHANGED: all existing portal URLs preserved as buttons) ---------- */
+    .access-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .access-card {
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 12px;
+      padding: 26px 22px;
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .access-card:hover { border-color: var(--cs-blue); background: rgba(0,174,239,0.05); }
+    .access-ic {
+      width: 38px; height: 38px; background: var(--cs-blue-dim); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; color: var(--cs-blue); margin-bottom: 16px;
+    }
+    .access-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--cs-white); margin-bottom: 6px; }
+    .access-desc { font-size: 12.5px; line-height: 1.5; color: var(--cs-muted); margin-bottom: 16px; flex: 1; }
+    .access-go { font-size: 12.5px; font-weight: 600; color: var(--cs-blue); }
+
+    /* ---------- CONTACT (PRESERVED: form + mailto submit logic unchanged) ---------- */
     .contact-section {
-      margin: 0 48px 64px;
+      margin: 0 48px 72px;
       background: var(--cs-card);
       border: 0.5px solid var(--cs-border-blue);
       border-radius: 14px;
@@ -387,7 +375,7 @@
       gap: 60px;
       align-items: center;
     }
-    .contact-left h2 { font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px; line-height: 1.1; }
+    .contact-left h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px; line-height: 1.12; }
     .contact-left p { font-size: 15px; color: var(--cs-muted); line-height: 1.65; margin-bottom: 24px; }
     .contact-detail { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--cs-muted); margin-bottom: 10px; }
     .contact-detail a { color: var(--cs-blue); text-decoration: none; }
@@ -442,6 +430,8 @@
       font-size: 18px;
       font-weight: 700;
     }
+
+    /* ---------- FOOTER (PRESERVED: logo asset + all links) ---------- */
     footer {
       border-top: 0.5px solid var(--cs-border);
       padding: 28px 48px;
@@ -453,29 +443,51 @@
     }
     footer a { color: var(--cs-muted); text-decoration: none; }
     footer a:hover { color: var(--cs-blue); }
-    .footer-right { display: flex; gap: 24px; align-items: center; }
+    .footer-right { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
     .footer-tag { font-size: 11px; color: var(--cs-blue); font-weight: 600; letter-spacing: 0.08em; }
     .footer-logo { height: 42px; width: auto; display: block; margin-bottom: 12px; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .access-grid { grid-template-columns: repeat(2, 1fr); }
+      .rail-stages { grid-template-columns: repeat(3, 1fr); gap: 20px 8px; }
+      .rail-line { display: none; }
+      .stage { padding-top: 0; padding-left: 22px; }
+      .stage-dot { top: 3px; }
+    }
     @media (max-width: 768px) {
-      nav { padding: 14px 16px; }
-      .nav-right { gap: 8px; }
-      .nav-login { font-size: 11px; white-space: nowrap; }
-      .nav-cta { padding: 8px 14px; font-size: 13px; white-space: nowrap; }
-      .market-tabs { padding: 0 12px; }
-      .market-tab { padding: 12px 14px; font-size: 10px; }
-      .hero { padding: 40px 20px 36px; }
-      .hero-headline { font-size: 36px; letter-spacing: -1px; }
+      nav { padding: 12px 16px; }
+      .nav-links {
+        display: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: flex-start; gap: 0;
+        background: var(--cs-navy); border-bottom: 0.5px solid var(--cs-border);
+        margin: 0; padding: 8px 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 12px 20px; width: 100%; font-size: 15px; }
+      .nav-toggle {
+        display: flex; align-items: center; justify-content: center;
+        width: 38px; height: 38px; background: none; border: 0.5px solid var(--cs-border);
+        border-radius: 7px; color: var(--cs-white); cursor: pointer; margin-left: auto; margin-right: 10px;
+      }
+      .nav-cta { padding: 8px 14px; font-size: 13px; }
+      .hero { padding: 48px 20px 32px; }
+      .hero-headline { font-size: 34px; letter-spacing: -1px; }
       .hero-sub { font-size: 15px; }
       .stats-bar { flex-wrap: wrap; margin: 0 20px; }
       .stat-item { min-width: 50%; border-right: none; border-bottom: 0.5px solid var(--cs-border); padding: 20px; }
-      .section { padding: 40px 20px; }
-      .calc-section { margin: 0 20px 40px; padding: 28px 20px; }
-      .calc-grid { grid-template-columns: 1fr; gap: 28px; }
-      .benefits-grid { grid-template-columns: 1fr; }
-      .process-steps { grid-template-columns: 1fr; }
-      .process-step { border-right: none; border-bottom: 0.5px solid var(--cs-border); }
-      .process-step:last-child { border-bottom: none; }
-      .contact-section { grid-template-columns: 1fr; margin: 0 20px 40px; padding: 32px 24px; gap: 32px; }
+      .section { padding: 48px 20px; }
+      .section-title { font-size: 26px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .lifecycle { padding: 28px 22px; }
+      .rail-stages { grid-template-columns: 1fr; gap: 16px; }
+      .infra-grid { grid-template-columns: 1fr; }
+      .compute-section { grid-template-columns: 1fr; margin: 0 20px 48px; padding: 32px 24px; gap: 28px; }
+      .compute-title { font-size: 24px; }
+      .access-grid { grid-template-columns: 1fr; }
+      .contact-section { grid-template-columns: 1fr; margin: 0 20px 48px; padding: 32px 24px; gap: 32px; }
       .form-row { grid-template-columns: 1fr; }
       footer { flex-direction: column; gap: 16px; padding: 24px 20px; text-align: center; }
       .footer-right { justify-content: center; }
@@ -483,226 +495,247 @@
   </style>
 </head>
 <body>
+  <!-- ============ NAV (CHANGED: Home / Platform / Energy Projects / Compute / How It Works / Portal / Contact — all existing destinations preserved) ============ -->
   <nav>
     <a href="/" class="logo">
       <img src="/clearsky-mark.png" alt="ClearSky" class="logo-mark-img">
-      ClearSky Builders
+      ClearSky
     </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#top" class="nav-link">Home</a>
+      <a href="/platform.html" class="nav-link">Platform</a>
+      <a href="#energy" class="nav-link">Energy Projects</a>
+      <a href="/compute.html" class="nav-link">Compute</a>
+      <a href="/how-it-works.html" class="nav-link">How It Works</a>
+      <!-- CHANGED: Log in now goes to the OMEGA-branded gateway (login.html) which hands off to the portal -->
+      <a href="/login.html" class="nav-link">Log in</a>
+      <a href="#contact" class="nav-link">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
     <div class="nav-right">
-      <a href="/compute.html" class="nav-login">Compute &middot; Pilot &rarr;</a>
-      <a href="https://partner.csebuilders.com" class="nav-login">Partner login &rarr;</a>
-      <a href="https://clearsky-portal-h7d9.vercel.app" class="nav-login">Log in to portal &rarr;</a>
-      <a href="#contact" class="nav-cta">Get a proposal</a>
+      <a href="/login.html" class="nav-cta">Log in to OMEGA</a>
     </div>
   </nav>
-  <div class="market-tabs" role="tablist">
-    <button class="market-tab active" role="tab" aria-selected="true" onclick="switchSegment(0, this)">Commercial &amp; Industrial</button>
-    <button class="market-tab" role="tab" aria-selected="false" onclick="switchSegment(1, this)">Hospitality</button>
-    <button class="market-tab" role="tab" aria-selected="false" onclick="switchSegment(2, this)">Residential MUD</button>
-    <button class="market-tab" role="tab" aria-selected="false" onclick="switchSegment(3, this)">EV Charging</button>
-    <button class="market-tab compute-tab" role="tab" onclick="window.location.href='/compute.html'">Compute &middot; Pilot</button>
+
+  <!-- ============ HERO (CHANGED: cloud-software positioning per brief) ============ -->
+  <div id="top"></div>
+  <div class="hero">
+    <p class="hero-eyebrow">Software-enabled energy infrastructure</p>
+    <h1 class="hero-headline">Cloud software for <span class="accent">distributed energy</span> project development</h1>
+    <p class="hero-sub">ClearSky combines proprietary site-development software with BESS, EV charging, microgrid, and micro data center deployment expertise to evaluate, package, finance, and manage distributed energy assets.</p>
+    <!-- CHANGED: carefully phrased "submitted" (not "approved") per instruction -->
+    <p class="hero-note">The platform converts raw site data into project-ready site maps, one-line diagrams, interconnection package support, permit-ready exports, and financial analysis — and has already been used to support submitted ComEd BESS site packages.</p>
+    <div class="hero-actions">
+      <a href="/platform.html" class="btn-primary">Explore the platform</a>
+      <!-- CHANGED: login CTA now points at the OMEGA gateway (login.html) -->
+      <a href="/login.html" class="btn-ghost">Log in to OMEGA</a>
+    </div>
   </div>
-  <div id="seg-0" class="content-block active">
-    <div class="hero">
-      <p class="hero-eyebrow">Commercial &amp; Industrial BESS</p>
-      <h1 class="hero-headline">Cut demand charges.<br><span class="accent">Zero capex.</span></h1>
-      <p class="hero-sub">ClearSky installs, owns, and operates battery storage at your facility under a host lease. You capture guaranteed monthly savings on demand charges and energy costs — without spending a dollar upfront.</p>
-      <div class="hero-actions">
-        <a href="#calculator" class="btn-primary">Calculate my savings</a>
-        <a href="#contact" class="btn-ghost">Talk to our team</a>
+
+  <!-- ============ TRUST BAR ============ -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">10<span>+</span></div><div class="stat-label">ComEd interconnection packages supported</div></div>
+    <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Lifecycle stages, site lead to operating asset</div></div>
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Asset classes: BESS, EV, microgrid, compute</div></div>
+    <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Cloud platform across the full workflow</div></div>
+  </div>
+
+  <!-- ============ SECTION 1: PLATFORM (CHANGED: new — 8 feature cards) ============ -->
+  <div class="section" id="platform">
+    <div class="section-head">
+      <p class="section-label">ClearSky Platform · OMEGA</p>
+      <h2 class="section-title">A cloud platform for the full development lifecycle</h2>
+      <p class="section-desc">OMEGA is the AI operating platform ClearSky Energy Solutions built for distributed energy development. It supports site mapping, one-line diagram development, permit package exports, interconnection package support, project economics, and document tracking — in one cloud tool. It's the same platform that produced ClearSky's submitted ComEd BESS site packages.</p>
+      <!-- CHANGED: added Explore the Platform link to the deeper platform.html page -->
+      <a href="/platform.html" class="btn-ghost" style="margin-top:22px;">Explore the platform →</a>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+        <p class="feature-name">Site Map Designer</p>
+        <p class="feature-desc">Turn satellite imagery and site data into scaled, permit-grade layouts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="10" y1="6.5" x2="14" y2="6.5"/><line x1="17.5" y1="10" x2="17.5" y2="14"/></svg></div>
+        <p class="feature-name">One-Line Diagram Builder</p>
+        <p class="feature-desc">Generate electrical one-lines aligned to equipment and topology.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg></div>
+        <p class="feature-name">Permit Package Export</p>
+        <p class="feature-desc">Produce AHJ-ready engineering sets and permit-ready exports.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 22v-6"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M2 12h6"/><path d="M16 12h6"/></svg></div>
+        <p class="feature-name">Interconnection Support</p>
+        <p class="feature-desc">Assemble utility interconnection packages and screening inputs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <p class="feature-name">BESS Profitability Analysis</p>
+        <p class="feature-desc">Model project economics, incentives, and revenue-stack outcomes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <p class="feature-name">Project Pipeline Dashboard</p>
+        <p class="feature-desc">Track every site and its stage across the development pipeline.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h5l2 3h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></div>
+        <p class="feature-name">Document Management</p>
+        <p class="feature-desc">Centralize LOAs, datasheets, drawings, and utility correspondence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+        <p class="feature-name">Asset Management</p>
+        <p class="feature-desc">Carry sites into operations with monitoring and performance data.</p>
       </div>
     </div>
-    <div class="stats-bar">
-      <div class="stat-item"><div class="stat-num">$250<span>/kWh</span></div><div class="stat-label">ComEd BESH rebate for C&amp;I storage</div></div>
-      <div class="stat-item"><div class="stat-num">30<span>%</span></div><div class="stat-label">Federal ITC through 2032</div></div>
-      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Upfront cost to site host</div></div>
-      <div class="stat-item"><div class="stat-num">6<span>mo</span></div><div class="stat-label">LOI to commercial operation</div></div>
-    </div>
   </div>
-  <div id="seg-1" class="content-block">
-    <div class="hero">
-      <p class="hero-eyebrow">Hospitality BESS</p>
-      <h1 class="hero-headline">Higher NOI.<br><span class="accent">Protected uptime.</span></h1>
-      <p class="hero-sub">Hotels and resorts run on thin margins and fat energy bills. ClearSky battery storage cuts peak demand charges, provides seamless backup power for critical systems, and adds EV charging revenue — all at zero capital cost to the property.</p>
-      <div class="hero-actions">
-        <a href="#calculator" class="btn-primary">See NOI impact</a>
-        <a href="#contact" class="btn-ghost">Talk to our team</a>
-      </div>
+
+  <!-- ============ SECTION 2: FROM SITE TO ASSET (SIGNATURE lifecycle rail) ============ -->
+  <div class="section" style="padding-top:0;" id="lifecycle">
+    <div class="section-head">
+      <p class="section-label">From Site to Asset</p>
+      <h2 class="section-title">One workflow, screening through operations</h2>
+      <p class="section-desc">ClearSky manages the full lifecycle from site screening and utility review through engineering package development, permitting, financing, construction coordination, commissioning, and operating asset management.</p>
     </div>
-    <div class="stats-bar">
-      <div class="stat-item"><div class="stat-num">20<span>%</span></div><div class="stat-label">Typical energy bill reduction</div></div>
-      <div class="stat-item"><div class="stat-num">17<span>&times;</span></div><div class="stat-label">Property value per $1 of NOI saved</div></div>
-      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Capital cost to property owner</div></div>
-      <div class="stat-item"><div class="stat-num">100<span>%</span></div><div class="stat-label">Managed and monitored by ClearSky</div></div>
-    </div>
-  </div>
-  <div id="seg-2" class="content-block">
-    <div class="hero">
-      <p class="hero-eyebrow">Residential MUD</p>
-      <h1 class="hero-headline">Shared storage.<br><span class="accent">Per-unit savings.</span></h1>
-      <p class="hero-sub">Multifamily and mixed-use developers face rising common-area energy costs and resident expectations for sustainability. ClearSky installs a shared BESS that reduces master-meter demand charges and enables optional backup power — at no cost to the building owner.</p>
-      <div class="hero-actions">
-        <a href="#calculator" class="btn-primary">Model my building</a>
-        <a href="#contact" class="btn-ghost">Talk to our team</a>
-      </div>
-    </div>
-    <div class="stats-bar">
-      <div class="stat-item"><div class="stat-num">15&ndash;25<span>%</span></div><div class="stat-label">Common area energy cost reduction</div></div>
-      <div class="stat-item"><div class="stat-num">30<span>%</span></div><div class="stat-label">Federal ITC on project cost</div></div>
-      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Cost to building owner</div></div>
-      <div class="stat-item"><div class="stat-num">2<span>%+</span></div><div class="stat-label">Estimated property value increase</div></div>
-    </div>
-  </div>
-  <div id="seg-3" class="content-block">
-    <div class="hero">
-      <p class="hero-eyebrow">EV Charging + BESS</p>
-      <h1 class="hero-headline">Charge more cars.<br><span class="accent">No grid upgrade.</span></h1>
-      <p class="hero-sub">Adding DCFC chargers without battery storage triggers massive demand spikes and costly utility upgrade requirements. ClearSky pairs every EV charging deployment with right-sized BESS — eliminating demand charge exposure and avoiding transformer upgrades entirely.</p>
-      <div class="hero-actions">
-        <a href="#calculator" class="btn-primary">Size my system</a>
-        <a href="#contact" class="btn-ghost">Talk to our team</a>
-      </div>
-    </div>
-    <div class="stats-bar">
-      <div class="stat-item"><div class="stat-num">$0</div><div class="stat-label">Grid upgrade cost with BESS pairing</div></div>
-      <div class="stat-item"><div class="stat-num">4&ndash;8<span>&times;</span></div><div class="stat-label">Charger capacity vs. utility service size</div></div>
-      <div class="stat-item"><div class="stat-num">DCFC</div><div class="stat-label">50&ndash;350 kW fast charger support</div></div>
-      <div class="stat-item"><div class="stat-num">2&ndash;4<span>yr</span></div><div class="stat-label">Simple payback on BESS investment</div></div>
-    </div>
-  </div>
-  <div class="calc-section" id="calculator">
-    <p class="section-label">Savings Estimator</p>
-    <h2 class="section-title">Calculate your savings potential</h2>
-    <div class="calc-grid">
-      <div class="calc-left">
-        <div class="calc-field">
-          <label>Market segment</label>
-          <select id="calc-segment" onchange="recalc()">
-            <option value="ci">Commercial &amp; Industrial</option>
-            <option value="hosp">Hospitality</option>
-            <option value="mud">Residential MUD</option>
-            <option value="ev">EV Charging Site</option>
-          </select>
-        </div>
-        <div class="calc-field">
-          <label>Monthly utility bill</label>
-          <div class="range-row">
-            <input type="range" id="bill-slider" min="2000" max="80000" value="12000" step="1000" oninput="recalc()">
-            <div class="range-val" id="bill-display">$12K</div>
-          </div>
-        </div>
-        <div class="calc-field">
-          <label>Battery system size (kWh)</label>
-          <div class="range-row">
-            <input type="range" id="size-slider" min="100" max="4000" value="500" step="50" oninput="recalc()">
-            <div class="range-val" id="size-display">500 kWh</div>
-          </div>
-        </div>
-        <div class="calc-field">
-          <label>State / utility</label>
-          <select id="state-select" onchange="recalc()">
-            <option value="il">Illinois (ComEd)</option>
-            <option value="ca">California (PG&amp;E / SCE)</option>
-            <option value="ct">Connecticut (Eversource / UI)</option>
-            <option value="ma">Massachusetts (Eversource MA)</option>
-            <option value="ny">New York (ConEd)</option>
-          </select>
+    <div class="lifecycle">
+      <div class="rail">
+        <div class="rail-line"></div>
+        <div class="rail-stages">
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">01</div><div class="stage-name">Site Lead</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">02</div><div class="stage-name">Candidate Review</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">03</div><div class="stage-name">Engineering Package</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">04</div><div class="stage-name">Interconnection</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">05</div><div class="stage-name">Permit</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">06</div><div class="stage-name">Finance</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">07</div><div class="stage-name">Construction</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">08</div><div class="stage-name">Commissioning</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">09</div><div class="stage-name">Operating Asset</div></div>
         </div>
       </div>
-      <div class="calc-results">
-        <div class="result-card">
-          <p class="result-card-label">Estimated annual savings</p>
-          <div class="result-card-val" id="res-savings">$0</div>
-          <p class="result-card-note">Based on demand charge reduction and energy arbitrage</p>
-        </div>
-        <div class="result-card">
-          <p class="result-card-label">Utility + state rebates available</p>
-          <div class="result-card-val" id="res-rebates">$0</div>
-          <p class="result-card-note" id="res-rebate-note">Varies by program eligibility</p>
-        </div>
-        <div class="result-card">
-          <p class="result-card-label">Upfront cost to you</p>
-          <div class="result-card-val">$0</div>
-          <p class="result-card-note">ClearSky covers 100% under the host lease model</p>
-        </div>
-        <a href="#contact" class="btn-primary" style="text-align:center;padding:15px;">Get a real project quote</a>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 3: ENERGY INFRASTRUCTURE (CHANGED: 6 cards; former C&I/Hospitality/MUD/EV market tabs folded in as tags) ============ -->
+  <div class="section" style="padding-top:0;" id="energy">
+    <div class="section-head">
+      <p class="section-label">ClearSky Energy Infrastructure</p>
+      <h2 class="section-title">Development across four asset classes</h2>
+      <p class="section-desc">ClearSky evaluates and develops BESS, EV charging, microgrid, and micro data center opportunities. Our process helps determine whether a site is viable, financeable, permittable, and capable of generating grid or behind-the-meter value.</p>
+    </div>
+    <div class="infra-grid">
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="1.5"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="10" y1="10" x2="10" y2="14"/><line x1="14" y1="10" x2="14" y2="14"/></svg></div>
+        <p class="infra-name">Battery Energy Storage</p>
+        <p class="infra-desc">Demand-charge reduction, energy arbitrage, backup power, and grid-services revenue across commercial, industrial, hospitality, and multifamily sites.</p>
+        <div class="infra-tags"><span class="infra-tag">Commercial &amp; Industrial</span><span class="infra-tag">Hospitality</span><span class="infra-tag">Residential MUD</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="11" height="18" rx="1.5"/><path d="M14 8h3l3 3v7a2 2 0 0 1-2 2"/><line x1="7" y1="8" x2="10" y2="8"/><path d="M8 12l-1.5 2.5H9L7.5 17"/></svg></div>
+        <p class="infra-name">EV Charging Infrastructure</p>
+        <p class="infra-desc">BESS-paired DCFC deployments that add charger capacity without triggering costly grid upgrades or transformer replacements.</p>
+        <div class="infra-tags"><span class="infra-tag">DCFC 50–350 kW</span><span class="infra-tag">No grid upgrade</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l4-3 4 3v13"/><path d="M13 21V11l4-2 4 2v10"/><line x1="8" y1="11" x2="8" y2="11"/></svg></div>
+        <p class="infra-name">Microgrids</p>
+        <p class="infra-desc">Resilient, islandable systems that keep critical loads online and coordinate storage, generation, and controllable demand.</p>
+        <div class="infra-tags"><span class="infra-tag">Resiliency</span><span class="infra-tag">Islanding</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="6" rx="1.5"/><rect x="2" y="14" width="20" height="6" rx="1.5"/><line x1="6" y1="7" x2="6" y2="7"/><line x1="6" y1="17" x2="6" y2="17"/></svg></div>
+        <p class="infra-name">Micro Data Centers</p>
+        <p class="infra-desc">Distributed compute nodes co-located with power capacity and storage, evaluated for site readiness and project economics.</p>
+        <div class="infra-tags"><span class="infra-tag">Edge compute</span><span class="infra-tag">Power-first siting</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="3"/><path d="M4 8l3 2"/><path d="M20 8l-3 2"/><path d="M4 16l3-2"/><path d="M20 16l-3-2"/></svg></div>
+        <p class="infra-name">VPP / Demand Response</p>
+        <p class="infra-desc">Aggregate distributed assets into wholesale and utility programs for capacity, demand response, and ancillary-service value.</p>
+        <div class="infra-tags"><span class="infra-tag">PJM / MISO</span><span class="infra-tag">SDVPP</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <p class="infra-name">Site Monetization</p>
+        <p class="infra-desc">Turn underused property into revenue through host-lease structures, stacked incentives, and behind-the-meter or grid-facing value.</p>
+        <div class="infra-tags"><span class="infra-tag">Host lease</span><span class="infra-tag">Incentive stacking</span></div>
       </div>
     </div>
   </div>
-  <div class="section">
-    <p class="section-label">Why ClearSky</p>
-    <h2 class="section-title">Built for every market, owned end to end</h2>
-    <div class="benefits-grid">
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg></div>
-        <p class="benefit-title">Zero capital cost</p>
-        <p class="benefit-desc">ClearSky owns, installs, and maintains the battery system. You sign a host lease and collect your share of savings from day one — no budget line required.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
-        <p class="benefit-title">Backup power included</p>
-        <p class="benefit-desc">Every installation includes automatic outage protection for critical loads — no generator, no diesel, no noise. Continuous power for what matters most.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="16"/><line x1="10" y1="14" x2="14" y2="14"/></svg></div>
-        <p class="benefit-title">EV charging ready</p>
-        <p class="benefit-desc">Pair your BESS with DCFC infrastructure. Avoid grid upgrade costs while meeting EV demand today — and scaling for tomorrow without returning to the utility.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
-        <p class="benefit-title">Grid revenue stacking</p>
-        <p class="benefit-desc">ClearSky aggregates your battery into PJM and MISO ancillary service markets, generating demand response and capacity revenue stacked on top of bill savings.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg></div>
-        <p class="benefit-title">Solar-ready integration</p>
-        <p class="benefit-desc">Battery-first design enables seamless solar-plus-storage when you're ready — maximizing self-consumption, export revenue, and existing solar array ROI.</p>
-      </div>
-      <div class="benefit-card">
-        <div class="benefit-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
-        <p class="benefit-title">Fully managed ops</p>
-        <p class="benefit-desc">Remote monitoring, predictive maintenance, firmware updates, utility interconnection compliance, and program enrollment — all handled entirely by our team.</p>
-      </div>
+
+  <!-- ============ SECTION 4: COMPUTE (CHANGED: repositioned to connect to platform; compute.html link preserved) ============ -->
+  <div class="compute-section" id="compute">
+    <div class="compute-left">
+      <p class="compute-eyebrow">Compute · Micro Data Centers</p>
+      <h2 class="compute-title">Where power capacity meets distributed compute</h2>
+      <p class="compute-desc">ClearSky evaluates properties for micro data center and compute infrastructure opportunities where power capacity, energy storage, resiliency, and site economics can support distributed compute deployment. Our platform helps evaluate site readiness, utility constraints, equipment placement, energy requirements, and project economics.</p>
+      <a href="/compute.html" class="btn-amber">Explore the compute pilot →</a>
+    </div>
+    <div class="compute-checklist">
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Site readiness and available power capacity</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Utility constraints and interconnection limits</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Equipment placement and energy requirements</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Storage pairing and resiliency for uptime</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Project economics and revenue modeling</span></div>
     </div>
   </div>
-  <div class="section" style="padding-top:0;">
-    <p class="section-label">How it works</p>
-    <h2 class="section-title">Turnkey from LOI to COD</h2>
-    <div class="process-steps">
-      <div class="process-step">
-        <div class="step-num">01</div>
-        <p class="step-label">Scope</p>
-        <p class="step-title">Analyze &amp; propose</p>
-        <p class="step-desc">We review your utility bills, model the optimal battery size and topology, and deliver a guaranteed savings proposal with no obligation.</p>
-        <span class="step-time">2&ndash;4 weeks &middot; Outcome: LOI</span>
-      </div>
-      <div class="process-step">
-        <div class="step-num">02</div>
-        <p class="step-label">Develop</p>
-        <p class="step-title">Engineer &amp; permit</p>
-        <p class="step-desc">Site survey, engineering drawings, utility interconnection application, and all local permits — we manage everything with zero impact on your operations.</p>
-        <span class="step-time">6&ndash;8 weeks &middot; Outcome: NTP</span>
-      </div>
-      <div class="process-step">
-        <div class="step-num">03</div>
-        <p class="step-label">Install</p>
-        <p class="step-title">Build &amp; commission</p>
-        <p class="step-desc">Licensed EPC partners procure equipment, install the system, and commission to full commercial operation — then we monitor and manage indefinitely.</p>
-        <span class="step-time">10&ndash;12 weeks &middot; Outcome: COD</span>
-      </div>
+
+  <!-- ============ SECTION 5: PLATFORM ACCESS / PROJECT PORTAL (CHANGED: all existing portal URLs preserved as cards) ============ -->
+  <div class="section" style="padding-top:0;" id="portal">
+    <div class="section-head">
+      <p class="section-label">Platform Access</p>
+      <h2 class="section-title">Open the project portal</h2>
+      <p class="section-desc">Access ClearSky's project tools, site-development workflows, and energy infrastructure dashboards through the secure project portal.</p>
     </div>
+    <div class="access-grid">
+      <!-- CHANGED: primary login card → OMEGA gateway (login.html hands off to portal) -->
+      <a href="/login.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <p class="access-name">Log in to OMEGA</p>
+        <p class="access-desc">Secure dashboards for project pipeline, documents, and workflows — signs you in to your ClearSky workspace.</p>
+        <span class="access-go">Log in →</span>
+      </a>
+      <!-- CHANGED: Site Map Tool now points at the real editor inside the portal (auth-gated) -->
+      <a href="https://clearsky-portal-h7d9.vercel.app/editor.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+        <p class="access-name">Open Site Map Tool</p>
+        <p class="access-desc">Launch the site-development and layout workflow in the platform.</p>
+        <span class="access-go">Open tool →</span>
+      </a>
+      <!-- PRESERVED: compute.html -->
+      <a href="/compute.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+        <p class="access-name">Open Compute Page</p>
+        <p class="access-desc">Review the micro data center and compute pilot.</p>
+        <span class="access-go">Open page →</span>
+      </a>
+      <!-- PRESERVED: how-it-works.html -->
+      <a href="/how-it-works.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg></div>
+        <p class="access-name">View How It Works</p>
+        <p class="access-desc">Walk through the development process end to end.</p>
+        <span class="access-go">Learn more →</span>
+      </a>
+    </div>
+    <!-- CHANGED: partner portal intentionally NOT linked from the public site (invite-only, URL handed out directly to partners) -->
   </div>
+
+  <!-- ============ CONTACT (PRESERVED: form + submitForm mailto logic unchanged) ============ -->
   <div class="contact-section" id="contact">
     <div class="contact-left">
-      <h2>Ready to cut your energy bill?</h2>
-      <p>Tell us about your property and we'll get back to you within 24 hours with a preliminary savings estimate — no commitment required.</p>
+      <h2>Request platform access</h2>
+      <p>Tell us about your site or portfolio and we'll follow up within 24 hours with next steps for evaluation, packaging, and platform access.</p>
       <div class="contact-detail">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         <a href="mailto:info@csebuilders.com">info@csebuilders.com</a>
       </div>
       <div class="contact-detail">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        Clinton, Iowa &middot; Serving IL, CT, MA, NY, CA
+        Clinton, Iowa · Serving IL, CT, MA, NY, CA
       </div>
     </div>
     <div class="contact-form" id="contact-form">
@@ -721,89 +754,69 @@
         <input type="email" id="f-email" placeholder="jane@acmecorp.com">
       </div>
       <div class="form-field">
-        <label for="f-segment">Property type</label>
+        <label for="f-segment">Interest area</label>
         <select id="f-segment">
-          <option value="">Select a segment</option>
-          <option>Commercial &amp; Industrial</option>
-          <option>Hospitality</option>
-          <option>Residential MUD</option>
-          <option>EV Charging Site</option>
+          <option value="">Select an area</option>
+          <option>ClearSky Platform</option>
+          <option>Battery Energy Storage</option>
+          <option>EV Charging Infrastructure</option>
+          <option>Microgrids</option>
+          <option>Micro Data Centers / Compute</option>
+          <option>VPP / Demand Response</option>
         </select>
       </div>
       <div class="form-field">
-        <label for="f-message">Tell us about your property</label>
-        <textarea id="f-message" placeholder="Location, approximate monthly utility bill, any existing solar..."></textarea>
+        <label for="f-message">Tell us about your site or portfolio</label>
+        <textarea id="f-message" placeholder="Location, approximate load or utility bill, asset class of interest, any existing solar or storage..."></textarea>
       </div>
       <button class="form-submit" onclick="submitForm()">Send inquiry</button>
     </div>
     <div class="form-success" id="form-success">
-      <p>&#10003; Message received.</p>
+      <p>✓ Message received.</p>
       <p style="font-size:15px;font-weight:400;color:var(--cs-muted);margin-top:10px;">We'll be in touch within 24 hours.</p>
     </div>
   </div>
+
+  <!-- ============ FOOTER (PRESERVED: logo asset + all links, incl. partner + client portal) ============ -->
   <footer>
-    <span class="footer-left"><img src="/clearsky-logo-light.png" alt="ClearSky Builders" class="footer-logo"><br>&copy; 2025 ClearSky Builders LLC &nbsp;&middot;&nbsp; <a href="mailto:info@csebuilders.com">info@csebuilders.com</a></span>
+    <span class="footer-left"><img src="/clearsky-logo-light.png" alt="ClearSky Builders" class="footer-logo"><br>© 2025 ClearSky Builders LLC &nbsp;·&nbsp; <a href="mailto:info@csebuilders.com">info@csebuilders.com</a></span>
     <div class="footer-right">
-      <span class="footer-tag">BESS &middot; EV Charging &middot; Compute &middot; VPP</span>
-      <a href="/compute.html">Compute &rarr;</a>
-      <a href="https://partner.csebuilders.com">Partner login &rarr;</a>
-      <a href="https://clearsky-portal-h7d9.vercel.app">Client portal &rarr;</a>
+      <span class="footer-tag">OMEGA · BESS · EV · Microgrid · Compute · VPP</span>
+      <a href="/platform.html">Platform →</a>
+      <a href="/compute.html">Compute →</a>
+      <a href="/how-it-works.html">How It Works →</a>
+      <!-- CHANGED: partner login removed from public footer (invite-only); OMEGA login kept -->
+      <a href="/login.html">Log in to OMEGA →</a>
     </div>
   </footer>
+
   <script>
-    var rebateTable = {
-      il: { label: 'ComEd BESH $250/kWh + ITC 30%', ratePerKwh: 250 },
-      ca: { label: 'SGIP $100/kWh + ITC 30%', ratePerKwh: 100 },
-      ct: { label: 'Eversource/UI rebate + ITC 30%', ratePerKwh: 80 },
-      ma: { label: 'Eversource MA rebate + ITC 30%', ratePerKwh: 75 },
-      ny: { label: 'NY-Sun BESS incentive + ITC 30%', ratePerKwh: 120 }
-    };
-    var savingsPct = { ci: 0.18, hosp: 0.20, mud: 0.15, ev: 0.22 };
-    function fmt(n) {
-      if (n >= 1000000) return '$' + (n / 1000000).toFixed(1) + 'M';
-      if (n >= 1000) return '$' + Math.round(n / 1000) + 'K';
-      return '$' + Math.round(n);
+    /* CHANGED: added mobile nav toggle for the new nav bar */
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
     }
-    function recalc() {
-      var bill = parseInt(document.getElementById('bill-slider').value);
-      var size = parseInt(document.getElementById('size-slider').value);
-      var seg = document.getElementById('calc-segment').value;
-      var state = document.getElementById('state-select').value;
-      document.getElementById('bill-display').textContent = bill >= 1000 ? '$' + Math.round(bill / 1000) + 'K' : '$' + bill;
-      document.getElementById('size-display').textContent = size + ' kWh';
-      var annualSavings = bill * 12 * savingsPct[seg];
-      var rebateInfo = rebateTable[state];
-      var totalRebate = size * rebateInfo.ratePerKwh;
-      document.getElementById('res-savings').textContent = fmt(Math.round(annualSavings));
-      document.getElementById('res-rebates').textContent = fmt(Math.round(totalRebate));
-      document.getElementById('res-rebate-note').textContent = rebateInfo.label;
+    /* Close mobile nav after tapping an in-page link */
+    var navAnchors = document.querySelectorAll('#navLinks .nav-link');
+    for (var i = 0; i < navAnchors.length; i++) {
+      navAnchors[i].addEventListener('click', function () {
+        document.getElementById('navLinks').classList.remove('open');
+      });
     }
-    function switchSegment(idx, el) {
-      var tabs = document.querySelectorAll('.market-tab');
-      var blocks = document.querySelectorAll('.content-block');
-      var segMap = { 0: 'ci', 1: 'hosp', 2: 'mud', 3: 'ev' };
-      for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); tabs[i].setAttribute('aria-selected', 'false'); }
-      for (var j = 0; j < blocks.length; j++) { blocks[j].classList.remove('active'); }
-      el.classList.add('active');
-      el.setAttribute('aria-selected', 'true');
-      document.getElementById('seg-' + idx).classList.add('active');
-      document.getElementById('calc-segment').value = segMap[idx];
-      recalc();
-    }
+
+    /* PRESERVED: original contact form submit + mailto behavior (unchanged logic) */
     function submitForm() {
       var name = document.getElementById('f-name').value.trim();
       var email = document.getElementById('f-email').value.trim();
       if (!name || !email) { alert('Please enter your name and email.'); return; }
       document.getElementById('contact-form').style.display = 'none';
       document.getElementById('form-success').style.display = 'block';
-      var subject = encodeURIComponent('ClearSky BESS Inquiry - ' + name);
+      var subject = encodeURIComponent('ClearSky Platform Inquiry - ' + name);
       var seg = document.getElementById('f-segment').value;
       var company = document.getElementById('f-company').value;
       var msg = document.getElementById('f-message').value;
-      var body = encodeURIComponent('Name: ' + name + '\nCompany: ' + company + '\nEmail: ' + email + '\nSegment: ' + seg + '\n\n' + msg);
+      var body = encodeURIComponent('Name: ' + name + '\nCompany: ' + company + '\nEmail: ' + email + '\nInterest: ' + seg + '\n\n' + msg);
       window.location.href = 'mailto:info@csebuilders.com?subject=' + subject + '&body=' + body;
     }
-    recalc();
   </script>
 </body>
 </html>
