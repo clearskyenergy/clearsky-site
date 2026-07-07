@@ -1,0 +1,846 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon-180.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="OMEGA is ClearSky Energy Solutions' AI operating platform for distributed energy development — site mapping, one-line diagrams, permit sets, interconnection packages, and financial analysis in one cloud tool.">
+  <meta property="og:title" content="OMEGA · The ClearSky Energy Platform">
+  <meta property="og:description" content="The AI operating platform behind ClearSky — from raw site data to permit-ready, financeable BESS, EV, microgrid, and compute projects.">
+  <meta property="og:type" content="website">
+  <title>OMEGA · The ClearSky Energy Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cs-black: #080C10;
+      --cs-navy: #0D1620;
+      --cs-card: #111D28;
+      --cs-card-2: #0E1822;
+      --cs-blue: #00AEEF;
+      --cs-blue-dim: rgba(0,174,239,0.12);
+      --cs-blue-mid: rgba(0,174,239,0.35);
+      --cs-amber: #F5A623;
+      --cs-violet: #7C3AED;
+      --cs-white: #EEF3F8;
+      --cs-muted: rgba(238,243,248,0.5);
+      --cs-muted-2: rgba(238,243,248,0.38);
+      --cs-border: rgba(255,255,255,0.08);
+      --cs-border-blue: rgba(0,174,239,0.3);
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cs-black); color: var(--cs-white); min-height: 100vh; overflow-x: hidden; }
+
+    /* NAV (shared style with index.html) */
+    nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; border-bottom: 0.5px solid var(--cs-border); position: sticky; top: 0; background: rgba(8,12,16,0.92); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.5px; color: var(--cs-white); display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .logo-mark-img { height: 30px; width: auto; flex-shrink: 0; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; margin-right: 24px; }
+    .nav-link { font-size: 13.5px; font-weight: 500; color: var(--cs-muted); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+    .nav-link:hover { color: var(--cs-white); }
+    .nav-link.active { color: var(--cs-white); }
+    .nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .nav-cta { background: var(--cs-blue); color: #080C10; border: none; padding: 9px 20px; border-radius: 6px; font-weight: 600; font-size: 13.5px; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s; white-space: nowrap; }
+    .nav-cta:hover { opacity: 0.88; }
+    .nav-toggle { display: none; }
+
+    /* HERO */
+    .p-hero { padding: 72px 48px 40px; max-width: 1040px; }
+    .omega-badge { display: inline-flex; align-items: center; gap: 12px; padding: 8px 16px 8px 10px; border: 0.5px solid var(--cs-border-blue); border-radius: 40px; background: rgba(0,174,239,0.05); margin-bottom: 28px; }
+    .omega-badge img { height: 26px; width: auto; display: block; }
+    .omega-badge span { font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cs-blue); }
+    .p-hero h1 { font-family: 'Syne', sans-serif; font-size: 56px; font-weight: 800; line-height: 1.04; letter-spacing: -2px; margin-bottom: 24px; max-width: 900px; }
+    .p-hero h1 .accent { color: var(--cs-blue); }
+    .p-hero .sub { font-size: 18px; line-height: 1.7; color: var(--cs-muted); max-width: 680px; margin-bottom: 36px; }
+    .p-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .btn-primary { background: var(--cs-blue); color: #080C10; border: none; padding: 14px 30px; border-radius: 6px; font-weight: 600; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost { background: transparent; color: var(--cs-white); border: 0.5px solid var(--cs-border-blue); padding: 14px 30px; border-radius: 6px; font-weight: 500; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: var(--cs-blue); color: var(--cs-blue); }
+
+    /* METRIC STRIP */
+    .metrics { display: flex; border-top: 0.5px solid var(--cs-border); border-bottom: 0.5px solid var(--cs-border); margin: 0 48px; }
+    .metric { flex: 1; padding: 26px 32px; border-right: 0.5px solid var(--cs-border); }
+    .metric:last-child { border-right: none; }
+    .metric .n { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; }
+    .metric .n span { color: var(--cs-blue); }
+    .metric .l { font-size: 12px; color: var(--cs-muted); margin-top: 7px; line-height: 1.45; }
+
+    /* SECTION SHELL */
+    .section { padding: 72px 48px; }
+    .section-head { max-width: 740px; margin-bottom: 44px; }
+    .eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cs-blue); margin-bottom: 14px; }
+    .s-title { font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 700; letter-spacing: -0.6px; margin-bottom: 16px; line-height: 1.12; }
+    .s-desc { font-size: 15.5px; line-height: 1.7; color: var(--cs-muted); }
+
+    /* CAPABILITY BLOCKS (alternating) */
+    .cap { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; padding: 56px 0; border-top: 0.5px solid var(--cs-border); }
+    .cap:first-of-type { border-top: none; }
+    .cap.flip .cap-visual { order: -1; }
+    .cap-idx { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; color: var(--cs-blue); margin-bottom: 12px; }
+    .cap h3 { font-family: 'Syne', sans-serif; font-size: 26px; font-weight: 700; letter-spacing: -0.4px; margin-bottom: 14px; line-height: 1.15; }
+    .cap p { font-size: 15px; line-height: 1.7; color: var(--cs-muted); margin-bottom: 18px; }
+    .cap ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .cap li { display: flex; gap: 10px; align-items: flex-start; font-size: 14px; line-height: 1.5; color: var(--cs-white); }
+    .cap li svg { color: var(--cs-blue); flex-shrink: 0; margin-top: 2px; }
+    .cap li span { color: var(--cs-muted); }
+
+    /* VISUAL MOCK PANELS (pure CSS, no external imagery needed) */
+    .visual { background: var(--cs-card-2); border: 0.5px solid var(--cs-border); border-radius: 14px; padding: 22px; min-height: 260px; position: relative; overflow: hidden; }
+    .visual-bar { display: flex; align-items: center; gap: 6px; margin-bottom: 18px; }
+    .visual-dot { width: 9px; height: 9px; border-radius: 50%; background: var(--cs-border); }
+    .visual-title { margin-left: 8px; font-size: 11px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cs-muted-2); }
+
+    /* map mock */
+    .map-mock { background: linear-gradient(135deg, #0a1a2a, #12263a); border-radius: 8px; height: 200px; position: relative; border: 0.5px solid var(--cs-border-blue); }
+    .parcel { position: absolute; border: 1.5px dashed var(--cs-blue); border-radius: 3px; }
+    .pad { position: absolute; background: rgba(0,174,239,0.18); border: 1px solid var(--cs-blue); border-radius: 2px; }
+    .pad::after { content: 'BESS'; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 8px; color: var(--cs-blue); font-weight: 600; }
+
+    /* one-line mock */
+    .oneline { height: 200px; display: flex; align-items: center; justify-content: space-around; padding: 20px; }
+    .ol-node { display: flex; flex-direction: column; align-items: center; gap: 8px; }
+    .ol-box { width: 46px; height: 46px; border: 1.5px solid var(--cs-blue); border-radius: 4px; display: flex; align-items: center; justify-content: center; font-size: 9px; color: var(--cs-blue); font-weight: 700; background: rgba(0,174,239,0.06); }
+    .ol-line { flex: 1; height: 1.5px; background: var(--cs-blue-mid); min-width: 18px; }
+    .ol-label { font-size: 8px; color: var(--cs-muted-2); }
+
+    /* permit mock */
+    .permit-mock { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; height: 200px; }
+    .sheet { background: rgba(255,255,255,0.02); border: 0.5px solid var(--cs-border); border-radius: 4px; padding: 8px 6px; display: flex; flex-direction: column; }
+    .sheet .code { font-size: 10px; font-weight: 700; color: var(--cs-blue); }
+    .sheet .nm { font-size: 7px; color: var(--cs-muted-2); margin-top: 2px; line-height: 1.3; }
+    .sheet .lines { margin-top: auto; display: flex; flex-direction: column; gap: 2px; }
+    .sheet .lines i { height: 1px; background: var(--cs-border); display: block; }
+
+    /* finance mock */
+    .fin-mock { height: 200px; display: flex; flex-direction: column; gap: 12px; justify-content: center; }
+    .fin-row { display: flex; align-items: center; gap: 12px; }
+    .fin-label { font-size: 10px; color: var(--cs-muted); width: 90px; flex-shrink: 0; }
+    .fin-track { flex: 1; height: 8px; background: rgba(255,255,255,0.04); border-radius: 4px; overflow: hidden; }
+    .fin-fill { height: 100%; background: linear-gradient(90deg, var(--cs-blue), var(--cs-blue-mid)); border-radius: 4px; }
+    .fin-val { font-size: 10px; color: var(--cs-blue); font-weight: 700; width: 54px; text-align: right; }
+
+    /* AI mock */
+    .ai-mock { height: 200px; display: flex; flex-direction: column; gap: 10px; justify-content: center; }
+    .ai-line { display: flex; gap: 10px; align-items: flex-start; }
+    .ai-tag { font-size: 9px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 8px; border-radius: 4px; flex-shrink: 0; }
+    .ai-tag.claude { background: rgba(0,174,239,0.14); color: var(--cs-blue); }
+    .ai-tag.gemini { background: rgba(124,58,237,0.16); color: #A78BFA; }
+    .ai-text { font-size: 11px; color: var(--cs-muted); line-height: 1.5; }
+
+    /* WORKFLOW STRIP */
+    .flow { background: var(--cs-card-2); border: 0.5px solid var(--cs-border); border-radius: 14px; padding: 36px; }
+    .flow-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 10px; }
+    .flow-step { text-align: left; padding: 16px 14px; background: rgba(255,255,255,0.02); border: 0.5px solid var(--cs-border); border-radius: 9px; }
+    .flow-step .i { font-size: 10px; font-weight: 700; color: var(--cs-blue); margin-bottom: 8px; }
+    .flow-step .t { font-size: 12.5px; font-weight: 600; line-height: 1.3; }
+
+    /* TECH / WHY CUTTING EDGE */
+    .tech-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .tech-card { background: var(--cs-card); border: 0.5px solid var(--cs-border); border-radius: 12px; padding: 26px; transition: border-color 0.2s; }
+    .tech-card:hover { border-color: var(--cs-border-blue); }
+    .tech-ic { width: 38px; height: 38px; background: var(--cs-blue-dim); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--cs-blue); margin-bottom: 16px; }
+    .tech-card h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 10px; letter-spacing: -0.2px; }
+    .tech-card p { font-size: 13.5px; line-height: 1.6; color: var(--cs-muted); }
+
+    /* CTA BAND */
+    .cta-band { margin: 0 48px 72px; background: linear-gradient(135deg, rgba(0,174,239,0.08), var(--cs-card)); border: 0.5px solid var(--cs-border-blue); border-radius: 16px; padding: 56px 48px; text-align: center; }
+    .cta-band img { height: 44px; width: auto; margin-bottom: 20px; opacity: 0.95; }
+    .cta-band h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px; }
+    .cta-band p { font-size: 15.5px; color: var(--cs-muted); max-width: 560px; margin: 0 auto 28px; line-height: 1.65; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ---------- PROJECT FLOW / INTAKE JOURNEY ---------- */
+    .flow-journey { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; position: relative; }
+    .journey-card { background: var(--cs-card); border: 0.5px solid var(--cs-border); border-radius: 12px; padding: 26px 22px; position: relative; }
+    .journey-card:hover { border-color: var(--cs-border-blue); }
+    .journey-step { font-size: 10.5px; font-weight: 700; letter-spacing: 0.14em; color: var(--cs-blue); margin-bottom: 14px; }
+    .journey-ic { width: 40px; height: 40px; background: var(--cs-blue-dim); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--cs-blue); margin-bottom: 16px; }
+    .journey-card h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; margin-bottom: 8px; letter-spacing: -0.2px; }
+    .journey-card p { font-size: 12.5px; line-height: 1.55; color: var(--cs-muted); }
+    .journey-card .arrow { position: absolute; top: 50%; right: -12px; transform: translateY(-50%); color: var(--cs-border-blue); z-index: 2; background: var(--cs-black); border-radius: 50%; }
+
+    /* ---------- PARTNERSHIPS / ECOSYSTEM ---------- */
+    .eco-intro { background: linear-gradient(135deg, rgba(0,174,239,0.06), var(--cs-card)); border: 0.5px solid var(--cs-border-blue); border-radius: 14px; padding: 32px 36px; margin-bottom: 24px; display: flex; align-items: center; gap: 28px; flex-wrap: wrap; }
+    .eco-intro-badge { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 800; color: var(--cs-white); letter-spacing: -0.4px; flex-shrink: 0; }
+    .eco-intro-badge span { color: var(--cs-blue); }
+    .eco-intro p { font-size: 14.5px; line-height: 1.65; color: var(--cs-muted); flex: 1; min-width: 280px; }
+    .eco-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+    .eco-card { background: var(--cs-card); border: 0.5px solid var(--cs-border); border-radius: 12px; padding: 26px; transition: border-color 0.2s; }
+    .eco-card:hover { border-color: var(--cs-border-blue); }
+    .eco-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+    .eco-ic { width: 38px; height: 38px; background: var(--cs-blue-dim); border-radius: 9px; display: flex; align-items: center; justify-content: center; color: var(--cs-blue); flex-shrink: 0; }
+    .eco-card h4 { font-family: 'Syne', sans-serif; font-size: 16px; font-weight: 700; letter-spacing: -0.2px; }
+    .eco-card p { font-size: 13.5px; line-height: 1.6; color: var(--cs-muted); margin-bottom: 14px; }
+    .eco-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .eco-tag { font-size: 11px; font-weight: 600; color: var(--cs-muted); background: rgba(255,255,255,0.03); border: 0.5px solid var(--cs-border); padding: 4px 11px; border-radius: 20px; }
+    .eco-tag.named { color: var(--cs-blue); border-color: var(--cs-border-blue); background: var(--cs-blue-dim); }
+
+    /* ---------- MULTI-STEP INTAKE ---------- */
+    .intake { background: var(--cs-card); border: 0.5px solid var(--cs-border-blue); border-radius: 16px; padding: 8px; max-width: 720px; overflow: hidden; }
+    .intake-inner { padding: 32px; }
+    .intake-progress { display: flex; gap: 8px; margin-bottom: 28px; }
+    .ip-seg { flex: 1; height: 4px; border-radius: 2px; background: var(--cs-border); transition: background 0.3s; }
+    .ip-seg.active { background: var(--cs-blue); }
+    .ip-seg.done { background: var(--cs-blue-mid); }
+    .intake-step { display: none; animation: fadeUp 0.3s ease; }
+    .intake-step.active { display: block; }
+    .intake-step-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cs-blue); margin-bottom: 6px; }
+    .intake-step h3 { font-family: 'Syne', sans-serif; font-size: 22px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 22px; }
+    .intake-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+    .intake-opt { background: #1A2535; border: 1px solid var(--cs-border-blue); border-radius: 10px; padding: 16px 18px; cursor: pointer; transition: all 0.15s; display: flex; align-items: center; gap: 12px; }
+    .intake-opt:hover { border-color: var(--cs-blue); background: rgba(0,174,239,0.06); }
+    .intake-opt.selected { border-color: var(--cs-blue); background: rgba(0,174,239,0.12); box-shadow: 0 0 0 1px var(--cs-blue); }
+    .intake-opt .oi { width: 30px; height: 30px; border-radius: 7px; background: var(--cs-blue-dim); display: flex; align-items: center; justify-content: center; color: var(--cs-blue); flex-shrink: 0; }
+    .intake-opt .ot { font-size: 13.5px; font-weight: 600; color: var(--cs-white); }
+    .intake-opt .od { font-size: 11px; color: var(--cs-muted); margin-top: 1px; }
+    .intake-field { margin-bottom: 16px; }
+    .intake-field label { display: block; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cs-muted); margin-bottom: 7px; }
+    .intake-field input, .intake-field textarea, .intake-field select {
+      width: 100%; background: #1A2535; border: 1px solid var(--cs-border-blue); border-radius: 8px;
+      color: var(--cs-white); padding: 12px 14px; font-family: 'Inter', sans-serif; font-size: 14px; outline: none; transition: border-color 0.15s;
+    }
+    .intake-field input:focus, .intake-field textarea:focus, .intake-field select:focus { border-color: var(--cs-blue); }
+    .intake-field textarea { resize: vertical; min-height: 90px; }
+    .intake-field input::placeholder, .intake-field textarea::placeholder { color: rgba(238,243,248,0.28); }
+    .intake-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .intake-nav { display: flex; justify-content: space-between; align-items: center; margin-top: 26px; }
+    .intake-back { background: transparent; border: none; color: var(--cs-muted); font-family: 'Inter', sans-serif; font-size: 14px; font-weight: 500; cursor: pointer; padding: 8px 4px; transition: color 0.15s; }
+    .intake-back:hover { color: var(--cs-white); }
+    .intake-back:disabled { opacity: 0; pointer-events: none; }
+    .intake-next { background: var(--cs-blue); color: #080C10; border: none; padding: 13px 28px; border-radius: 8px; font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.5px; cursor: pointer; transition: opacity 0.15s; }
+    .intake-next:hover { opacity: 0.9; }
+    .intake-summary { background: rgba(0,174,239,0.05); border: 0.5px solid var(--cs-border-blue); border-radius: 10px; padding: 18px 20px; margin-bottom: 20px; }
+    .intake-summary .sr { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; font-size: 13px; }
+    .intake-summary .sk { color: var(--cs-muted); }
+    .intake-summary .sv { color: var(--cs-white); font-weight: 500; text-align: right; }
+    .intake-done { text-align: center; padding: 20px; }
+    .intake-done .dc { width: 56px; height: 56px; border-radius: 50%; background: var(--cs-blue-dim); border: 1px solid var(--cs-border-blue); display: flex; align-items: center; justify-content: center; color: var(--cs-blue); margin: 0 auto 18px; }
+    .intake-done h3 { margin-bottom: 10px; }
+    .intake-done p { font-size: 14px; color: var(--cs-muted); line-height: 1.6; max-width: 440px; margin: 0 auto; }
+    @keyframes fadeUp { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* FOOTER */
+    footer { border-top: 0.5px solid var(--cs-border); padding: 28px 48px; display: flex; align-items: center; justify-content: space-between; font-size: 13px; color: var(--cs-muted); }
+    footer a { color: var(--cs-muted); text-decoration: none; }
+    footer a:hover { color: var(--cs-blue); }
+    .footer-right { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .footer-tag { font-size: 11px; color: var(--cs-blue); font-weight: 600; letter-spacing: 0.08em; }
+    .footer-logo { height: 42px; width: auto; display: block; margin-bottom: 12px; }
+
+    @media (max-width: 1024px) {
+      .tech-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-grid { grid-template-columns: repeat(3, 1fr); }
+      .flow-journey { grid-template-columns: repeat(2, 1fr); }
+      .flow-journey .arrow { display: none; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 0; background: var(--cs-navy); border-bottom: 0.5px solid var(--cs-border); margin: 0; padding: 8px 0; }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 12px 20px; width: 100%; font-size: 15px; }
+      .nav-toggle { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; background: none; border: 0.5px solid var(--cs-border); border-radius: 7px; color: var(--cs-white); cursor: pointer; margin-left: auto; margin-right: 10px; }
+      .nav-cta { padding: 8px 14px; font-size: 13px; }
+      .p-hero { padding: 44px 20px 32px; }
+      .p-hero h1 { font-size: 34px; letter-spacing: -1px; }
+      .metrics { flex-wrap: wrap; margin: 0 20px; }
+      .metric { min-width: 50%; border-right: none; border-bottom: 0.5px solid var(--cs-border); padding: 20px; }
+      .section { padding: 48px 20px; }
+      .s-title { font-size: 26px; }
+      .cap { grid-template-columns: 1fr; gap: 28px; padding: 40px 0; }
+      .cap.flip .cap-visual { order: 0; }
+      .tech-grid { grid-template-columns: 1fr; }
+      .flow-grid { grid-template-columns: 1fr; }
+      .flow-journey { grid-template-columns: 1fr; }
+      .flow-journey .arrow { display: none; }
+      .eco-grid { grid-template-columns: 1fr; }
+      .intake-options { grid-template-columns: 1fr; }
+      .intake-row { grid-template-columns: 1fr; }
+      .intake-inner { padding: 22px; }
+      .cta-band { margin: 0 20px 48px; padding: 36px 24px; }
+      footer { flex-direction: column; gap: 16px; padding: 24px 20px; text-align: center; }
+      .footer-right { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav>
+    <a href="/" class="logo">
+      <img src="/clearsky-mark.png" alt="ClearSky" class="logo-mark-img">
+      ClearSky
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="/#top" class="nav-link">Home</a>
+      <a href="/#energy" class="nav-link">Energy Projects</a>
+      <a href="/compute.html" class="nav-link">Compute</a>
+      <a href="/how-it-works.html" class="nav-link">How It Works</a>
+      <a href="/#contact" class="nav-link">Contact</a>
+      <a href="/login.html" class="nav-link">Log in</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-right">
+      <a href="/login.html" class="nav-cta">Log in to OMEGA</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="p-hero">
+    <div class="omega-badge">
+      <img src="/clearsky-omega-white.png" alt="OMEGA">
+      <span>Powered by CSE · OMEGA</span>
+    </div>
+    <h1>The operating platform for <span class="accent">distributed energy</span> development</h1>
+    <p class="sub">OMEGA is the AI operating system ClearSky Energy Solutions built to take a site from raw satellite imagery to a permit-ready, interconnection-ready, financeable project — inside one cloud tool. It's the same platform that produced ClearSky's submitted ComEd BESS site packages.</p>
+    <div class="p-actions">
+      <a href="/login.html" class="btn-primary">Log in to OMEGA</a>
+      <a href="#request" class="btn-ghost">Request access</a>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="metrics">
+    <div class="metric"><div class="n">1</div><div class="l">Single platform, site lead to operating asset</div></div>
+    <div class="metric"><div class="n">10<span>-slide</span></div><div class="l">ANSI D permit set generated per project</div></div>
+    <div class="metric"><div class="n">2<span> AI</span></div><div class="l">engines: reasoning + generative drawing</div></div>
+    <div class="metric"><div class="n">$111<span>/kWh</span></div><div class="l">Live equipment cost modeling built in</div></div>
+  </div>
+
+  <!-- CAPABILITIES -->
+  <div class="section">
+    <div class="section-head">
+      <p class="eyebrow">What OMEGA does</p>
+      <h2 class="s-title">One tool for the entire development stack</h2>
+      <p class="s-desc">Most developers stitch together CAD, GIS, spreadsheets, and a permitting consultant. OMEGA collapses that into a single browser-based platform where every stage feeds the next — the site map drives the one-line, the one-line drives the permit set, and the equipment selection drives the economics.</p>
+    </div>
+
+    <!-- CAP 1: Site mapping -->
+    <div class="cap">
+      <div class="cap-body">
+        <div class="cap-idx">01 · SITE INTELLIGENCE</div>
+        <h3>Site Map Designer</h3>
+        <p>Drop a coordinate or address and OMEGA pulls a frozen satellite basemap, then lets you draw parcel boundaries, BESS pads, setbacks, and equipment with real-world scale locked in. Multi-pad placement, automatic setback checks, and a live summary that counts every pad you draw.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Frozen satellite capture with true scale</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Parcel + APN boundary and setback layers</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Multi-pad BESS layout with equipment assemblies</span></li>
+        </ul>
+      </div>
+      <div class="cap-visual">
+        <div class="visual">
+          <div class="visual-bar"><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-title">Site Map Designer</span></div>
+          <div class="map-mock">
+            <div class="parcel" style="top:18px;left:20px;right:24px;bottom:20px;"></div>
+            <div class="pad" style="top:52px;left:56px;width:60px;height:34px;"></div>
+            <div class="pad" style="top:52px;left:130px;width:60px;height:34px;"></div>
+            <div class="pad" style="top:104px;left:56px;width:60px;height:34px;"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAP 2: One-line -->
+    <div class="cap flip">
+      <div class="cap-body">
+        <div class="cap-idx">02 · ELECTRICAL</div>
+        <h3>One-Line Diagram Builder</h3>
+        <p>OMEGA generates a code-aligned electrical one-line straight from your equipment selection — BESS containers, PCS / bidirectional inverters, interconnection point, and revenue meter — matched to the topology of the site you drew. Integrated PCS logic kicks in automatically for GRID-series systems above 760 kW.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Auto-built from selected equipment</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>PCS / inverter and meter placement</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Exports as a standalone diagram sheet</span></li>
+        </ul>
+      </div>
+      <div class="cap-visual">
+        <div class="visual">
+          <div class="visual-bar"><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-title">One-Line Diagram</span></div>
+          <div class="oneline">
+            <div class="ol-node"><div class="ol-box">BESS</div><div class="ol-label">Container</div></div>
+            <div class="ol-line"></div>
+            <div class="ol-node"><div class="ol-box">PCS</div><div class="ol-label">Inverter</div></div>
+            <div class="ol-line"></div>
+            <div class="ol-node"><div class="ol-box">M</div><div class="ol-label">Meter</div></div>
+            <div class="ol-line"></div>
+            <div class="ol-node"><div class="ol-box">POI</div><div class="ol-label">Utility</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAP 3: Permit set -->
+    <div class="cap">
+      <div class="cap-body">
+        <div class="cap-idx">03 · PERMITTING</div>
+        <h3>Permit &amp; Interconnection Packages</h3>
+        <p>OMEGA assembles a full ANSI D engineering set — cover, electrical (E0–E3), and structural (S1.1–S3.0) sheets — plus interconnection packages framed to Illinois Admin Code Title 83, Part 466 and ComEd's BESH / SDVPP pathways. Signage schedules, interconnection standards compliance, and revenue-meter details are generated inline.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>10-slide ANSI D permit set per project</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>ComEd BESH submittal package generation</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Interconnection framework compliance built in</span></li>
+        </ul>
+      </div>
+      <div class="cap-visual">
+        <div class="visual">
+          <div class="visual-bar"><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-title">Permit Set · ANSI D</span></div>
+          <div class="permit-mock">
+            <div class="sheet"><div class="code">E0</div><div class="nm">Cover</div><div class="lines"><i></i><i></i><i></i></div></div>
+            <div class="sheet"><div class="code">E1.0</div><div class="nm">Site Plan</div><div class="lines"><i></i><i></i><i></i></div></div>
+            <div class="sheet"><div class="code">E2</div><div class="nm">One-Line</div><div class="lines"><i></i><i></i><i></i></div></div>
+            <div class="sheet"><div class="code">E3</div><div class="nm">Details</div><div class="lines"><i></i><i></i><i></i></div></div>
+            <div class="sheet"><div class="code">S1.1</div><div class="nm">Structural</div><div class="lines"><i></i><i></i><i></i></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAP 4: Economics -->
+    <div class="cap flip">
+      <div class="cap-body">
+        <div class="cap-idx">04 · ECONOMICS</div>
+        <h3>Cost, Viability &amp; Proforma</h3>
+        <p>Every equipment choice carries real catalog pricing — the Gotion EDGE, GRID, and HOME series with actual datasheet dimensions and cost. OMEGA rolls that into cost-per-kW analysis, a project viability report, and a proforma that layers in the 30% federal ITC, ComEd BESH rebates, and stacked grid-market revenue.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Live equipment catalog with real pricing</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>ITC, rebate, and incentive stacking</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Viability report and grid-revenue proforma</span></li>
+        </ul>
+      </div>
+      <div class="cap-visual">
+        <div class="visual">
+          <div class="visual-bar"><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-title">Viability · Proforma</span></div>
+          <div class="fin-mock">
+            <div class="fin-row"><span class="fin-label">Equipment</span><span class="fin-track"><span class="fin-fill" style="width:72%"></span></span><span class="fin-val">$111/kWh</span></div>
+            <div class="fin-row"><span class="fin-label">Federal ITC</span><span class="fin-track"><span class="fin-fill" style="width:30%"></span></span><span class="fin-val">30%</span></div>
+            <div class="fin-row"><span class="fin-label">BESH rebate</span><span class="fin-track"><span class="fin-fill" style="width:55%"></span></span><span class="fin-val">$250/kWh</span></div>
+            <div class="fin-row"><span class="fin-label">Grid revenue</span><span class="fin-track"><span class="fin-fill" style="width:64%"></span></span><span class="fin-val">stacked</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAP 5: AI engine -->
+    <div class="cap">
+      <div class="cap-body">
+        <div class="cap-idx">05 · THE OMEGA ENGINE</div>
+        <h3>AI at the core</h3>
+        <p>OMEGA pairs two AI engines through a secure serverless layer. A reasoning model parses utility bills and interconnection requirements and drafts permit notes; a generative model renders AI-enhanced technical stencils and blueprint drawings. The result is a Guided Build Wizard that walks a project from configuration to export.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>AI utility-bill parsing and permit-note drafting</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Generative stencil + blueprint rendering</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Guided Build Wizard, config to export</span></li>
+        </ul>
+      </div>
+      <div class="cap-visual">
+        <div class="visual">
+          <div class="visual-bar"><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-dot"></span><span class="visual-title">OMEGA Engine</span></div>
+          <div class="ai-mock">
+            <div class="ai-line"><span class="ai-tag claude">REASONING</span><span class="ai-text">Parsed utility bill → 480V, 1,200A service. Recommending GRID-series with integrated PCS.</span></div>
+            <div class="ai-line"><span class="ai-tag gemini">GENERATIVE</span><span class="ai-text">Rendered BESS container stencil + blueprint site plan (white-on-navy).</span></div>
+            <div class="ai-line"><span class="ai-tag claude">REASONING</span><span class="ai-text">Drafted permit notes and interconnection compliance summary.</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WORKFLOW -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <p class="eyebrow">The OMEGA workflow</p>
+      <h2 class="s-title">Configure once, export everything</h2>
+      <p class="s-desc">Set up a project once and OMEGA carries that single source of truth through every deliverable — no re-drawing, no re-keying numbers between tools.</p>
+    </div>
+    <div class="flow">
+      <div class="flow-grid">
+        <div class="flow-step"><div class="i">01</div><div class="t">Capture site &amp; parcel</div></div>
+        <div class="flow-step"><div class="i">02</div><div class="t">Guided Build Wizard</div></div>
+        <div class="flow-step"><div class="i">03</div><div class="t">One-line diagram</div></div>
+        <div class="flow-step"><div class="i">04</div><div class="t">Permit set export</div></div>
+        <div class="flow-step"><div class="i">05</div><div class="t">Viability &amp; proforma</div></div>
+        <div class="flow-step"><div class="i">06</div><div class="t">Proposal export</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHY CUTTING EDGE -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <p class="eyebrow">Why OMEGA is different</p>
+      <h2 class="s-title">Built for the way energy projects actually move</h2>
+    </div>
+    <div class="tech-grid">
+      <div class="tech-card">
+        <div class="tech-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h4>Runs anywhere, instantly</h4>
+        <p>A single self-contained web application — no installs, no plugins. Works on a laptop in the office or an iPad at the site walk, with offline-capable PWA support.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+        <h4>One source of truth</h4>
+        <p>Site geometry, equipment, economics, and permits all reference the same project model. Change the battery and the one-line, the cost, and the proforma update together.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M2 12h4"/><path d="M18 12h4"/></svg></div>
+        <h4>AI-native, not bolted on</h4>
+        <p>Reasoning and generative models are wired into the workflow through a secure serverless proxy — parsing documents, drafting notes, and rendering drawings as part of the build.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+        <h4>Regulator-ready output</h4>
+        <p>Permit sets and interconnection packages are framed to real AHJ and utility standards — the same outputs that backed ClearSky's submitted ComEd BESS site packages.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h4>Economics you can defend</h4>
+        <p>Real catalog pricing, current incentive logic, and stacked-revenue modeling mean the proforma reflects a project you could actually finance — not a rough estimate.</p>
+      </div>
+      <div class="tech-card">
+        <div class="tech-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+        <h4>Every asset class</h4>
+        <p>BESS today, with EV charging, microgrid, and micro data center workflows on the same platform — one tool as ClearSky's project mix grows.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PROJECT FLOW / INTAKE JOURNEY ============ -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <p class="eyebrow">Project flow</p>
+      <h2 class="s-title">From customer intake to optimized asset</h2>
+      <p class="s-desc">OMEGA runs the whole path — a customer or partner submits a site, AI evaluates and packages it, the platform optimizes the design and revenue stack, and the project moves into managed operations. Every stage is instrumented, so nothing gets re-keyed and nothing falls through.</p>
+    </div>
+    <div class="flow-journey">
+      <div class="journey-card">
+        <div class="journey-step">STEP 01</div>
+        <div class="journey-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h4>Customer &amp; Project Intake</h4>
+        <p>A client or partner submits a site through a guided intake — location, load, program interest, and offtake. It lands as a structured project, not an email thread.</p>
+        <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="journey-card">
+        <div class="journey-step">STEP 02</div>
+        <div class="journey-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M2 12h4"/><path d="M18 12h4"/></svg></div>
+        <h4>AI Evaluation &amp; Packaging</h4>
+        <p>OMEGA's AI screens viability, parses utility data, drafts the one-line and permit set, and builds the interconnection package — turning a raw site into a submittable project.</p>
+        <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="journey-card">
+        <div class="journey-step">STEP 03</div>
+        <div class="journey-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"/><line x1="18" y1="20" x2="18" y2="4"/><line x1="6" y1="20" x2="6" y2="16"/></svg></div>
+        <h4>Optimization</h4>
+        <p>The platform sizes equipment, optimizes the revenue stack across SDVPP, regulation, arbitrage, and offtake, and finds the configuration with the strongest financeable return.</p>
+        <svg class="arrow" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="9 18 15 12 9 6"/></svg>
+      </div>
+      <div class="journey-card">
+        <div class="journey-step">STEP 04</div>
+        <div class="journey-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+        <h4>Delivery &amp; Managed Ops</h4>
+        <p>Approved projects move into construction and operating asset management — with monitoring, dispatch, and performance data flowing back into the same platform.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ PARTNERSHIPS / ECOSYSTEM ============ -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <p class="eyebrow">Ecosystem</p>
+      <h2 class="s-title">Hardware-agnostic, deeply integrated</h2>
+      <p class="s-desc">OMEGA isn't locked to a single vendor. ClearSky designs around the best hardware for each site, then plugs into the integrators, aggregators, EMS platforms, AI data offtakers, and wholesale markets that turn an asset into stacked revenue.</p>
+    </div>
+
+    <div class="eco-intro">
+      <div class="eco-intro-badge">Agnostic <span>·</span> Integrated</div>
+      <p>We stay hardware-agnostic so every project uses the right batteries, inverters, and chargers — while remaining tightly integrated with the partners that dispatch, aggregate, and monetize the fleet. One platform, an open ecosystem.</p>
+    </div>
+
+    <div class="eco-grid">
+      <!-- Integrators -->
+      <div class="eco-card">
+        <div class="eco-head">
+          <div class="eco-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg></div>
+          <h4>System Integrators</h4>
+        </div>
+        <p>Partnerships across the major BESS and EV integrators, so ClearSky specs best-fit hardware and delivers turnkey installs without vendor lock-in.</p>
+        <div class="eco-tags"><span class="eco-tag">Major BESS integrators</span><span class="eco-tag">EPC partners</span><span class="eco-tag">Hardware-agnostic</span></div>
+      </div>
+
+      <!-- Aggregators -->
+      <div class="eco-card">
+        <div class="eco-head">
+          <div class="eco-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="3"/><path d="M4 8l3 2"/><path d="M20 8l-3 2"/><path d="M4 16l3-2"/><path d="M20 16l-3-2"/></svg></div>
+          <h4>VPP Aggregators</h4>
+        </div>
+        <p>Integrated with the leading demand-response and VPP aggregators to enroll assets into utility and wholesale programs for capacity and demand-response value.</p>
+        <div class="eco-tags"><span class="eco-tag named">Voltus</span><span class="eco-tag named">CPower</span><span class="eco-tag">SDVPP / DR programs</span></div>
+      </div>
+
+      <!-- EMS / Dispatch -->
+      <div class="eco-card">
+        <div class="eco-head">
+          <div class="eco-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/><path d="M14 9l3 3-3 3"/></svg></div>
+          <h4>EMS &amp; Dispatch</h4>
+        </div>
+        <p>Energy management and optimized dispatch integration so batteries respond to price signals and program calls automatically — maximizing value per cycle.</p>
+        <div class="eco-tags"><span class="eco-tag named">Molecule Systems</span><span class="eco-tag">Optimized dispatch</span></div>
+      </div>
+
+      <!-- AI Data Offtakers -->
+      <div class="eco-card">
+        <div class="eco-head">
+          <div class="eco-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="6" rx="1.5"/><rect x="2" y="14" width="20" height="6" rx="1.5"/><line x1="6" y1="7" x2="6" y2="7"/><line x1="6" y1="17" x2="6" y2="17"/></svg></div>
+          <h4>AI Data Offtakers</h4>
+        </div>
+        <p>Relationships with major AI and edge-compute offtakers, so storage-backed sites can supply power to co-located compute under committed-capacity agreements.</p>
+        <div class="eco-tags"><span class="eco-tag">Major AI compute buyers</span><span class="eco-tag">Committed capacity</span></div>
+      </div>
+
+      <!-- ISO / Wholesale markets — full width feel via spanning is optional; keep as card -->
+      <div class="eco-card" style="grid-column: 1 / -1;">
+        <div class="eco-head">
+          <div class="eco-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <h4>ISO Injection &amp; Wholesale Energy Markets</h4>
+        </div>
+        <p>Direct access to the wholesale energy marketplace — injecting into ISO/RTO markets for frequency regulation, capacity, and energy arbitrage. It's the highest-value pathway for fast-responding storage, and it anchors ClearSky's battery-first, arbitrage-funded model.</p>
+        <div class="eco-tags"><span class="eco-tag named">PJM</span><span class="eco-tag">Frequency regulation (RegD)</span><span class="eco-tag">Capacity market</span><span class="eco-tag">Energy arbitrage</span><span class="eco-tag">Wholesale injection</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUEST ACCESS -->
+  <div class="cta-band" id="request">
+    <img src="/clearsky-omega-white.png" alt="OMEGA">
+    <h2>Request access to OMEGA</h2>
+    <p>OMEGA is available to ClearSky clients and partners. Sign up, ask a question, or book a working session with our team and we'll get you into the platform.</p>
+    <div class="cta-actions">
+      <a href="#request-form" class="btn-primary">Request access</a>
+      <!-- Meeting request: swap this mailto for your real Google Meet / Calendar booking link when ready -->
+      <a href="mailto:info@csebuilders.com?subject=OMEGA%20Meeting%20Request&amp;body=I%27d%20like%20to%20book%20a%20time%20to%20talk%20about%20OMEGA.%20My%20availability%3A%20" class="btn-ghost">Book a meeting</a>
+    </div>
+  </div>
+
+  <!-- ============ MULTI-STEP INTAKE (replaces Google Form — no external dependency) ============ -->
+  <div class="section" style="padding-top:0;" id="request-form">
+    <div class="section-head">
+      <p class="eyebrow">Project intake</p>
+      <h2 class="s-title">Tell us about your project</h2>
+      <p class="s-desc">A quick three-step intake — pick a project type, add the details, and send. We'll follow up with platform access or a time to meet. Prefer to talk live? Use the Book a meeting button above.</p>
+    </div>
+
+    <div class="intake">
+      <div class="intake-inner">
+        <!-- progress -->
+        <div class="intake-progress">
+          <div class="ip-seg active" data-seg="0"></div>
+          <div class="ip-seg" data-seg="1"></div>
+          <div class="ip-seg" data-seg="2"></div>
+        </div>
+
+        <!-- STEP 1: project type -->
+        <div class="intake-step active" data-step="0">
+          <div class="intake-step-label">Step 1 of 3</div>
+          <h3>What kind of project?</h3>
+          <div class="intake-options">
+            <div class="intake-opt" onclick="pickType(this,'BESS / Energy Storage')">
+              <div class="oi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="7" width="16" height="10" rx="1.5"/><line x1="22" y1="11" x2="22" y2="13"/></svg></div>
+              <div><div class="ot">BESS / Energy Storage</div><div class="od">Standalone or paired storage</div></div>
+            </div>
+            <div class="intake-opt" onclick="pickType(this,'EV Charging')">
+              <div class="oi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="11" height="18" rx="1.5"/><path d="M14 8h3l3 3v7a2 2 0 0 1-2 2"/></svg></div>
+              <div><div class="ot">EV Charging</div><div class="od">DCFC + storage</div></div>
+            </div>
+            <div class="intake-opt" onclick="pickType(this,'Microgrid')">
+              <div class="oi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 21h18"/><path d="M5 21V8l4-3 4 3v13"/></svg></div>
+              <div><div class="ot">Microgrid</div><div class="od">Resilient / islandable</div></div>
+            </div>
+            <div class="intake-opt" onclick="pickType(this,'Micro Data Center / Compute')">
+              <div class="oi"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="4" width="20" height="6" rx="1.5"/><rect x="2" y="14" width="20" height="6" rx="1.5"/></svg></div>
+              <div><div class="ot">Micro Data Center</div><div class="od">Compute + power offtake</div></div>
+            </div>
+          </div>
+          <div class="intake-nav">
+            <button class="intake-back" disabled>← Back</button>
+            <button class="intake-next" onclick="intakeNext()">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 2: details -->
+        <div class="intake-step" data-step="1">
+          <div class="intake-step-label">Step 2 of 3</div>
+          <h3>Project details</h3>
+          <div class="intake-field">
+            <label>Site location</label>
+            <input id="ik-loc" placeholder="City, state — or a full site address">
+          </div>
+          <div class="intake-row">
+            <div class="intake-field">
+              <label>Approx. size / load</label>
+              <input id="ik-size" placeholder="e.g. 2 MWh, 480 kW, ~200 units">
+            </div>
+            <div class="intake-field">
+              <label>Interest area</label>
+              <select id="ik-interest">
+                <option>SDVPP / demand response</option>
+                <option>PJM injection / frequency regulation</option>
+                <option>Data center offtake</option>
+                <option>Backup / host-lease</option>
+                <option>Not sure yet</option>
+              </select>
+            </div>
+          </div>
+          <div class="intake-field">
+            <label>Anything else? (optional)</label>
+            <textarea id="ik-notes" placeholder="Existing solar, utility, timeline, offtaker, partners…"></textarea>
+          </div>
+          <div class="intake-nav">
+            <button class="intake-back" onclick="intakeBack()">← Back</button>
+            <button class="intake-next" onclick="intakeNext()">Continue →</button>
+          </div>
+        </div>
+
+        <!-- STEP 3: contact + review -->
+        <div class="intake-step" data-step="2">
+          <div class="intake-step-label">Step 3 of 3</div>
+          <h3>Your details</h3>
+          <div class="intake-summary" id="ik-summary"><!-- filled by JS --></div>
+          <div class="intake-row">
+            <div class="intake-field">
+              <label>Name</label>
+              <input id="ik-name" placeholder="Jane Smith">
+            </div>
+            <div class="intake-field">
+              <label>Company</label>
+              <input id="ik-company" placeholder="Acme Corp">
+            </div>
+          </div>
+          <div class="intake-field">
+            <label>Email</label>
+            <input id="ik-email" type="email" placeholder="jane@acmecorp.com">
+          </div>
+          <div class="intake-nav">
+            <button class="intake-back" onclick="intakeBack()">← Back</button>
+            <button class="intake-next" onclick="intakeSubmit()">Send request →</button>
+          </div>
+        </div>
+
+        <!-- DONE -->
+        <div class="intake-step" data-step="3">
+          <div class="intake-done">
+            <div class="dc"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+            <h3>Request ready to send</h3>
+            <p>Your email app should have opened with the details filled in — just hit send. If it didn't, email <a href="mailto:info@csebuilders.com" style="color:var(--cs-blue);text-decoration:none;">info@csebuilders.com</a> directly and we'll get you set up.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span class="footer-left"><img src="/clearsky-logo-light.png" alt="ClearSky Builders" class="footer-logo"><br>© 2025 ClearSky Builders LLC · OMEGA is the platform of ClearSky Energy Solutions LLC &nbsp;·&nbsp; <a href="mailto:info@csebuilders.com">info@csebuilders.com</a></span>
+    <div class="footer-right">
+      <span class="footer-tag">OMEGA · BESS · EV · Microgrid · Compute · VPP</span>
+      <a href="/compute.html">Compute →</a>
+      <a href="/how-it-works.html">How It Works →</a>
+      <a href="/login.html">Log in to OMEGA →</a>
+    </div>
+  </footer>
+
+  <script>
+    /* close mobile nav after tapping a link */
+    var navAnchors = document.querySelectorAll('#navLinks .nav-link');
+    for (var i = 0; i < navAnchors.length; i++) {
+      navAnchors[i].addEventListener('click', function () {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    }
+
+    /* ── MULTI-STEP INTAKE ── */
+    var intakeStep = 0;
+    var intakeData = { type: '' };
+
+    function pickType(el, val) {
+      var opts = document.querySelectorAll('.intake-opt');
+      for (var i = 0; i < opts.length; i++) opts[i].classList.remove('selected');
+      el.classList.add('selected');
+      intakeData.type = val;
+    }
+
+    function showStep(n) {
+      var steps = document.querySelectorAll('.intake-step');
+      for (var i = 0; i < steps.length; i++) steps[i].classList.remove('active');
+      document.querySelector('.intake-step[data-step="' + n + '"]').classList.add('active');
+      // progress segments (only 3 real steps)
+      var segs = document.querySelectorAll('.ip-seg');
+      for (var j = 0; j < segs.length; j++) {
+        segs[j].classList.remove('active', 'done');
+        if (j < n) segs[j].classList.add('done');
+        else if (j === n) segs[j].classList.add('active');
+      }
+      intakeStep = n;
+    }
+
+    function intakeNext() {
+      if (intakeStep === 0 && !intakeData.type) {
+        alert('Please choose a project type.');
+        return;
+      }
+      if (intakeStep === 1) buildSummary();
+      showStep(intakeStep + 1);
+    }
+    function intakeBack() { if (intakeStep > 0) showStep(intakeStep - 1); }
+
+    function val(id) { var e = document.getElementById(id); return e ? e.value.trim() : ''; }
+
+    function buildSummary() {
+      intakeData.loc = val('ik-loc');
+      intakeData.size = val('ik-size');
+      intakeData.interest = val('ik-interest');
+      intakeData.notes = val('ik-notes');
+      var rows = [
+        ['Project type', intakeData.type || '—'],
+        ['Location', intakeData.loc || '—'],
+        ['Size / load', intakeData.size || '—'],
+        ['Interest', intakeData.interest || '—']
+      ];
+      var html = '';
+      for (var i = 0; i < rows.length; i++) {
+        html += '<div class="sr"><span class="sk">' + rows[i][0] + '</span><span class="sv">' + escapeHtml(rows[i][1]) + '</span></div>';
+      }
+      document.getElementById('ik-summary').innerHTML = html;
+    }
+
+    function intakeSubmit() {
+      var name = val('ik-name'), email = val('ik-email');
+      if (!name || !email) { alert('Please enter your name and email.'); return; }
+      var company = val('ik-company');
+      var subject = encodeURIComponent('OMEGA Project Intake — ' + (intakeData.type || 'New project') + ' — ' + name);
+      var body = encodeURIComponent(
+        'PROJECT INTAKE\n' +
+        '----------------------------\n' +
+        'Project type: ' + (intakeData.type || '—') + '\n' +
+        'Location: ' + (intakeData.loc || '—') + '\n' +
+        'Size / load: ' + (intakeData.size || '—') + '\n' +
+        'Interest: ' + (intakeData.interest || '—') + '\n' +
+        'Notes: ' + (intakeData.notes || '—') + '\n\n' +
+        'CONTACT\n' +
+        '----------------------------\n' +
+        'Name: ' + name + '\n' +
+        'Company: ' + company + '\n' +
+        'Email: ' + email + '\n'
+      );
+      window.location.href = 'mailto:info@csebuilders.com?subject=' + subject + '&body=' + body;
+      showStep(3);
+    }
+
+    function escapeHtml(s) {
+      return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+    }
+  </script>
+</body>
+</html>
