@@ -1,0 +1,1109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <!-- CHANGED: favicon/apple-touch-icon asset paths preserved exactly as before -->
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon-180.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- CHANGED: meta description + OG tags repositioned from "zero upfront cost contractor" to "software-enabled energy infrastructure platform" -->
+  <meta name="description" content="ClearSky is a cloud software platform for distributed energy project development — BESS, EV charging, microgrids, and micro data centers, from site lead to operating asset.">
+  <meta property="og:title" content="ClearSky | Cloud Software for Distributed Energy Project Development">
+  <meta property="og:description" content="Proprietary site-development software plus BESS, EV, microgrid, and micro data center deployment expertise. Evaluate, package, finance, and manage distributed energy assets.">
+  <meta property="og:type" content="website">
+  <title>ClearSky | Cloud Software for Distributed Energy Project Development</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cs-black: #080C10;
+      --cs-navy: #0D1620;
+      --cs-card: #111D28;
+      --cs-card-2: #0E1822;
+      --cs-blue: #00AEEF;
+      --cs-blue-dim: rgba(0,174,239,0.12);
+      --cs-blue-mid: rgba(0,174,239,0.35);
+      --cs-amber: #F5A623;
+      --cs-white: #EEF3F8;
+      --cs-muted: rgba(238,243,248,0.5);
+      --cs-muted-2: rgba(238,243,248,0.38);
+      --cs-border: rgba(255,255,255,0.08);
+      --cs-border-blue: rgba(0,174,239,0.3);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--cs-black);
+      color: var(--cs-white);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+    /* ---------- NAV (CHANGED: reorganized links to Home / Platform / Energy Projects / Compute / How It Works / Portal / Contact; all destinations preserved) ---------- */
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 16px 48px;
+      border-bottom: 0.5px solid var(--cs-border);
+      position: sticky;
+      top: 0;
+      background: rgba(8,12,16,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      z-index: 100;
+    }
+    .logo {
+      font-family: 'Syne', sans-serif;
+      font-weight: 800;
+      font-size: 19px;
+      letter-spacing: -0.5px;
+      color: var(--cs-white);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+    .logo-mark-img { height: 30px; width: auto; flex-shrink: 0; display: block; }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 26px;
+      margin-left: auto;
+      margin-right: 24px;
+    }
+    .nav-link {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--cs-muted);
+      text-decoration: none;
+      transition: color 0.2s;
+      white-space: nowrap;
+    }
+    .nav-link:hover { color: var(--cs-white); }
+    /* ---------- COMPUTE DROPDOWN ---------- */
+    .nav-dropdown { position: relative; display: inline-block; }
+    .nav-dropdown > .nav-link { display: inline-flex; align-items: center; gap: 5px; cursor: pointer; }
+    .nav-dropdown > .nav-link svg { transition: transform 0.2s; }
+    .nav-dropdown:hover > .nav-link svg { transform: rotate(180deg); }
+    .nav-dropdown-menu {
+      position: absolute; top: 100%; left: 0; padding-top: 10px;
+      min-width: 180px; opacity: 0; visibility: hidden;
+      transform: translateY(-6px); transition: opacity 0.18s, transform 0.18s, visibility 0.18s;
+      z-index: 120;
+    }
+    .nav-dropdown:hover .nav-dropdown-menu,
+    .nav-dropdown.open .nav-dropdown-menu { opacity: 1; visibility: visible; transform: translateY(0); }
+    .nav-dropdown-inner {
+      background: #0F1C28; border: 0.5px solid var(--cs-border-blue);
+      border-radius: 10px; padding: 6px; box-shadow: 0 16px 40px rgba(0,0,0,0.5);
+    }
+    .nav-dropdown-inner a {
+      display: block; padding: 10px 14px; border-radius: 7px;
+      font-size: 13.5px; font-weight: 500; color: var(--cs-muted);
+      text-decoration: none; transition: background 0.15s, color 0.15s; white-space: nowrap;
+    }
+    .nav-dropdown-inner a:hover { background: rgba(0,174,239,0.08); color: var(--cs-white); }
+    .nav-dropdown-inner a .dd-desc { display: block; font-size: 11px; color: var(--cs-muted-2); margin-top: 2px; }
+    .nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .nav-cta {
+      background: var(--cs-blue);
+      color: #080C10;
+      border: none;
+      padding: 9px 20px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 13.5px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { opacity: 0.88; }
+    .nav-toggle { display: none; }
+
+    /* ---------- HERO (CHANGED: software-platform thesis instead of savings pitch) ---------- */
+    .hero { padding: 88px 48px 40px; max-width: 1000px; }
+    .hero-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cs-blue);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      width: 24px;
+      height: 1px;
+      background: var(--cs-blue);
+      flex-shrink: 0;
+    }
+    .hero-headline {
+      font-family: 'Syne', sans-serif;
+      font-size: 56px;
+      font-weight: 800;
+      line-height: 1.05;
+      letter-spacing: -2px;
+      color: var(--cs-white);
+      margin-bottom: 26px;
+      max-width: 880px;
+    }
+    .hero-headline .accent { color: var(--cs-blue); }
+    .hero-sub {
+      font-size: 17px;
+      line-height: 1.7;
+      color: var(--cs-muted);
+      max-width: 640px;
+      margin-bottom: 22px;
+    }
+    .hero-note {
+      font-size: 13.5px;
+      line-height: 1.6;
+      color: var(--cs-muted-2);
+      max-width: 620px;
+      margin-bottom: 36px;
+      padding-left: 14px;
+      border-left: 2px solid var(--cs-border-blue);
+    }
+    .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+    .btn-primary {
+      background: var(--cs-blue);
+      color: #080C10;
+      border: none;
+      padding: 14px 30px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      display: inline-block;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost {
+      background: transparent;
+      color: var(--cs-white);
+      border: 0.5px solid var(--cs-border-blue);
+      padding: 14px 30px;
+      border-radius: 6px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .btn-ghost:hover { border-color: var(--cs-blue); color: var(--cs-blue); }
+
+    /* ---------- TRUST BAR ---------- */
+    .stats-bar {
+      display: flex;
+      border-top: 0.5px solid var(--cs-border);
+      border-bottom: 0.5px solid var(--cs-border);
+      margin: 0 48px;
+    }
+    .stat-item {
+      flex: 1;
+      padding: 26px 32px;
+      border-right: 0.5px solid var(--cs-border);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-num {
+      font-family: 'Syne', sans-serif;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--cs-white);
+      letter-spacing: -0.5px;
+      line-height: 1;
+    }
+    .stat-num span { color: var(--cs-blue); }
+    .stat-label { font-size: 12px; color: var(--cs-muted); margin-top: 7px; line-height: 1.45; }
+
+    /* ---------- SECTION SHELL ---------- */
+    .section { padding: 72px 48px; }
+    .section-head { max-width: 720px; margin-bottom: 40px; }
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--cs-blue);
+      margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Syne', sans-serif;
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.6px;
+      margin-bottom: 16px;
+      line-height: 1.12;
+    }
+    .section-desc { font-size: 15.5px; line-height: 1.7; color: var(--cs-muted); }
+
+    /* ---------- PLATFORM FEATURE GRID (CHANGED: new section) ---------- */
+    .feature-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .feature-card {
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border);
+      border-radius: 11px;
+      padding: 22px 20px;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .feature-card:hover { border-color: var(--cs-border-blue); transform: translateY(-2px); }
+    .feature-ic {
+      width: 34px; height: 34px;
+      background: var(--cs-blue-dim);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cs-blue);
+      margin-bottom: 14px;
+    }
+    .feature-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 7px; }
+    .feature-desc { font-size: 12.5px; line-height: 1.55; color: var(--cs-muted); }
+
+    /* ---------- LIFECYCLE RAIL (SIGNATURE ELEMENT — a genuine ordered pipeline) ---------- */
+    .lifecycle {
+      background: var(--cs-card-2);
+      border: 0.5px solid var(--cs-border);
+      border-radius: 14px;
+      padding: 40px 40px 32px;
+    }
+    .rail { position: relative; }
+    .rail-line {
+      position: absolute;
+      top: 13px; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, var(--cs-border-blue), var(--cs-blue-mid), var(--cs-border-blue));
+    }
+    .rail-stages {
+      display: grid;
+      grid-template-columns: repeat(9, 1fr);
+      gap: 8px;
+      position: relative;
+    }
+    .stage { position: relative; padding-top: 30px; }
+    .stage-dot {
+      position: absolute; top: 8px; left: 0;
+      width: 11px; height: 11px;
+      border-radius: 50%;
+      background: var(--cs-black);
+      border: 2px solid var(--cs-blue);
+    }
+    .stage:last-child .stage-dot { background: var(--cs-blue); box-shadow: 0 0 0 4px var(--cs-blue-dim); }
+    .stage-idx { font-size: 10px; font-weight: 700; color: var(--cs-blue); letter-spacing: 0.08em; margin-bottom: 5px; }
+    .stage-name { font-size: 12.5px; font-weight: 600; line-height: 1.3; color: var(--cs-white); }
+
+    /* ---------- ENERGY INFRASTRUCTURE (CHANGED: folds in former C&I / Hospitality / MUD / EV market tabs as cards) ---------- */
+    .infra-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .infra-card {
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border);
+      border-radius: 12px;
+      padding: 28px 26px;
+      transition: border-color 0.2s;
+    }
+    .infra-card:hover { border-color: var(--cs-border-blue); }
+    .infra-ic {
+      width: 40px; height: 40px;
+      background: var(--cs-blue-dim);
+      border-radius: 9px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--cs-blue);
+      margin-bottom: 16px;
+    }
+    .infra-name { font-family: 'Syne', sans-serif; font-size: 17px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 10px; }
+    .infra-desc { font-size: 14px; line-height: 1.65; color: var(--cs-muted); margin-bottom: 14px; }
+    .infra-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+    .infra-tag {
+      font-size: 11px; font-weight: 500;
+      color: var(--cs-muted);
+      background: rgba(255,255,255,0.03);
+      border: 0.5px solid var(--cs-border);
+      padding: 3px 10px;
+      border-radius: 20px;
+    }
+
+    /* ---------- PROJECT PORTFOLIO (Energy Projects) ---------- */
+    .portfolio-stats { display: flex; gap: 14px; flex-wrap: wrap; margin: 28px 0 40px; }
+    .pstat { flex: 1; min-width: 140px; background: var(--cs-card-2); border: 0.5px solid var(--cs-border); border-radius: 12px; padding: 20px 22px; }
+    .pstat .n { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.5px; line-height: 1; color: var(--cs-white); }
+    .pstat .n span { color: var(--cs-blue); }
+    .pstat .l { font-size: 12px; color: var(--cs-muted); margin-top: 8px; line-height: 1.45; }
+
+    /* Flagship project banner */
+    .flagship { background: linear-gradient(135deg, rgba(0,174,239,0.10), var(--cs-card)); border: 0.5px solid var(--cs-border-blue); border-radius: 16px; padding: 40px; display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: center; margin-bottom: 40px; }
+    .flagship-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--cs-blue); margin-bottom: 16px; }
+    .flagship-eyebrow::before { content: ''; width: 7px; height: 7px; border-radius: 50%; background: var(--cs-blue); box-shadow: 0 0 0 4px rgba(0,174,239,0.2); }
+    .flagship h3 { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; letter-spacing: -0.5px; line-height: 1.12; margin-bottom: 14px; }
+    .flagship h3 .accent { color: var(--cs-blue); }
+    .flagship p { font-size: 14.5px; line-height: 1.7; color: var(--cs-muted); margin-bottom: 20px; }
+    .flagship-specs { display: flex; flex-direction: column; gap: 12px; }
+    .fspec { display: flex; gap: 12px; align-items: flex-start; }
+    .fspec-ic { width: 34px; height: 34px; border-radius: 8px; background: var(--cs-blue-dim); display: flex; align-items: center; justify-content: center; color: var(--cs-blue); flex-shrink: 0; }
+    .fspec-t { font-size: 13.5px; font-weight: 600; color: var(--cs-white); }
+    .fspec-d { font-size: 12px; color: var(--cs-muted); margin-top: 1px; line-height: 1.4; }
+
+    /* Portfolio category groups */
+    .pcat-head { display: flex; align-items: baseline; gap: 12px; margin: 36px 0 16px; }
+    .pcat-title { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+    .pcat-count { font-size: 12px; font-weight: 600; color: var(--cs-blue); background: var(--cs-blue-dim); border: 0.5px solid var(--cs-border-blue); padding: 3px 11px; border-radius: 20px; }
+    .pcat-sub { font-size: 13.5px; color: var(--cs-muted); line-height: 1.6; margin: -6px 0 18px; max-width: 760px; }
+
+    .site-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+    .site-card { background: var(--cs-card); border: 0.5px solid var(--cs-border); border-radius: 12px; padding: 20px; transition: border-color 0.2s, transform 0.2s; }
+    .site-card:hover { border-color: var(--cs-border-blue); transform: translateY(-2px); }
+    .site-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; }
+    .site-loc { font-size: 12px; font-weight: 600; color: var(--cs-muted); display: flex; align-items: center; gap: 6px; }
+    .site-loc svg { color: var(--cs-blue); }
+    .site-badge { font-size: 9.5px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; padding: 3px 8px; border-radius: 5px; }
+    .site-badge.sdvpp { background: rgba(0,174,239,0.14); color: var(--cs-blue); }
+    .site-badge.inject { background: rgba(124,58,237,0.16); color: #A78BFA; }
+    .site-badge.data { background: rgba(245,166,35,0.16); color: var(--cs-amber); }
+    .site-badge.mud { background: rgba(29,185,84,0.16); color: #4ADE80; }
+    .site-badge.host { background: rgba(238,243,248,0.1); color: var(--cs-muted); }
+    .site-name { font-family: 'Syne', sans-serif; font-size: 15.5px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 6px; }
+    .site-desc { font-size: 12.5px; line-height: 1.55; color: var(--cs-muted); margin-bottom: 12px; }
+    .site-meta { display: flex; gap: 14px; padding-top: 12px; border-top: 0.5px solid var(--cs-border); }
+    .site-metric { flex: 1; }
+    .site-metric .v { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--cs-white); }
+    .site-metric .k { font-size: 10px; color: var(--cs-muted-2); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 2px; }
+
+    /* ---------- COMPUTE (CHANGED: repositioned to connect to platform; amber-accented) ---------- */
+    .compute-section {
+      margin: 0 48px 72px;
+      background: linear-gradient(180deg, rgba(245,166,35,0.05), var(--cs-card));
+      border: 0.5px solid rgba(245,166,35,0.28);
+      border-radius: 16px;
+      padding: 48px;
+      display: grid;
+      grid-template-columns: 1.3fr 1fr;
+      gap: 48px;
+      align-items: center;
+    }
+    .compute-eyebrow {
+      font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--cs-amber); margin-bottom: 14px;
+    }
+    .compute-title { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.6px; margin-bottom: 16px; line-height: 1.12; }
+    .compute-desc { font-size: 15px; line-height: 1.7; color: var(--cs-muted); margin-bottom: 26px; }
+    .btn-amber {
+      background: var(--cs-amber); color: #080C10; border: none;
+      padding: 13px 26px; border-radius: 6px;
+      font-family: 'Inter', sans-serif; font-weight: 600; font-size: 14.5px;
+      cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s;
+    }
+    .btn-amber:hover { opacity: 0.88; }
+    .compute-checklist { display: flex; flex-direction: column; gap: 14px; }
+    .compute-check {
+      display: flex; gap: 12px; align-items: flex-start;
+      font-size: 14px; line-height: 1.5; color: var(--cs-white);
+    }
+    .compute-check svg { color: var(--cs-amber); flex-shrink: 0; margin-top: 2px; }
+    .compute-check span { color: var(--cs-muted); }
+
+    /* ---------- PLATFORM ACCESS / PORTAL (CHANGED: all existing portal URLs preserved as buttons) ---------- */
+    .access-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+    .access-card {
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 12px;
+      padding: 26px 22px;
+      text-decoration: none;
+      display: flex; flex-direction: column;
+      transition: border-color 0.2s, background 0.2s;
+    }
+    .access-card:hover { border-color: var(--cs-blue); background: rgba(0,174,239,0.05); }
+    .access-ic {
+      width: 38px; height: 38px; background: var(--cs-blue-dim); border-radius: 9px;
+      display: flex; align-items: center; justify-content: center; color: var(--cs-blue); margin-bottom: 16px;
+    }
+    .access-name { font-family: 'Syne', sans-serif; font-size: 15px; font-weight: 700; color: var(--cs-white); margin-bottom: 6px; }
+    .access-desc { font-size: 12.5px; line-height: 1.5; color: var(--cs-muted); margin-bottom: 16px; flex: 1; }
+    .access-go { font-size: 12.5px; font-weight: 600; color: var(--cs-blue); }
+
+    /* ---------- CONTACT (PRESERVED: form + mailto submit logic unchanged) ---------- */
+    .contact-section {
+      margin: 0 48px 72px;
+      background: var(--cs-card);
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 14px;
+      padding: 52px 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .contact-left h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.5px; margin-bottom: 14px; line-height: 1.12; }
+    .contact-left p { font-size: 15px; color: var(--cs-muted); line-height: 1.65; margin-bottom: 24px; }
+    .contact-detail { display: flex; align-items: center; gap: 10px; font-size: 14px; color: var(--cs-muted); margin-bottom: 10px; }
+    .contact-detail a { color: var(--cs-blue); text-decoration: none; }
+    .contact-detail a:hover { text-decoration: underline; }
+    .contact-form { display: flex; flex-direction: column; gap: 14px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .form-field { display: flex; flex-direction: column; gap: 6px; }
+    .form-field label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--cs-muted); }
+    .form-field input,
+    .form-field select,
+    .form-field textarea {
+      background: #1A2535;
+      border: 0.5px solid var(--cs-border-blue);
+      border-radius: 7px;
+      color: var(--cs-white);
+      padding: 11px 14px;
+      font-family: 'Inter', sans-serif;
+      font-size: 14px;
+      outline: none;
+      transition: border-color 0.2s;
+      width: 100%;
+      appearance: none;
+      -webkit-appearance: none;
+    }
+    .form-field input::placeholder,
+    .form-field textarea::placeholder { color: rgba(238,243,248,0.25); }
+    .form-field input:focus,
+    .form-field select:focus,
+    .form-field textarea:focus { border-color: var(--cs-blue); }
+    .form-field textarea { resize: vertical; min-height: 90px; }
+    .form-submit {
+      background: var(--cs-blue);
+      color: #080C10;
+      border: none;
+      padding: 14px;
+      border-radius: 7px;
+      font-family: 'Inter', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      cursor: pointer;
+      width: 100%;
+      transition: opacity 0.2s;
+      margin-top: 4px;
+    }
+    .form-submit:hover { opacity: 0.88; }
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 32px;
+      color: var(--cs-blue);
+      font-family: 'Syne', sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    /* ---------- FOOTER (PRESERVED: logo asset + all links) ---------- */
+    footer {
+      border-top: 0.5px solid var(--cs-border);
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 13px;
+      color: var(--cs-muted);
+    }
+    footer a { color: var(--cs-muted); text-decoration: none; }
+    footer a:hover { color: var(--cs-blue); }
+    .footer-right { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+    .footer-tag { font-size: 11px; color: var(--cs-blue); font-weight: 600; letter-spacing: 0.08em; }
+    .footer-logo { height: 42px; width: auto; display: block; margin-bottom: 12px; }
+
+    /* ---------- RESPONSIVE ---------- */
+    @media (max-width: 1024px) {
+      .feature-grid { grid-template-columns: repeat(2, 1fr); }
+      .access-grid { grid-template-columns: repeat(2, 1fr); }
+      .rail-stages { grid-template-columns: repeat(3, 1fr); gap: 20px 8px; }
+      .rail-line { display: none; }
+      .stage { padding-top: 0; padding-left: 22px; }
+      .stage-dot { top: 3px; }
+    }
+    @media (max-width: 768px) {
+      nav { padding: 12px 16px; }
+      .nav-links {
+        display: none;
+        position: absolute; top: 100%; left: 0; right: 0;
+        flex-direction: column; align-items: flex-start; gap: 0;
+        background: var(--cs-navy); border-bottom: 0.5px solid var(--cs-border);
+        margin: 0; padding: 8px 0;
+      }
+      .nav-links.open { display: flex; }
+      .nav-link { padding: 12px 20px; width: 100%; font-size: 15px; }
+      /* dropdown flattens on mobile */
+      .nav-dropdown { width: 100%; }
+      .nav-dropdown-menu { position: static; opacity: 1; visibility: visible; transform: none; padding-top: 0; }
+      .nav-dropdown-inner { background: transparent; border: none; box-shadow: none; padding: 0 0 0 16px; }
+      .nav-dropdown-inner a { padding: 10px 20px; }
+      .nav-dropdown > .nav-link svg { display: none; }
+      .nav-toggle {
+        display: flex; align-items: center; justify-content: center;
+        width: 38px; height: 38px; background: none; border: 0.5px solid var(--cs-border);
+        border-radius: 7px; color: var(--cs-white); cursor: pointer; margin-left: auto; margin-right: 10px;
+      }
+      .nav-cta { padding: 8px 14px; font-size: 13px; }
+      .hero { padding: 48px 20px 32px; }
+      .hero-headline { font-size: 34px; letter-spacing: -1px; }
+      .hero-sub { font-size: 15px; }
+      .stats-bar { flex-wrap: wrap; margin: 0 20px; }
+      .stat-item { min-width: 50%; border-right: none; border-bottom: 0.5px solid var(--cs-border); padding: 20px; }
+      .section { padding: 48px 20px; }
+      .section-title { font-size: 26px; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .lifecycle { padding: 28px 22px; }
+      .rail-stages { grid-template-columns: 1fr; gap: 16px; }
+      .infra-grid { grid-template-columns: 1fr; }
+      .flagship { grid-template-columns: 1fr; padding: 28px 22px; gap: 24px; }
+      .flagship h3 { font-size: 23px; }
+      .site-grid { grid-template-columns: 1fr; }
+      .portfolio-stats { gap: 10px; }
+      .pstat { min-width: calc(50% - 5px); }
+      .compute-section { grid-template-columns: 1fr; margin: 0 20px 48px; padding: 32px 24px; gap: 28px; }
+      .compute-title { font-size: 24px; }
+      .access-grid { grid-template-columns: 1fr; }
+      .contact-section { grid-template-columns: 1fr; margin: 0 20px 48px; padding: 32px 24px; gap: 32px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 16px; padding: 24px 20px; text-align: center; }
+      .footer-right { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+  <!-- ============ NAV (CHANGED: simplified — Home / Energy Projects / Compute▾(How It Works) / Contact / Log in; Platform removed from nav) ============ -->
+  <nav>
+    <a href="/" class="logo">
+      <img src="/clearsky-mark.png" alt="ClearSky" class="logo-mark-img">
+      ClearSky
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="#top" class="nav-link">Home</a>
+      <a href="#energy" class="nav-link">Energy Projects</a>
+      <!-- Compute dropdown reveals How It Works -->
+      <div class="nav-dropdown" id="computeDrop">
+        <a href="/compute.html" class="nav-link">Compute
+          <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+        <div class="nav-dropdown-menu">
+          <div class="nav-dropdown-inner">
+            <a href="/compute.html">Compute &amp; Micro Data Centers<span class="dd-desc">Distributed compute pilot</span></a>
+            <a href="/how-it-works.html">How It Works<span class="dd-desc">Platform process overview</span></a>
+          </div>
+        </div>
+      </div>
+      <a href="#contact" class="nav-link">Contact</a>
+      <!-- CHANGED: Log in goes to the OMEGA-branded gateway (login.html) -->
+      <a href="/login.html" class="nav-link">Log in</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="toggleNav()">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-right">
+      <a href="/login.html" class="nav-cta">Log in to OMEGA</a>
+    </div>
+  </nav>
+
+  <!-- ============ HERO (CHANGED: cloud-software positioning per brief) ============ -->
+  <div id="top"></div>
+  <div class="hero">
+    <p class="hero-eyebrow">Software-enabled energy infrastructure</p>
+    <h1 class="hero-headline">Cloud software for <span class="accent">distributed energy</span> project development</h1>
+    <p class="hero-sub">ClearSky combines proprietary site-development software with BESS, EV charging, microgrid, and micro data center deployment expertise to evaluate, package, finance, and manage distributed energy assets.</p>
+    <!-- CHANGED: carefully phrased "submitted" (not "approved") per instruction -->
+    <p class="hero-note">The platform converts raw site data into project-ready site maps, one-line diagrams, interconnection package support, permit-ready exports, and financial analysis — and has already been used to support submitted ComEd BESS site packages.</p>
+    <div class="hero-actions">
+      <a href="/platform.html" class="btn-primary">Explore the platform</a>
+      <!-- CHANGED: login CTA now points at the OMEGA gateway (login.html) -->
+      <a href="/login.html" class="btn-ghost">Log in to OMEGA</a>
+    </div>
+  </div>
+
+  <!-- ============ TRUST BAR ============ -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num">10<span>+</span></div><div class="stat-label">ComEd interconnection packages supported</div></div>
+    <div class="stat-item"><div class="stat-num">9</div><div class="stat-label">Lifecycle stages, site lead to operating asset</div></div>
+    <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Asset classes: BESS, EV, microgrid, compute</div></div>
+    <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Cloud platform across the full workflow</div></div>
+  </div>
+
+  <!-- ============ SECTION 1: PLATFORM (CHANGED: new — 8 feature cards) ============ -->
+  <div class="section" id="platform">
+    <div class="section-head">
+      <p class="section-label">ClearSky Platform · OMEGA</p>
+      <h2 class="section-title">A cloud platform for the full development lifecycle</h2>
+      <p class="section-desc">OMEGA is the AI operating platform ClearSky Energy Solutions built for distributed energy development. It supports site mapping, one-line diagram development, permit package exports, interconnection package support, project economics, and document tracking — in one cloud tool. It's the same platform that produced ClearSky's submitted ComEd BESS site packages.</p>
+      <!-- CHANGED: added Explore the Platform link to the deeper platform.html page -->
+      <a href="/platform.html" class="btn-ghost" style="margin-top:22px;">Explore the platform →</a>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+        <p class="feature-name">Site Map Designer</p>
+        <p class="feature-desc">Turn satellite imagery and site data into scaled, permit-grade layouts.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><line x1="10" y1="6.5" x2="14" y2="6.5"/><line x1="17.5" y1="10" x2="17.5" y2="14"/></svg></div>
+        <p class="feature-name">One-Line Diagram Builder</p>
+        <p class="feature-desc">Generate electrical one-lines aligned to equipment and topology.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><polyline points="9 15 12 12 15 15"/></svg></div>
+        <p class="feature-name">Permit Package Export</p>
+        <p class="feature-desc">Produce AHJ-ready engineering sets and permit-ready exports.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6"/><path d="M12 22v-6"/><circle cx="12" cy="12" r="4"/><path d="M4.9 4.9l2.8 2.8"/><path d="M16.3 16.3l2.8 2.8"/><path d="M2 12h6"/><path d="M16 12h6"/></svg></div>
+        <p class="feature-name">Interconnection Support</p>
+        <p class="feature-desc">Assemble utility interconnection packages and screening inputs.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <p class="feature-name">BESS Profitability Analysis</p>
+        <p class="feature-desc">Model project economics, incentives, and revenue-stack outcomes.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></div>
+        <p class="feature-name">Project Pipeline Dashboard</p>
+        <p class="feature-desc">Track every site and its stage across the development pipeline.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h5l2 3h9a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg></div>
+        <p class="feature-name">Document Management</p>
+        <p class="feature-desc">Centralize LOAs, datasheets, drawings, and utility correspondence.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 7h-9"/><path d="M14 17H5"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></svg></div>
+        <p class="feature-name">Asset Management</p>
+        <p class="feature-desc">Carry sites into operations with monitoring and performance data.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 2: FROM SITE TO ASSET (SIGNATURE lifecycle rail) ============ -->
+  <div class="section" style="padding-top:0;" id="lifecycle">
+    <div class="section-head">
+      <p class="section-label">From Site to Asset</p>
+      <h2 class="section-title">One workflow, screening through operations</h2>
+      <p class="section-desc">ClearSky manages the full lifecycle from site screening and utility review through engineering package development, permitting, financing, construction coordination, commissioning, and operating asset management.</p>
+    </div>
+    <div class="lifecycle">
+      <div class="rail">
+        <div class="rail-line"></div>
+        <div class="rail-stages">
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">01</div><div class="stage-name">Site Lead</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">02</div><div class="stage-name">Candidate Review</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">03</div><div class="stage-name">Engineering Package</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">04</div><div class="stage-name">Interconnection</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">05</div><div class="stage-name">Permit</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">06</div><div class="stage-name">Finance</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">07</div><div class="stage-name">Construction</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">08</div><div class="stage-name">Commissioning</div></div>
+          <div class="stage"><div class="stage-dot"></div><div class="stage-idx">09</div><div class="stage-name">Operating Asset</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 3: ENERGY PROJECTS — PORTFOLIO ============ -->
+  <div class="section" style="padding-top:0;" id="energy">
+    <div class="section-head">
+      <p class="section-label">ClearSky Energy Projects</p>
+      <h2 class="section-title">An active portfolio across Illinois and PJM</h2>
+      <p class="section-desc">ClearSky develops and manages a growing portfolio of distributed energy assets — battery storage, EV charging, microgrids, and micro data centers — spread across wholesale market participation, grid injection, data-center offtake, and behind-the-meter value. Each site is evaluated, packaged, and monetized through the OMEGA platform.</p>
+    </div>
+
+    <!-- Portfolio at a glance -->
+    <div class="portfolio-stats">
+      <div class="pstat"><div class="n">11<span>+</span></div><div class="l">Sites under development across IL &amp; PJM</div></div>
+      <div class="pstat"><div class="n">480<span>kW</span></div><div class="l">DCFC charging at the Fulton flagship</div></div>
+      <div class="pstat"><div class="n">4</div><div class="l">Revenue pathways: SDVPP, injection, data, host lease</div></div>
+      <div class="pstat"><div class="n">PJM<span> + </span>ComEd</div><div class="l">Markets &amp; utility programs engaged</div></div>
+    </div>
+
+    <!-- ── FLAGSHIP: FULTON, IL ── -->
+    <div class="flagship">
+      <div class="flagship-body">
+        <div class="flagship-eyebrow">Flagship Project · Fulton, Illinois</div>
+        <h3>480 kW charging, <span class="accent">SDVPP</span> &amp; PJM frequency regulation</h3>
+        <p>ClearSky's Fulton, Illinois site pairs a battery energy storage system with 480 kW of DC fast charging — delivering high-power charging without triggering a costly utility service upgrade. The same battery is enrolled in ComEd's Smart Distributed Virtual Power Plant program and injects into PJM's frequency regulation market, stacking three revenue layers on a single asset.</p>
+      </div>
+      <div class="flagship-specs">
+        <div class="fspec">
+          <div class="fspec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="11" height="18" rx="1.5"/><path d="M14 8h3l3 3v7a2 2 0 0 1-2 2"/><path d="M8 12l-1.5 2.5H9L7.5 17"/></svg></div>
+          <div><div class="fspec-t">480 kW DC fast charging</div><div class="fspec-d">BESS-buffered, no grid upgrade required</div></div>
+        </div>
+        <div class="fspec">
+          <div class="fspec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="3"/><path d="M4 8l3 2"/><path d="M20 8l-3 2"/><path d="M4 16l3-2"/><path d="M20 16l-3-2"/></svg></div>
+          <div><div class="fspec-t">ComEd SDVPP enrollment</div><div class="fspec-d">Aggregated capacity &amp; demand response</div></div>
+        </div>
+        <div class="fspec">
+          <div class="fspec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg></div>
+          <div><div class="fspec-t">PJM frequency regulation</div><div class="fspec-d">Sub-second injection into the RegD signal</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── GRID SERVICES: SDVPP-ONLY SITES ── -->
+    <div class="pcat-head">
+      <span class="pcat-title">Grid Services — SDVPP</span>
+      <span class="pcat-count">Illinois portfolio</span>
+    </div>
+    <p class="pcat-sub">Storage sites enrolled purely for ComEd Smart Distributed Virtual Power Plant participation — earning capacity and demand-response value by responding to aggregated dispatch signals.</p>
+    <div class="site-grid">
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Rockford, IL</span><span class="site-badge sdvpp">SDVPP</span></div>
+        <div class="site-name">Rockford Commerce Park</div>
+        <div class="site-desc">C&amp;I storage enrolled in SDVPP for capacity and demand response across the peak season.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">2.7 MWh</div><div class="k">Storage</div></div><div class="site-metric"><div class="v">Submitted</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Joliet, IL</span><span class="site-badge sdvpp">SDVPP</span></div>
+        <div class="site-name">Joliet Logistics Yard</div>
+        <div class="site-desc">Warehouse-sited BESS providing SDVPP capacity while shaving the site's demand charges.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">3.4 MWh</div><div class="k">Storage</div></div><div class="site-metric"><div class="v">Submitted</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Aurora, IL</span><span class="site-badge sdvpp">SDVPP</span></div>
+        <div class="site-name">Aurora Industrial</div>
+        <div class="site-desc">Standalone storage positioned for SDVPP dispatch and future solar-plus-storage expansion.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">1.5 MWh</div><div class="k">Storage</div></div><div class="site-metric"><div class="v">Submitted</div><div class="k">Status</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── GRID INJECTION / FREQUENCY REGULATION ── -->
+    <div class="pcat-head">
+      <span class="pcat-title">Grid Injection — PJM Frequency Regulation</span>
+      <span class="pcat-count">Wholesale market</span>
+    </div>
+    <p class="pcat-sub">Sites configured to inject directly into PJM wholesale markets, providing sub-second frequency regulation and arbitrage — the highest-value use of fast-responding battery capacity.</p>
+    <div class="site-grid">
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Fulton, IL</span><span class="site-badge inject">Injection</span></div>
+        <div class="site-name">Fulton Regulation Node</div>
+        <div class="site-desc">Flagship battery injecting into PJM's RegD signal alongside the 480 kW charging plaza.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">RegD</div><div class="k">PJM Market</div></div><div class="site-metric"><div class="v">Active</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Peoria, IL</span><span class="site-badge inject">Injection</span></div>
+        <div class="site-name">Peoria Frequency Asset</div>
+        <div class="site-desc">Grid-tied storage sized for continuous regulation duty and energy arbitrage between peaks.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">5.0 MWh</div><div class="k">Storage</div></div><div class="site-metric"><div class="v">In Review</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Decatur, IL</span><span class="site-badge inject">Injection</span></div>
+        <div class="site-name">Decatur Arbitrage Bank</div>
+        <div class="site-desc">Battery bank optimized for wholesale energy arbitrage plus regulation revenue stacking.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">6.8 MWh</div><div class="k">Storage</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── DATA CENTER OFFTAKE ── -->
+    <div class="pcat-head">
+      <span class="pcat-title">Data Center Offtake</span>
+      <span class="pcat-count">Behind-the-meter compute</span>
+    </div>
+    <p class="pcat-sub">Storage-backed sites supplying power directly to co-located compute as the offtaker — turning distributed batteries into the energy backbone for edge and micro data center loads.</p>
+    <div class="site-grid">
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Elgin, IL</span><span class="site-badge data">Data Offtake</span></div>
+        <div class="site-name">Elgin Compute Node</div>
+        <div class="site-desc">BESS supplying a co-located micro data center under a behind-the-meter offtake agreement.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Compute</div><div class="k">Offtaker</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Naperville, IL</span><span class="site-badge data">Data Offtake</span></div>
+        <div class="site-name">Naperville Edge Facility</div>
+        <div class="site-desc">Power-first site pairing storage with GPU compute, monetized through committed capacity.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Edge AI</div><div class="k">Load Type</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Springfield, IL</span><span class="site-badge data">Data Offtake</span></div>
+        <div class="site-name">Springfield Compute Yard</div>
+        <div class="site-desc">Storage-plus-compute campus using energy arbitrage to lower the cost of served compute.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Arbitrage</div><div class="k">Model</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── RESIDENTIAL MUD ── -->
+    <div class="pcat-head">
+      <span class="pcat-title">Residential MUD</span>
+      <span class="pcat-count">Multifamily portfolio</span>
+    </div>
+    <p class="pcat-sub">Shared and per-unit storage across multifamily / multi-unit dwellings — reducing master-meter demand charges while enrolling the aggregated fleet as a distributed VPP resource.</p>
+    <div class="site-grid">
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Cicero, IL</span><span class="site-badge mud">Residential</span></div>
+        <div class="site-name">Cicero Apartment Fleet</div>
+        <div class="site-desc">Per-unit BESS across a multifamily portfolio, aggregated for SDVPP and TOU arbitrage.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Per-unit</div><div class="k">Topology</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Berwyn, IL</span><span class="site-badge mud">Residential</span></div>
+        <div class="site-name">Berwyn Mixed-Use</div>
+        <div class="site-desc">Shared master-meter storage cutting common-area demand charges for the building owner.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Shared</div><div class="k">Topology</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Oak Park, IL</span><span class="site-badge mud">Residential</span></div>
+        <div class="site-name">Oak Park Residences</div>
+        <div class="site-desc">Multifamily storage enrolled as a VPP node while providing resident backup power.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">VPP node</div><div class="k">Program</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── BACKUP GENERATION / ENERGY OFFTAKE (HOST LEASE) ── -->
+    <div class="pcat-head">
+      <span class="pcat-title">Backup Generation &amp; Energy Offtake</span>
+      <span class="pcat-count">Site-host lease</span>
+    </div>
+    <p class="pcat-sub">Resiliency-focused projects deployed on host-owned property under a site-host lease. ClearSky owns and operates the asset, the host gets backup power and lease income, and ClearSky monetizes energy offtake and grid services.</p>
+    <div class="site-grid">
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Clinton, IA</span><span class="site-badge host">Host Lease</span></div>
+        <div class="site-name">Clinton Resiliency Hub</div>
+        <div class="site-desc">Backup generation and storage on leased host property, with energy offtake to the host.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Backup</div><div class="k">Primary Use</div></div><div class="site-metric"><div class="v">Zero-capex</div><div class="k">Host Terms</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Moline, IL</span><span class="site-badge host">Host Lease</span></div>
+        <div class="site-name">Moline Offtake Site</div>
+        <div class="site-desc">Energy-offtake project where ClearSky supplies the host and stacks grid-service revenue.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Offtake</div><div class="k">Primary Use</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+      <div class="site-card">
+        <div class="site-top"><span class="site-loc"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>Rock Island, IL</span><span class="site-badge host">Host Lease</span></div>
+        <div class="site-name">Rock Island Standby</div>
+        <div class="site-desc">Standby generation with storage buffering, leased from the host for critical-load backup.</div>
+        <div class="site-meta"><div class="site-metric"><div class="v">Standby</div><div class="k">Primary Use</div></div><div class="site-metric"><div class="v">Candidate</div><div class="k">Status</div></div></div>
+      </div>
+    </div>
+
+    <!-- ── MICROGRIDS + MICRO DATA CENTERS (energy arbitrage — headline focus) ── -->
+    <div class="flagship" style="margin-top:44px;">
+      <div class="flagship-body">
+        <div class="flagship-eyebrow">Where ClearSky is headed</div>
+        <h3>Microgrids &amp; micro data centers <span class="accent">powered by energy arbitrage</span></h3>
+        <p>ClearSky's core thesis: co-locate battery storage with distributed compute to build self-contained microgrids that buy energy when it's cheap, serve compute continuously, and sell capacity and regulation back to the grid when it's valuable. Energy arbitrage funds the compute; the compute anchors the load; the grid services stack on top. It's a battery-first model that doesn't depend on solar and turns every site into a dual-purpose energy node and edge data center.</p>
+      </div>
+      <div class="flagship-specs">
+        <div class="fspec">
+          <div class="fspec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l4-3 4 3v13"/><path d="M13 21V11l4-2 4 2v10"/></svg></div>
+          <div><div class="fspec-t">Islandable microgrids</div><div class="fspec-d">Storage + generation + controllable load</div></div>
+        </div>
+        <div class="fspec">
+          <div class="fspec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="6" rx="1.5"/><rect x="2" y="14" width="20" height="6" rx="1.5"/></svg></div>
+          <div><div class="fspec-t">Micro data centers</div><div class="fspec-d">Edge compute anchored to on-site power</div></div>
+        </div>
+        <div class="fspec">
+          <div class="fspec-ic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+          <div><div class="fspec-t">Energy arbitrage engine</div><div class="fspec-d">Charge low, serve compute, sell high</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 3b: ASSET CLASSES (kept — capability overview) ============ -->
+  <div class="section" style="padding-top:0;">
+    <div class="section-head">
+      <p class="section-label">Capabilities</p>
+      <h2 class="section-title">Development across every asset class</h2>
+      <p class="section-desc">Behind every project is the same end-to-end capability: ClearSky evaluates and develops BESS, EV charging, microgrid, and micro data center opportunities — determining whether a site is viable, financeable, permittable, and capable of generating grid or behind-the-meter value.</p>
+    </div>
+    <div class="infra-grid">
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="16" height="10" rx="1.5"/><line x1="22" y1="11" x2="22" y2="13"/><line x1="6" y1="10" x2="6" y2="14"/><line x1="10" y1="10" x2="10" y2="14"/><line x1="14" y1="10" x2="14" y2="14"/></svg></div>
+        <p class="infra-name">Battery Energy Storage</p>
+        <p class="infra-desc">Demand-charge reduction, energy arbitrage, backup power, and grid-services revenue across commercial, industrial, hospitality, and multifamily sites.</p>
+        <div class="infra-tags"><span class="infra-tag">Commercial &amp; Industrial</span><span class="infra-tag">Hospitality</span><span class="infra-tag">Residential MUD</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="11" height="18" rx="1.5"/><path d="M14 8h3l3 3v7a2 2 0 0 1-2 2"/><line x1="7" y1="8" x2="10" y2="8"/><path d="M8 12l-1.5 2.5H9L7.5 17"/></svg></div>
+        <p class="infra-name">EV Charging Infrastructure</p>
+        <p class="infra-desc">BESS-paired DCFC deployments that add charger capacity without triggering costly grid upgrades or transformer replacements.</p>
+        <div class="infra-tags"><span class="infra-tag">DCFC 50–480 kW</span><span class="infra-tag">No grid upgrade</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V8l4-3 4 3v13"/><path d="M13 21V11l4-2 4 2v10"/><line x1="8" y1="11" x2="8" y2="11"/></svg></div>
+        <p class="infra-name">Microgrids</p>
+        <p class="infra-desc">Resilient, islandable systems that keep critical loads online and coordinate storage, generation, and controllable demand.</p>
+        <div class="infra-tags"><span class="infra-tag">Resiliency</span><span class="infra-tag">Islanding</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="6" rx="1.5"/><rect x="2" y="14" width="20" height="6" rx="1.5"/><line x1="6" y1="7" x2="6" y2="7"/><line x1="6" y1="17" x2="6" y2="17"/></svg></div>
+        <p class="infra-name">Micro Data Centers</p>
+        <p class="infra-desc">Distributed compute nodes co-located with power capacity and storage, powered by energy arbitrage and evaluated for site economics.</p>
+        <div class="infra-tags"><span class="infra-tag">Edge compute</span><span class="infra-tag">Power-first siting</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v4"/><path d="M12 18v4"/><circle cx="12" cy="12" r="3"/><path d="M4 8l3 2"/><path d="M20 8l-3 2"/><path d="M4 16l3-2"/><path d="M20 16l-3-2"/></svg></div>
+        <p class="infra-name">VPP / Demand Response</p>
+        <p class="infra-desc">Aggregate distributed assets into wholesale and utility programs for capacity, demand response, and ancillary-service value.</p>
+        <div class="infra-tags"><span class="infra-tag">PJM / MISO</span><span class="infra-tag">SDVPP</span></div>
+      </div>
+      <div class="infra-card">
+        <div class="infra-ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <p class="infra-name">Site Monetization</p>
+        <p class="infra-desc">Turn underused property into revenue through host-lease structures, stacked incentives, and behind-the-meter or grid-facing value.</p>
+        <div class="infra-tags"><span class="infra-tag">Host lease</span><span class="infra-tag">Incentive stacking</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 4: COMPUTE (CHANGED: repositioned to connect to platform; compute.html link preserved) ============ -->
+  <div class="compute-section" id="compute">
+    <div class="compute-left">
+      <p class="compute-eyebrow">Compute · Micro Data Centers</p>
+      <h2 class="compute-title">Where power capacity meets distributed compute</h2>
+      <p class="compute-desc">ClearSky evaluates properties for micro data center and compute infrastructure opportunities where power capacity, energy storage, resiliency, and site economics can support distributed compute deployment. Our platform helps evaluate site readiness, utility constraints, equipment placement, energy requirements, and project economics.</p>
+      <a href="/compute.html" class="btn-amber">Explore the compute pilot →</a>
+    </div>
+    <div class="compute-checklist">
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Site readiness and available power capacity</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Utility constraints and interconnection limits</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Equipment placement and energy requirements</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Storage pairing and resiliency for uptime</span></div>
+      <div class="compute-check"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span>Project economics and revenue modeling</span></div>
+    </div>
+  </div>
+
+  <!-- ============ SECTION 5: PLATFORM ACCESS / PROJECT PORTAL (CHANGED: all existing portal URLs preserved as cards) ============ -->
+  <div class="section" style="padding-top:0;" id="portal">
+    <div class="section-head">
+      <p class="section-label">Platform Access</p>
+      <h2 class="section-title">Open the project portal</h2>
+      <p class="section-desc">Access ClearSky's project tools, site-development workflows, and energy infrastructure dashboards through the secure project portal.</p>
+    </div>
+    <div class="access-grid">
+      <!-- CHANGED: primary login card → OMEGA gateway (login.html hands off to portal) -->
+      <a href="/login.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="21" x2="9" y2="9"/></svg></div>
+        <p class="access-name">Log in to OMEGA</p>
+        <p class="access-desc">Secure dashboards for project pipeline, documents, and workflows — signs you in to your ClearSky workspace.</p>
+        <span class="access-go">Log in →</span>
+      </a>
+      <!-- CHANGED: Site Map Tool now points at the real editor inside the portal (auth-gated) -->
+      <a href="https://clearsky-portal-h7d9.vercel.app/editor.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+        <p class="access-name">Open Site Map Tool</p>
+        <p class="access-desc">Launch the site-development and layout workflow in the platform.</p>
+        <span class="access-go">Open tool →</span>
+      </a>
+      <!-- PRESERVED: compute.html -->
+      <a href="/compute.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+        <p class="access-name">Open Compute Page</p>
+        <p class="access-desc">Review the micro data center and compute pilot.</p>
+        <span class="access-go">Open page →</span>
+      </a>
+      <!-- PRESERVED: how-it-works.html -->
+      <a href="/how-it-works.html" class="access-card">
+        <div class="access-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12" y2="17"/></svg></div>
+        <p class="access-name">View How It Works</p>
+        <p class="access-desc">Walk through the development process end to end.</p>
+        <span class="access-go">Learn more →</span>
+      </a>
+    </div>
+    <!-- CHANGED: partner portal intentionally NOT linked from the public site (invite-only, URL handed out directly to partners) -->
+  </div>
+
+  <!-- ============ CONTACT (PRESERVED: form + submitForm mailto logic unchanged) ============ -->
+  <div class="contact-section" id="contact">
+    <div class="contact-left">
+      <h2>Request platform access</h2>
+      <p>Tell us about your site or portfolio and we'll follow up within 24 hours with next steps for evaluation, packaging, and platform access.</p>
+      <div class="contact-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        <a href="mailto:info@csebuilders.com">info@csebuilders.com</a>
+      </div>
+      <div class="contact-detail">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        Clinton, Iowa · Serving IL, CT, MA, NY, CA
+      </div>
+    </div>
+    <div class="contact-form" id="contact-form">
+      <div class="form-row">
+        <div class="form-field">
+          <label for="f-name">Name</label>
+          <input type="text" id="f-name" placeholder="Jane Smith">
+        </div>
+        <div class="form-field">
+          <label for="f-company">Company</label>
+          <input type="text" id="f-company" placeholder="Acme Corp">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="f-email">Email</label>
+        <input type="email" id="f-email" placeholder="jane@acmecorp.com">
+      </div>
+      <div class="form-field">
+        <label for="f-segment">Interest area</label>
+        <select id="f-segment">
+          <option value="">Select an area</option>
+          <option>ClearSky Platform</option>
+          <option>Battery Energy Storage</option>
+          <option>EV Charging Infrastructure</option>
+          <option>Microgrids</option>
+          <option>Micro Data Centers / Compute</option>
+          <option>VPP / Demand Response</option>
+        </select>
+      </div>
+      <div class="form-field">
+        <label for="f-message">Tell us about your site or portfolio</label>
+        <textarea id="f-message" placeholder="Location, approximate load or utility bill, asset class of interest, any existing solar or storage..."></textarea>
+      </div>
+      <button class="form-submit" onclick="submitForm()">Send inquiry</button>
+    </div>
+    <div class="form-success" id="form-success">
+      <p>✓ Message received.</p>
+      <p style="font-size:15px;font-weight:400;color:var(--cs-muted);margin-top:10px;">We'll be in touch within 24 hours.</p>
+    </div>
+  </div>
+
+  <!-- ============ FOOTER (PRESERVED: logo asset + all links, incl. partner + client portal) ============ -->
+  <footer>
+    <span class="footer-left"><img src="/clearsky-logo-light.png" alt="ClearSky Builders" class="footer-logo"><br>© 2025 ClearSky Builders LLC &nbsp;·&nbsp; <a href="mailto:info@csebuilders.com">info@csebuilders.com</a></span>
+    <div class="footer-right">
+      <span class="footer-tag">OMEGA · BESS · EV · Microgrid · Compute · VPP</span>
+      <a href="/platform.html">Platform →</a>
+      <a href="/compute.html">Compute →</a>
+      <a href="/how-it-works.html">How It Works →</a>
+      <!-- CHANGED: partner login removed from public footer (invite-only); OMEGA login kept -->
+      <a href="/login.html">Log in to OMEGA →</a>
+    </div>
+  </footer>
+
+  <script>
+    /* CHANGED: added mobile nav toggle for the new nav bar */
+    function toggleNav() {
+      document.getElementById('navLinks').classList.toggle('open');
+    }
+    /* Close mobile nav after tapping any nav link (incl. dropdown items) */
+    var navAnchors = document.querySelectorAll('#navLinks a');
+    for (var i = 0; i < navAnchors.length; i++) {
+      navAnchors[i].addEventListener('click', function () {
+        document.getElementById('navLinks').classList.remove('open');
+      });
+    }
+
+    /* PRESERVED: original contact form submit + mailto behavior (unchanged logic) */
+    function submitForm() {
+      var name = document.getElementById('f-name').value.trim();
+      var email = document.getElementById('f-email').value.trim();
+      if (!name || !email) { alert('Please enter your name and email.'); return; }
+      document.getElementById('contact-form').style.display = 'none';
+      document.getElementById('form-success').style.display = 'block';
+      var subject = encodeURIComponent('ClearSky Platform Inquiry - ' + name);
+      var seg = document.getElementById('f-segment').value;
+      var company = document.getElementById('f-company').value;
+      var msg = document.getElementById('f-message').value;
+      var body = encodeURIComponent('Name: ' + name + '\nCompany: ' + company + '\nEmail: ' + email + '\nInterest: ' + seg + '\n\n' + msg);
+      window.location.href = 'mailto:info@csebuilders.com?subject=' + subject + '&body=' + body;
+    }
+  </script>
+</body>
+</html>
