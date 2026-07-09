@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/png" href="/favicon.png">
+  <link rel="apple-touch-icon" href="/favicon-180.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The ClearSky Marketplace — the connective layer for distributed energy project development, linking sourcing, procurement, capital, offtake, and aggregation across the value chain.">
+  <meta property="og:title" content="ClearSky Marketplace · The value-chain layer for energy projects">
+  <meta property="og:description" content="One marketplace connecting equipment sourcing, procurement, capital, offtake, and aggregation for distributed energy, DER, and data-center projects.">
+  <meta property="og:type" content="website">
+  <title>Marketplace · ClearSky</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --cs-black: #FFFFFF;
+      --cs-navy: #F4F7FA;
+      --cs-card: #FFFFFF;
+      --cs-card-2: #F7F9FC;
+      --cs-blue: #0089BD;
+      --cs-blue-bright: #00AEEF;
+      --cs-blue-dim: rgba(0,137,189,0.09);
+      --cs-blue-mid: rgba(0,137,189,0.30);
+      --cs-amber: #C77A00;
+      --cs-white: #0E1A24;
+      --cs-ink: #0E1A24;
+      --cs-muted: #5A6B7B;
+      --cs-muted-2: #8A98A6;
+      --cs-border: rgba(14,26,36,0.10);
+      --cs-border-blue: rgba(0,137,189,0.28);
+      --cs-hero-bg: #0E1A24;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Inter', sans-serif; background: var(--cs-black); color: var(--cs-white); min-height: 100vh; overflow-x: hidden; }
+
+    /* ---------- UTILITY BAR + NAV ---------- */
+    .util-bar { display: flex; align-items: center; justify-content: flex-end; gap: 22px; background: var(--cs-navy); border-bottom: 0.5px solid var(--cs-border); padding: 7px 48px; font-size: 12px; position: sticky; top: 0; z-index: 101; }
+    .util-bar a { color: var(--cs-muted); text-decoration: none; transition: color 0.15s; white-space: nowrap; }
+    .util-bar a:hover { color: var(--cs-white); }
+    .util-bar .util-sep { width: 1px; height: 12px; background: var(--cs-border); }
+
+    nav.oracle-nav { display: flex; align-items: center; justify-content: space-between; padding: 16px 48px; border-bottom: 0.5px solid var(--cs-border); position: sticky; top: 34px; background: rgba(255,255,255,0.90); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); z-index: 100; }
+    .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 19px; letter-spacing: -0.5px; color: var(--cs-white); display: flex; align-items: center; gap: 10px; text-decoration: none; flex-shrink: 0; }
+    .logo-mark-img { height: 30px; width: auto; display: block; }
+    .nav-links { display: flex; align-items: center; gap: 26px; margin-left: auto; margin-right: 24px; }
+    .nav-link { font-size: 13.5px; font-weight: 500; color: var(--cs-muted); text-decoration: none; transition: color 0.2s; white-space: nowrap; }
+    .nav-link:hover { color: var(--cs-white); }
+    .nav-link.active { color: var(--cs-white); }
+    .nav-right { display: flex; align-items: center; gap: 14px; flex-shrink: 0; }
+    .nav-cta { background: var(--cs-blue); color: #FFFFFF; border: none; padding: 9px 20px; border-radius: 6px; font-weight: 600; font-size: 13.5px; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s; white-space: nowrap; }
+    .nav-cta:hover { opacity: 0.88; }
+    .nav-toggle { display: none; background: none; border: none; color: var(--cs-white); cursor: pointer; }
+
+    .btn-primary { background: var(--cs-blue); color: #FFFFFF; border: none; padding: 14px 30px; border-radius: 6px; font-weight: 600; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-block; transition: opacity 0.2s; }
+    .btn-primary:hover { opacity: 0.88; }
+    .btn-ghost { background: transparent; color: var(--cs-white); border: 0.5px solid var(--cs-border-blue); padding: 14px 30px; border-radius: 6px; font-weight: 500; font-size: 15px; cursor: pointer; text-decoration: none; display: inline-block; transition: border-color 0.2s, color 0.2s; }
+    .btn-ghost:hover { border-color: var(--cs-blue); color: var(--cs-blue); }
+
+    /* ---------- HERO ---------- */
+    .o-hero { position: relative; padding: 90px 48px 76px; overflow: hidden; border-bottom: 0.5px solid var(--cs-border);
+      background: radial-gradient(1100px 520px at 78% -8%, rgba(0,174,239,0.22), transparent 60%),
+      radial-gradient(760px 460px at 12% 118%, rgba(0,137,189,0.14), transparent 55%), var(--cs-hero-bg); }
+    .o-hero-grid { position: absolute; inset: 0; opacity: 0.5; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 46px 46px; mask-image: linear-gradient(180deg, black, transparent 82%); }
+    .o-hero-inner { position: relative; max-width: 1000px; }
+    .o-hero-eyebrow { font-size: 11px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cs-blue-bright); margin-bottom: 22px; display: flex; align-items: center; gap: 10px; }
+    .o-hero-eyebrow::before { content: ''; width: 26px; height: 1px; background: var(--cs-blue-bright); }
+    .o-hero h1 { font-family: 'Syne', sans-serif; font-size: 58px; font-weight: 800; line-height: 1.04; letter-spacing: -2.2px; margin-bottom: 22px; max-width: 15ch; color: #FFFFFF; }
+    .o-hero h1 .accent { color: var(--cs-blue-bright); }
+    .o-hero-sub { font-size: 18px; line-height: 1.65; color: rgba(255,255,255,0.72); max-width: 660px; margin-bottom: 34px; }
+    .o-hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
+    .o-hero .btn-ghost { color: #FFFFFF; border-color: rgba(255,255,255,0.28); }
+    .o-hero .btn-ghost:hover { border-color: var(--cs-blue-bright); color: var(--cs-blue-bright); }
+
+    /* ---------- STAT STRIP ---------- */
+    .stats-bar { display: flex; border-bottom: 0.5px solid var(--cs-border); background: var(--cs-navy); }
+    .stat-item { flex: 1; padding: 26px 32px; border-right: 0.5px solid var(--cs-border); }
+    .stat-item:last-child { border-right: none; }
+    .stat-num { font-family: 'Syne', sans-serif; font-size: 28px; font-weight: 800; color: var(--cs-white); letter-spacing: -0.5px; line-height: 1; }
+    .stat-num span { color: var(--cs-blue); }
+    .stat-label { font-size: 12px; color: var(--cs-muted); margin-top: 7px; line-height: 1.45; }
+
+    /* ---------- SECTION SHELL ---------- */
+    .section { padding: 76px 48px; max-width: 1180px; margin: 0 auto; }
+    .section.alt { background: var(--cs-card-2); max-width: none; }
+    .section.alt .section-inner { max-width: 1180px; margin: 0 auto; }
+    .section-head { max-width: 780px; margin-bottom: 44px; }
+    .section-label { font-size: 11px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--cs-blue); margin-bottom: 14px; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: 36px; font-weight: 700; letter-spacing: -0.7px; margin-bottom: 16px; line-height: 1.13; }
+    .section-desc { font-size: 15.5px; line-height: 1.7; color: var(--cs-muted); }
+
+    /* ---------- MARKET CATEGORY GRID (the showcase) ---------- */
+    .market-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .market-card { position: relative; background: var(--cs-card); border: 0.5px solid var(--cs-border); border-radius: 16px; padding: 30px 28px; transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s; overflow: hidden; }
+    .market-card::after { content: ''; position: absolute; inset: 0; opacity: 0.5; pointer-events: none; background-image: linear-gradient(rgba(0,137,189,0.035) 1px, transparent 1px), linear-gradient(90deg, rgba(0,137,189,0.035) 1px, transparent 1px); background-size: 26px 26px; mask-image: radial-gradient(220px 160px at 100% 0%, black, transparent 70%); }
+    .market-card:hover { border-color: var(--cs-border-blue); transform: translateY(-3px); box-shadow: 0 18px 40px rgba(14,26,36,0.08); }
+    .market-ic { position: relative; width: 46px; height: 46px; border-radius: 11px; background: var(--cs-blue-dim); display: flex; align-items: center; justify-content: center; color: var(--cs-blue); margin-bottom: 18px; }
+    .market-tag { position: absolute; top: 24px; right: 24px; font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cs-amber); background: rgba(199,122,0,0.10); border: 0.5px solid rgba(199,122,0,0.28); padding: 4px 10px; border-radius: 20px; }
+    .market-name { position: relative; font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 10px; }
+    .market-desc { position: relative; font-size: 13.5px; line-height: 1.65; color: var(--cs-muted); margin-bottom: 16px; }
+    .market-tags { position: relative; display: flex; flex-wrap: wrap; gap: 6px; }
+    .m-tag { font-size: 11px; font-weight: 500; color: var(--cs-muted); background: var(--cs-card-2); border: 0.5px solid var(--cs-border); padding: 4px 11px; border-radius: 20px; }
+
+    /* ---------- FLOW RAIL (how the marketplace connects) ---------- */
+    .flow { background: var(--cs-card); border: 0.5px solid var(--cs-border); border-radius: 18px; padding: 40px 40px 34px; }
+    .flow-rail { position: relative; display: grid; grid-template-columns: repeat(5, 1fr); gap: 10px; }
+    .flow-rail::before { content: ''; position: absolute; top: 21px; left: 6%; right: 6%; height: 2px; background: linear-gradient(90deg, var(--cs-border-blue), var(--cs-blue-mid), var(--cs-border-blue)); border-radius: 2px; }
+    .flow-node { position: relative; text-align: center; }
+    .flow-dot { position: relative; z-index: 1; width: 44px; height: 44px; border-radius: 12px; background: var(--cs-blue-dim); border: 1px solid var(--cs-border-blue); color: var(--cs-blue); display: flex; align-items: center; justify-content: center; margin: 0 auto 14px; }
+    .flow-node:last-child .flow-dot { background: var(--cs-blue); color: #fff; box-shadow: 0 0 0 5px var(--cs-blue-dim); }
+    .flow-t { font-family: 'Syne', sans-serif; font-size: 13.5px; font-weight: 700; letter-spacing: -0.2px; margin-bottom: 5px; }
+    .flow-d { font-size: 11.5px; line-height: 1.5; color: var(--cs-muted); }
+
+    /* ---------- VALUE PROPS (two columns) ---------- */
+    .who-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .who { background: var(--cs-card); border: 0.5px solid var(--cs-border); border-radius: 16px; padding: 34px 32px; }
+    .who h3 { font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 8px; }
+    .who > p { font-size: 13.5px; line-height: 1.6; color: var(--cs-muted); margin-bottom: 18px; }
+    .who ul { list-style: none; display: flex; flex-direction: column; gap: 11px; }
+    .who li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; line-height: 1.5; color: var(--cs-muted); }
+    .who li svg { color: var(--cs-blue); flex-shrink: 0; margin-top: 2px; }
+    .who li strong { color: var(--cs-white); font-weight: 600; }
+
+    /* ---------- BIG BAND (scale statement) ---------- */
+    .scale { position: relative; margin: 0 48px; border-radius: 18px; overflow: hidden; border: 0.5px solid var(--cs-border-blue);
+      background: radial-gradient(900px 460px at 85% -20%, rgba(0,174,239,0.20), transparent 62%), var(--cs-hero-bg); color: #fff; padding: 60px 48px; }
+    .scale-grid { position: absolute; inset: 0; opacity: 0.4; pointer-events: none; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 44px 44px; mask-image: linear-gradient(180deg, black, transparent 92%); }
+    .scale-inner { position: relative; max-width: 1084px; margin: 0 auto; }
+    .scale-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--cs-blue-bright); margin-bottom: 16px; }
+    .scale h2 { font-family: 'Syne', sans-serif; font-size: 34px; font-weight: 800; letter-spacing: -0.8px; line-height: 1.14; margin-bottom: 16px; max-width: 24ch; }
+    .scale h2 .accent { color: var(--cs-blue-bright); }
+    .scale p { font-size: 15.5px; line-height: 1.7; color: rgba(255,255,255,0.72); max-width: 640px; }
+    .scale-stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; margin-top: 34px; }
+    .scale-stat .n { font-family: 'Syne', sans-serif; font-size: 30px; font-weight: 800; letter-spacing: -0.5px; color: #fff; }
+    .scale-stat .n span { color: var(--cs-blue-bright); }
+    .scale-stat .l { font-size: 12px; color: rgba(255,255,255,0.6); margin-top: 6px; line-height: 1.45; }
+
+    /* ---------- CTA ---------- */
+    .cta { text-align: center; padding: 76px 48px; max-width: 780px; margin: 0 auto; }
+    .cta h2 { font-family: 'Syne', sans-serif; font-size: 32px; font-weight: 800; letter-spacing: -0.7px; margin-bottom: 14px; line-height: 1.14; }
+    .cta p { font-size: 15.5px; line-height: 1.7; color: var(--cs-muted); margin-bottom: 30px; }
+    .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+    /* ---------- FOOTER ---------- */
+    footer.o-footer { border-top: 0.5px solid var(--cs-border); }
+    .o-foot-top { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px; max-width: 1180px; width: 100%; margin: 0 auto; padding: 56px 48px 40px; }
+    .o-foot-brand .footer-logo { height: 44px; margin-bottom: 14px; }
+    .o-foot-brand p { font-size: 13px; line-height: 1.6; color: var(--cs-muted); max-width: 34ch; margin-bottom: 16px; }
+    .o-foot-brand .foot-tag { font-size: 10.5px; font-weight: 600; letter-spacing: 0.1em; color: var(--cs-blue); }
+    .o-foot-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--cs-muted-2); margin-bottom: 15px; }
+    .o-foot-col a { display: block; font-size: 13.5px; color: var(--cs-muted); text-decoration: none; padding: 5px 0; transition: color 0.15s; }
+    .o-foot-col a:hover { color: var(--cs-blue); }
+    .o-foot-bottom { border-top: 0.5px solid var(--cs-border); max-width: 1180px; width: 100%; margin: 0 auto; padding: 20px 48px; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 12.5px; color: var(--cs-muted-2); }
+    .o-foot-bottom a { color: var(--cs-muted-2); text-decoration: none; }
+    .o-foot-bottom a:hover { color: var(--cs-white); }
+
+    @media (max-width: 1024px) {
+      .market-grid { grid-template-columns: 1fr 1fr; }
+      .flow-rail { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .flow-rail::before { display: none; }
+      .who-grid { grid-template-columns: 1fr; }
+      .scale-stats { grid-template-columns: 1fr 1fr; }
+      .o-foot-top { grid-template-columns: 1fr 1fr; gap: 32px; }
+    }
+    @media (max-width: 768px) {
+      .util-bar { display: none; }
+      nav.oracle-nav { top: 0; padding: 14px 20px; }
+      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; align-items: flex-start; gap: 4px; background: #fff; border-bottom: 0.5px solid var(--cs-border); padding: 12px 20px; margin: 0; }
+      .nav-links.open { display: flex; }
+      .nav-toggle { display: block; }
+      .o-hero { padding: 52px 20px 44px; }
+      .o-hero h1 { font-size: 33px; letter-spacing: -1px; }
+      .o-hero-sub { font-size: 15.5px; }
+      .stats-bar { flex-wrap: wrap; }
+      .stat-item { min-width: 50%; border-right: none; border-bottom: 0.5px solid var(--cs-border); padding: 20px; }
+      .section { padding: 48px 20px; }
+      .section.alt { padding: 0; }
+      .section.alt .section-inner { padding: 48px 20px; }
+      .section-title { font-size: 26px; }
+      .market-grid { grid-template-columns: 1fr; }
+      .flow { padding: 28px 22px; }
+      .flow-rail { grid-template-columns: 1fr; }
+      .scale { margin: 0 20px; padding: 40px 24px; }
+      .scale h2 { font-size: 25px; }
+      .scale-stats { grid-template-columns: 1fr 1fr; }
+      .cta { padding: 48px 20px; }
+      .cta h2 { font-size: 25px; }
+      .o-foot-top { grid-template-columns: 1fr; padding: 40px 20px 28px; }
+      .o-foot-bottom { flex-direction: column; align-items: flex-start; padding: 18px 20px; }
+    }
+  </style>
+</head>
+<body>
+  <!-- UTILITY BAR -->
+  <div class="util-bar">
+    <a href="/marketplace.html">Marketplace</a>
+    <a href="/ahj.html">AHJ Portal</a>
+    <a href="/enterprise.html">Enterprise</a>
+    <a href="#contact">Contact sales</a>
+    <span class="util-sep"></span>
+    <a href="/login.html">Log in to OMEGA</a>
+  </div>
+
+  <!-- NAV -->
+  <nav class="oracle-nav">
+    <a href="/" class="logo"><img src="/clearsky-mark.png" alt="ClearSky" class="logo-mark-img">ClearSky</a>
+    <div class="nav-links" id="navLinks">
+      <a href="/platform.html" class="nav-link">Platform</a>
+      <a href="/#energy" class="nav-link">Energy Projects</a>
+      <a href="/marketplace.html" class="nav-link active">Marketplace</a>
+      <a href="/ahj.html" class="nav-link">AHJ Portal</a>
+      <a href="/enterprise.html" class="nav-link">Enterprise</a>
+      <a href="/#contact" class="nav-link">Contact</a>
+    </div>
+    <button class="nav-toggle" aria-label="Menu" onclick="document.getElementById('navLinks').classList.toggle('open')">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <div class="nav-right"><a href="/login.html" class="nav-cta">Log in to OMEGA</a></div>
+  </nav>
+
+  <!-- HERO -->
+  <div class="o-hero">
+    <div class="o-hero-grid"></div>
+    <div class="o-hero-inner">
+      <p class="o-hero-eyebrow">ClearSky Marketplace</p>
+      <h1>The <span class="accent">connective layer</span> for energy project development</h1>
+      <p class="o-hero-sub">One marketplace linking every stage of a distributed energy project — from sourcing the equipment to placing the capital, moving the power, and aggregating the value. Built on the same data that runs the ClearSky platform, so every match starts from a real, developed site.</p>
+      <div class="o-hero-actions">
+        <a href="#markets" class="btn-primary">Explore the markets</a>
+        <a href="#contact" class="btn-ghost">Contact sales</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- STAT STRIP -->
+  <div class="stats-bar">
+    <div class="stat-item"><div class="stat-num"><span>5</span></div><div class="stat-label">Connected market layers</div></div>
+    <div class="stat-item"><div class="stat-num">1</div><div class="stat-label">Platform behind every listing</div></div>
+    <div class="stat-item"><div class="stat-num">End&#8209;to&#8209;end</div><div class="stat-label">Site lead to operating asset</div></div>
+    <div class="stat-item"><div class="stat-num"><span>Data&#8209;first</span></div><div class="stat-label">Every match grounded in real sites</div></div>
+  </div>
+
+  <!-- MARKET CATEGORIES -->
+  <div class="section" id="markets">
+    <div class="section-head">
+      <p class="section-label">The markets</p>
+      <h2 class="section-title">Five markets, one value chain</h2>
+      <p class="section-desc">Distributed energy projects touch dozens of counterparties before they reach commercial operation. The ClearSky Marketplace organizes that whole value chain into a set of connected markets — so the same developed site can be sourced, financed, contracted, and monetized without leaving the platform.</p>
+    </div>
+    <div class="market-grid">
+      <div class="market-card">
+        <div class="market-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+        <div class="market-name">Equipment &amp; Sourcing</div>
+        <div class="market-desc">A curated market for the hardware behind every project — connecting developers to vetted supply and pooling demand to sharpen pricing and terms.</div>
+        <div class="market-tags"><span class="m-tag">Storage &amp; power</span><span class="m-tag">Balance of system</span><span class="m-tag">Vetted supply</span></div>
+      </div>
+      <div class="market-card">
+        <div class="market-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <div class="market-name">Capital &amp; Financing</div>
+        <div class="market-desc">Where bankable, permit-ready projects meet the capital that funds them — debt, tax equity, and project finance matched to developed pipeline.</div>
+        <div class="market-tags"><span class="m-tag">Project finance</span><span class="m-tag">Tax equity</span><span class="m-tag">Underwriting-ready</span></div>
+      </div>
+      <div class="market-card">
+        <span class="market-tag">Emerging</span>
+        <div class="market-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="14" x2="23" y2="14"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="14" x2="4" y2="14"/></svg></div>
+        <div class="market-name">Compute &amp; Offtake</div>
+        <div class="market-desc">A market for the demand side — matching sites with available power and resiliency to distributed compute and offtake counterparties.</div>
+        <div class="market-tags"><span class="m-tag">Distributed compute</span><span class="m-tag">Behind-the-meter load</span><span class="m-tag">Offtake</span></div>
+      </div>
+      <div class="market-card">
+        <div class="market-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+        <div class="market-name">Grid Value &amp; Aggregation</div>
+        <div class="market-desc">The market that turns individual assets into a portfolio — bundling storage and DER into aggregated programs that unlock grid-value revenue.</div>
+        <div class="market-tags"><span class="m-tag">VPP / DR</span><span class="m-tag">Value stack</span><span class="m-tag">Portfolio dispatch</span></div>
+      </div>
+      <div class="market-card">
+        <div class="market-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></div>
+        <div class="market-name">EPC &amp; Services</div>
+        <div class="market-desc">A market for the teams that build and maintain — connecting developed sites to engineering, construction, and operating partners.</div>
+        <div class="market-tags"><span class="m-tag">Engineering</span><span class="m-tag">Construction</span><span class="m-tag">O&amp;M</span></div>
+      </div>
+      <div class="market-card">
+        <span class="market-tag">More online</span>
+        <div class="market-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg></div>
+        <div class="market-name">Value-chain partners</div>
+        <div class="market-desc">The marketplace keeps expanding across the project lifecycle — new counterparties and program types come online as the platform grows.</div>
+        <div class="market-tags"><span class="m-tag">Insurance</span><span class="m-tag">Certification</span><span class="m-tag">Interconnection</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FLOW -->
+  <div class="section alt">
+    <div class="section-inner">
+      <div class="section-head">
+        <p class="section-label">How it connects</p>
+        <h2 class="section-title">One developed site, moving through the value chain</h2>
+        <p class="section-desc">Because the marketplace sits on top of the ClearSky platform, every listing starts from a site that's already been mapped, screened, and modeled. That shared context is what lets each market hand off cleanly to the next.</p>
+      </div>
+      <div class="flow">
+        <div class="flow-rail">
+          <div class="flow-node">
+            <div class="flow-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg></div>
+            <div class="flow-t">Developed site</div>
+            <div class="flow-d">Mapped, screened, and modeled on the platform.</div>
+          </div>
+          <div class="flow-node">
+            <div class="flow-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13"/><path d="M16 8h4l3 3v5h-7"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg></div>
+            <div class="flow-t">Sourced</div>
+            <div class="flow-d">Equipment and materials matched to the design.</div>
+          </div>
+          <div class="flow-node">
+            <div class="flow-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+            <div class="flow-t">Financed</div>
+            <div class="flow-d">Capital matched to a bankable package.</div>
+          </div>
+          <div class="flow-node">
+            <div class="flow-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+            <div class="flow-t">Contracted</div>
+            <div class="flow-d">Offtake and services put under agreement.</div>
+          </div>
+          <div class="flow-node">
+            <div class="flow-dot"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div>
+            <div class="flow-t">Aggregated</div>
+            <div class="flow-d">Rolled into portfolio-wide grid value.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHO BENEFITS -->
+  <div class="section">
+    <div class="section-head">
+      <p class="section-label">Who it's for</p>
+      <h2 class="section-title">Both sides of every market</h2>
+      <p class="section-desc">The marketplace is only useful if it works for supply and demand at once. Here's what each side gets.</p>
+    </div>
+    <div class="who-grid">
+      <div class="who">
+        <h3>For developers &amp; asset owners</h3>
+        <p>Move a project down the value chain without rebuilding context at every handoff.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Source faster</strong> against a design that already exists on the platform.</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Reach capital</strong> with a package that's already underwriting-ready.</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Stack the value</strong> by rolling assets into aggregated programs.</span></li>
+        </ul>
+      </div>
+      <div class="who">
+        <h3>For suppliers, capital &amp; partners</h3>
+        <p>See real, developed opportunities — not leads that fall apart on diligence.</p>
+        <ul>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Qualified demand</strong> grounded in sites that are actually modeled.</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>Consistent packages</strong> so every opportunity arrives in the same shape.</span></li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg><span><strong>One place</strong> to connect across the whole project lifecycle.</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCALE STATEMENT -->
+  <div class="scale">
+    <div class="scale-grid"></div>
+    <div class="scale-inner">
+      <p class="scale-eyebrow">Built to scale</p>
+      <h2>A marketplace as deep as the <span class="accent">value chain it serves</span></h2>
+      <p>Every project that moves through the ClearSky platform makes the marketplace smarter — more developed sites, more counterparties, more ways to match supply and demand across distributed energy, DER, and data-center infrastructure.</p>
+      <div class="scale-stats">
+        <div class="scale-stat"><div class="n"><span>5+</span></div><div class="l">Connected markets across the value chain</div></div>
+        <div class="scale-stat"><div class="n">Multi&#8209;asset</div><div class="l">Storage, DER, EV, microgrid &amp; compute</div></div>
+        <div class="scale-stat"><div class="n">Platform&#8209;native</div><div class="l">Grounded in the OMEGA data model</div></div>
+        <div class="scale-stat"><div class="n"><span>Growing</span></div><div class="l">New partners onboarding continuously</div></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta" id="contact">
+    <h2>Get on the marketplace</h2>
+    <p>Whether you're developing projects or you want to reach the ones that are — talk to us about getting connected to the ClearSky Marketplace.</p>
+    <div class="cta-actions">
+      <a href="/#contact" class="btn-primary">Contact sales</a>
+      <a href="/login.html" class="btn-ghost">Log in to OMEGA</a>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="o-footer">
+    <div class="o-foot-top">
+      <div class="o-foot-brand">
+        <img src="/clearsky-logo-light.png" alt="ClearSky Builders" class="footer-logo">
+        <p>The data platform for energy, DER, and data-center project development, permitting, and procurement.</p>
+        <span class="foot-tag">OMEGA · BESS · EV · MICROGRID · COMPUTE · VPP</span>
+      </div>
+      <div class="o-foot-col">
+        <h4>Marketplace</h4>
+        <a href="#markets">The markets</a>
+        <a href="#markets">Equipment &amp; sourcing</a>
+        <a href="#markets">Capital &amp; financing</a>
+        <a href="#markets">Grid value &amp; aggregation</a>
+      </div>
+      <div class="o-foot-col">
+        <h4>Platform</h4>
+        <a href="/platform.html">Development platform</a>
+        <a href="/ahj.html">AHJ Approval Portal</a>
+        <a href="/#energy">Energy projects</a>
+        <a href="/enterprise.html">Enterprise white-label</a>
+      </div>
+      <div class="o-foot-col">
+        <h4>Access</h4>
+        <a href="/login.html">Log in to OMEGA</a>
+        <a href="/#contact">Contact sales</a>
+        <a href="mailto:info@csebuilders.com">info@csebuilders.com</a>
+      </div>
+    </div>
+    <div class="o-foot-bottom">
+      <span>© 2025 ClearSky Builders LLC · ClearSky Energy Solutions LLC</span>
+      <a href="/">Back to ClearSky ↑</a>
+    </div>
+  </footer>
+</body>
+</html>
